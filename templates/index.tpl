@@ -1,3 +1,3 @@
 {* Smarty *}
 
-Hello {$name}, welcome to Smarty!
+You are on page {$pageno}, viewing {$perpage} of the {$mscount} results.
