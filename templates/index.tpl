@@ -5,7 +5,7 @@
 </head>
 <body>
     <p>
-       You are on page {$pageno},
+       You are on page {$pageno} of {$maxpage},
        viewing {$perpage} of the {$mscount} results. 
     </p>
     <ul>
@@ -20,6 +20,16 @@
             </ul>
         </li>
         {/foreach}
+    </ul>
+    <ul>
+        {for $linkno=$pageno-2 to $pageno+2}
+        {if ($linkno<=0) || ($linkno>$maxpage)}
+        {continue}
+        {/if}
+        <li>
+            <a href='?page={$linkno}'>{$linkno}</a>
+        </li>
+        {/for}
     </ul>
 </body>
 </html>
