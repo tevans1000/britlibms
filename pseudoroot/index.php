@@ -18,13 +18,16 @@ $maxpage = ceil($mscount/$perpage);
 ////////////
 // Do SQL //
 ////////////
-// Create query string
+// Create and prepare query string
 $qstr  = file_get_contents('../../async/results/selectmin.sql');
+$qstr .= file_get_contents('../../async/results/orderbymeddate.sql');
 $qstr .= file_get_contents('../../async/limit.sql');
 $qstr .= file_get_contents('../../async/offset.sql');
 $stmt = $db->prepare($qstr);
+// Bind parameters
 $stmt->bindParam(':limit',$perpage,PDO::PARAM_INT);
 $stmt->bindParam(':offset',$offset,PDO::PARAM_INT);
+// Execute and fetch
 $stmt->execute();
 $result = $stmt ->fetchAll(PDO::FETCH_NUM);
 
