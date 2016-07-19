@@ -15,9 +15,15 @@ $mscount = $result[0]['mscount'];
 $offset = $perpage * ($pageno - 1);
 $maxpage = ceil($mscount/$perpage);
 
-// Do SQL
-$stmt = $db->prepare(file_get_contents('../../async/getresultms.sql'));
-$stmt->bindParam(':perpage',$perpage,PDO::PARAM_INT);
+////////////
+// Do SQL //
+////////////
+// Create query string
+$qstr  = file_get_contents('../../async/results/selectmin.sql');
+$qstr .= file_get_contents('../../async/limit.sql');
+$qstr .= file_get_contents('../../async/offset.sql');
+$stmt = $db->prepare($qstr);
+$stmt->bindParam(':limit',$perpage,PDO::PARAM_INT);
 $stmt->bindParam(':offset',$offset,PDO::PARAM_INT);
 $stmt->execute();
 $result = $stmt ->fetchAll(PDO::FETCH_NUM);
