@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-18 22:42:32
+/* Smarty version 3.1.28, created on 2016-07-23 16:13:09
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_578d4d48b0c142_58838601',
+  'unifunc' => 'content_5793898534d735_86289205',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1468878148,
+      1 => 1469286672,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_578d4d48b0c142_58838601 ($_smarty_tpl) {
+function content_5793898534d735_86289205 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -78,26 +78,26 @@ function content_578d4d48b0c142_58838601 ($_smarty_tpl) {
  of <?php echo $_smarty_tpl->tpl_vars['maxpage']->value;?>
 ,
                         viewing <?php echo $_smarty_tpl->tpl_vars['perpage']->value;?>
- of the <?php echo $_smarty_tpl->tpl_vars['mscount']->value;?>
+ of the <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
  results.
                     </p>
                     <ul>
                         <?php
-$_from = $_smarty_tpl->tpl_vars['mslist']->value;
+$_from = $_smarty_tpl->tpl_vars['reslist']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_ms_0_saved_item = isset($_smarty_tpl->tpl_vars['ms']) ? $_smarty_tpl->tpl_vars['ms'] : false;
-$_smarty_tpl->tpl_vars['ms'] = new Smarty_Variable();
-$__foreach_ms_0_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_ms_0_total) {
-foreach ($_from as $_smarty_tpl->tpl_vars['ms']->value) {
-$__foreach_ms_0_saved_local_item = $_smarty_tpl->tpl_vars['ms'];
+$__foreach_res_0_saved_item = isset($_smarty_tpl->tpl_vars['res']) ? $_smarty_tpl->tpl_vars['res'] : false;
+$_smarty_tpl->tpl_vars['res'] = new Smarty_Variable();
+$__foreach_res_0_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_res_0_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['res']->value) {
+$__foreach_res_0_saved_local_item = $_smarty_tpl->tpl_vars['res'];
 ?>
                         <li>
                             <ul>
                                 <?php
-$_from = $_smarty_tpl->tpl_vars['ms']->value;
+$_from = $_smarty_tpl->tpl_vars['res']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
@@ -123,11 +123,11 @@ $_smarty_tpl->tpl_vars['attr'] = $__foreach_attr_1_saved_item;
                             </ul>
                         </li>
                         <?php
-$_smarty_tpl->tpl_vars['ms'] = $__foreach_ms_0_saved_local_item;
+$_smarty_tpl->tpl_vars['res'] = $__foreach_res_0_saved_local_item;
 }
 }
-if ($__foreach_ms_0_saved_item) {
-$_smarty_tpl->tpl_vars['ms'] = $__foreach_ms_0_saved_item;
+if ($__foreach_res_0_saved_item) {
+$_smarty_tpl->tpl_vars['res'] = $__foreach_res_0_saved_item;
 }
 ?>
                     </ul> 

@@ -48,13 +48,13 @@
                     </h1>
                     <p>
                         You are on page {$pageno} of {$maxpage},
-                        viewing {$perpage} of the {$mscount} results.
+                        viewing {$perpage} of the {$rescount} results.
                     </p>
                     <ul>
-                        {foreach $mslist as $ms}
+                        {foreach $reslist as $res}
                         <li>
                             <ul>
-                                {foreach $ms as $attr}
+                                {foreach $res as $attr}
                                 <li>
                                     {$attr}
                                 </li>
