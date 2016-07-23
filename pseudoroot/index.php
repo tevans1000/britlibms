@@ -35,6 +35,7 @@ $subqstr .= 'WHERE TRUE ';
 if (isset($region)){
     $subqstr .= file_get_contents('../../async/results/where/region.sql');
 }
+//echo($subqstr);
 
 // Set up variables for pagination
 $pageno      = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -67,20 +68,28 @@ $qstr .= file_get_contents("../../async/results/$grouping/from.sql");
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
 $qstr .= file_get_contents('../../async/limit.sql');
 $qstr .= file_get_contents('../../async/offset.sql');
-$stmt = $db->prepare($qstr);
+$resstmt = $db->prepare($qstr);
 
 // Bind parameters
 if (isset($region)){
-    $stmt->bindParam(':region', $region, PDO::PARAM_INT);
+    $resstmt->bindParam(':region', $region, PDO::PARAM_INT);
 }
-$stmt->bindParam(':limit',$perpage,PDO::PARAM_INT);
-$stmt->bindParam(':offset',$offset,PDO::PARAM_INT);
+$resstmt->bindParam(':limit',$perpage,PDO::PARAM_INT);
+$resstmt->bindParam(':offset',$offset,PDO::PARAM_INT);
 
 // Execute and fetch
-$stmt->execute();
-echo(mysql_error());
-$result = $stmt ->fetchAll(PDO::FETCH_NUM);
+$resstmt->execute();
+$result = $resstmt ->fetchAll(PDO::FETCH_NUM);
 ///////////////////////////////////////////////////////////////////////
+// Create and prepare query string
+$qstr = file_get_contents('../../async/filters/region.sql');
+$qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+$region_stmt = $db->prepare($qstr);
+if (isset($region)){
+    $region_stmt->bindParam(':region', $region, PDO::PARAM_INT);
+}
+$region_stmt->execute();
+$region_list = $region_stmt->fetchAll(PDO::FETCH_NUM);
 
 // Assign variables
 $smarty->assign('perpage',$perpage);
@@ -88,6 +97,7 @@ $smarty->assign('pageno',$pageno);
 $smarty->assign('maxpage',$maxpage);
 $smarty->assign('rescount',$rescount);
 $smarty->assign('reslist',$result);
+$smarty->assign('region_list',$region_list);
 
 // Display
 $smarty->display('index.tpl');

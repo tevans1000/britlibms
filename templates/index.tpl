@@ -23,21 +23,17 @@
             <div class='col-sm-2'>
                 <nav>
                     <h2>
-                        Filter tabs
+                        Filters
                     </h2>
+                    <h3>
+                        Regions
+                    </h3>
                     <ul>
+                        {foreach $region_list as $row}
                         <li>
-                            Year
+                            {$row[0]}
                         </li>
-                        <li>
-                            Language
-                        </li>
-                        <li>
-                            Region
-                        </li>
-                        <li>
-                            etc.
-                        </li>
+                        {/foreach}
                     </ul>
                 </nav>
             </div>
