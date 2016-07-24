@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-24 14:26:00
+/* Smarty version 3.1.28, created on 2016-07-24 14:36:43
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_5794c1e8b23a66_93675526',
+  'unifunc' => 'content_5794c46b66bae6_58049720',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469366756,
+      1 => 1469367398,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5794c1e8b23a66_93675526 ($_smarty_tpl) {
+function content_5794c46b66bae6_58049720 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -181,11 +181,11 @@ $_smarty_tpl->tpl_vars['res'] = $__foreach_res_2_saved_item;
                 <nav>
                     <ul class='pagination'>
                         <?php
-$_smarty_tpl->tpl_vars['linkno'] = new Smarty_Variable;$_smarty_tpl->tpl_vars['linkno']->step = 1;$_smarty_tpl->tpl_vars['linkno']->total = (int) ceil(($_smarty_tpl->tpl_vars['linkno']->step > 0 ? $_smarty_tpl->tpl_vars['pageno']->value+2+1 - ($_smarty_tpl->tpl_vars['pageno']->value-2) : $_smarty_tpl->tpl_vars['pageno']->value-2-($_smarty_tpl->tpl_vars['pageno']->value+2)+1)/abs($_smarty_tpl->tpl_vars['linkno']->step));
+$_smarty_tpl->tpl_vars['linkno'] = new Smarty_Variable;$_smarty_tpl->tpl_vars['linkno']->step = 1;$_smarty_tpl->tpl_vars['linkno']->total = (int) ceil(($_smarty_tpl->tpl_vars['linkno']->step > 0 ? $_smarty_tpl->tpl_vars['pageno']->value+4+1 - ($_smarty_tpl->tpl_vars['pageno']->value-4) : $_smarty_tpl->tpl_vars['pageno']->value-4-($_smarty_tpl->tpl_vars['pageno']->value+4)+1)/abs($_smarty_tpl->tpl_vars['linkno']->step));
 if ($_smarty_tpl->tpl_vars['linkno']->total > 0) {
-for ($_smarty_tpl->tpl_vars['linkno']->value = $_smarty_tpl->tpl_vars['pageno']->value-2, $_smarty_tpl->tpl_vars['linkno']->iteration = 1;$_smarty_tpl->tpl_vars['linkno']->iteration <= $_smarty_tpl->tpl_vars['linkno']->total;$_smarty_tpl->tpl_vars['linkno']->value += $_smarty_tpl->tpl_vars['linkno']->step, $_smarty_tpl->tpl_vars['linkno']->iteration++) {
+for ($_smarty_tpl->tpl_vars['linkno']->value = $_smarty_tpl->tpl_vars['pageno']->value-4, $_smarty_tpl->tpl_vars['linkno']->iteration = 1;$_smarty_tpl->tpl_vars['linkno']->iteration <= $_smarty_tpl->tpl_vars['linkno']->total;$_smarty_tpl->tpl_vars['linkno']->value += $_smarty_tpl->tpl_vars['linkno']->step, $_smarty_tpl->tpl_vars['linkno']->iteration++) {
 $_smarty_tpl->tpl_vars['linkno']->first = $_smarty_tpl->tpl_vars['linkno']->iteration == 1;$_smarty_tpl->tpl_vars['linkno']->last = $_smarty_tpl->tpl_vars['linkno']->iteration == $_smarty_tpl->tpl_vars['linkno']->total;?>
-                        <?php if (($_smarty_tpl->tpl_vars['linkno']->value <= 0) || ($_smarty_tpl->tpl_vars['linkno']->value > $_smarty_tpl->tpl_vars['maxpage']->value)) {?>
+                        <?php if (($_smarty_tpl->tpl_vars['linkno']->value <= 0)) {?>
                         <?php continue 1;?>
                         <?php }?>
                         <?php if ($_smarty_tpl->tpl_vars['linkno']->value == $_smarty_tpl->tpl_vars['pageno']->value) {?>
@@ -223,6 +223,9 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_value_4_saved_key;
 
                             </a>
                         </li>
+                        <?php if (($_smarty_tpl->tpl_vars['linkno']->value == $_smarty_tpl->tpl_vars['maxpage']->value)) {?>
+                        <?php break 1;?>
+                        <?php }?>
                         <?php }
 }
 ?>

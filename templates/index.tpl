@@ -68,8 +68,8 @@
             <div class='col-sm-12'>
                 <nav>
                     <ul class='pagination'>
-                        {for $linkno=$pageno-2 to $pageno+2}
-                        {if ($linkno<=0) || ($linkno>$maxpage)}
+                        {for $linkno=$pageno-4 to $pageno+4}
+                        {if ($linkno<=0)}
                         {continue}
                         {/if}
                         {if $linkno==$pageno}
@@ -81,6 +81,9 @@
                                 {$linkno}
                             </a>
                         </li>
+                        {if ($linkno==$maxpage)}
+                        {break}
+                        {/if}
                         {/for}
                     </ul>
                 </nav>
