@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-24 16:14:16
+/* Smarty version 3.1.28, created on 2016-07-24 19:11:48
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_5794db480f82e2_87637193',
+  'unifunc' => 'content_579504e491b585_10308796',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469373251,
+      1 => 1469383886,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5794db480f82e2_87637193 ($_smarty_tpl) {
+function content_579504e491b585_10308796 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -190,7 +190,7 @@ $__foreach_res_2_saved_local_item = $_smarty_tpl->tpl_vars['res'];
                     <?php } else { if (!isset($_smarty_tpl->tpl_vars['get']) || !is_array($_smarty_tpl->tpl_vars['get']->value)) $_smarty_tpl->smarty->ext->_var->createLocalArrayVariable($_smarty_tpl, 'get');
 if ($_smarty_tpl->tpl_vars['get']->value['grouping'] = 'm') {?>
                     <h3>
-                        <a href='manuscript?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[0];?>
+                        <a href='../manuscript?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[0];?>
 '>
                             <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
  <?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>

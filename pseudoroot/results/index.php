@@ -1,6 +1,6 @@
 <?php
 
-require_once( '../../async/conf.php' );
+require_once( '../../../async/conf.php' );
 
 // Determine results page grouping
 if ( empty($_GET['grouping']) ){
@@ -21,7 +21,7 @@ if ( empty($_GET['grouping']) ){
             $_GET['grouping'] = 'p';  // for smarty
     }
 }
-$id_type = file_get_contents("../../async/results/$grouping/idtype");
+$id_type = file_get_contents("../../../async/results/$grouping/idtype");
 
 // Set up parameters for binding
 if ( !empty($_GET['region']) ){
@@ -29,13 +29,13 @@ if ( !empty($_GET['region']) ){
 }
 
 // Construct result set subquery string
-$subqstr = file_get_contents("../../async/results/$grouping.sql");
+$subqstr = file_get_contents("../../../async/results/$grouping.sql");
 if (isset($region)){
-    $subqstr .= file_get_contents('../../async/results/join/region.sql');
+    $subqstr .= file_get_contents('../../../async/results/join/region.sql');
 }
 $subqstr .= 'WHERE TRUE ';
 if (isset($region)){
-    $subqstr .= file_get_contents('../../async/results/where/region.sql');
+    $subqstr .= file_get_contents('../../../async/results/where/region.sql');
 }
 //echo($subqstr);
 
@@ -43,7 +43,7 @@ if (isset($region)){
 $pageno      = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
 $perpage     = 20;
 // Total count
-$qstr = file_get_contents( "../../async/results/$grouping/count.sql" );
+$qstr = file_get_contents( "../../../async/results/$grouping/count.sql" );
 $qstr .= "WHERE $id_type IN ($subqstr)";
 $stmt = $db->prepare($qstr);
 // conditional bindings
@@ -63,13 +63,13 @@ $maxpage = ceil($rescount/$perpage);
 // Do SQL //
 ///////////////////////////////////////////////////////////////////////
 // Create and prepare query string
-$qstr  = file_get_contents("../../async/results/$grouping/select.sql");
+$qstr  = file_get_contents("../../../async/results/$grouping/select.sql");
 // TODO: stuff with GET/SESSION/COOKIE to determine extra fields as required
-$qstr .= file_get_contents("../../async/results/$grouping/from.sql");
+$qstr .= file_get_contents("../../../async/results/$grouping/from.sql");
 // TODO: stuff with GET/SESSION/COOKIE to determine extra JOINS as required
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../async/limit.sql');
-$qstr .= file_get_contents('../../async/offset.sql');
+$qstr .= file_get_contents('../../../async/limit.sql');
+$qstr .= file_get_contents('../../../async/offset.sql');
 $resstmt = $db->prepare($qstr);
 
 // Bind parameters
@@ -84,11 +84,11 @@ $resstmt->execute();
 $result = $resstmt ->fetchAll(PDO::FETCH_NUM);
 ///////////////////////////////////////////////////////////////////////
 // Create and prepare query string
-$qstr  = file_get_contents('../../async/filters/region/select.sql');
+$qstr  = file_get_contents('../../../async/filters/region/select.sql');
 $qstr .= ", COUNT(DISTINCT v.$id_type) ";
-$qstr .= file_get_contents('../../async/filters/region/from.sql');
+$qstr .= file_get_contents('../../../async/filters/region/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../async/filters/region/group_by_order_by.sql');
+$qstr .= file_get_contents('../../../async/filters/region/group_by_order_by.sql');
 $region_stmt = $db->prepare($qstr);
 if (isset($region)){
     $region_stmt->bindParam(':region', $region, PDO::PARAM_INT);

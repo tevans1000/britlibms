@@ -83,7 +83,7 @@
                     {/if}
                     {elseif $get['grouping']='m'}
                     <h3>
-                        <a href='manuscript?id={$res[0]}'>
+                        <a href='../manuscript?id={$res[0]}'>
                             {$res[1]} {$res[2]}
                         </a>
                     </h3>
