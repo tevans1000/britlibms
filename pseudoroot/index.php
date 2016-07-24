@@ -84,6 +84,7 @@ $result = $resstmt ->fetchAll(PDO::FETCH_NUM);
 // Create and prepare query string
 $qstr = file_get_contents('../../async/filters/region.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+$qstr .= file_get_contents('../../async/filters/group_by_order_by.sql');
 $region_stmt = $db->prepare($qstr);
 if (isset($region)){
     $region_stmt->bindParam(':region', $region, PDO::PARAM_INT);

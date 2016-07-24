@@ -32,7 +32,7 @@
                         {foreach $region_list as $row}
                         <li>
                             <a href='?region={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != region}&amp;{$name}={$value}{/if}{/foreach}'>
-                                {$row[1]}
+                                {$row[1]} ({$row[2]})
                             </a>
                         </li>
                         {/foreach}

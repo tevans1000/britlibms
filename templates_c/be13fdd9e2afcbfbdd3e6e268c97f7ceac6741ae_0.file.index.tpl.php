@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-24 14:36:43
+/* Smarty version 3.1.28, created on 2016-07-24 14:54:56
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_5794c46b66bae6_58049720',
+  'unifunc' => 'content_5794c8b0950055_13059026',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469367398,
+      1 => 1469368492,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5794c46b66bae6_58049720 ($_smarty_tpl) {
+function content_5794c8b0950055_13059026 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -96,7 +96,8 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_value_1_saved_key;
 }
 ?>'>
                                 <?php echo $_smarty_tpl->tpl_vars['row']->value[1];?>
-
+ (<?php echo $_smarty_tpl->tpl_vars['row']->value[2];?>
+)
                             </a>
                         </li>
                         <?php
