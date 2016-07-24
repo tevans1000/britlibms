@@ -5,6 +5,7 @@ require_once( '../../async/conf.php' );
 // Determine results page grouping
 if ( empty($_GET['grouping']) ){
     $grouping = 'p';
+    $_GET['grouping'] = 'p';  // for smarty
 } else {
     switch ( $_GET['grouping'] ){
         case 'm': // by manuscript
@@ -17,6 +18,7 @@ if ( empty($_GET['grouping']) ){
             break;
         default:
             $grouping = 'p';
+            $_GET['grouping'] = 'p';  // for smarty
     }
 }
 $id_type = file_get_contents("../../async/results/$grouping/idtype");

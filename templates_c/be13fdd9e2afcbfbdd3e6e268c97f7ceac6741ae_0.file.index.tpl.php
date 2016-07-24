@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-24 14:54:56
+/* Smarty version 3.1.28, created on 2016-07-24 15:33:41
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_5794c8b0950055_13059026',
+  'unifunc' => 'content_5794d1c54df2a5_23871934',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469368492,
+      1 => 1469370818,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5794c8b0950055_13059026 ($_smarty_tpl) {
+function content_5794d1c54df2a5_23871934 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -124,8 +124,7 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
  of the <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
  results.
                     </p>
-                    <ul>
-                        <?php
+                    <?php
 $_from = $_smarty_tpl->tpl_vars['reslist']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -134,12 +133,40 @@ $__foreach_res_2_saved_item = isset($_smarty_tpl->tpl_vars['res']) ? $_smarty_tp
 $_smarty_tpl->tpl_vars['res'] = new Smarty_Variable();
 $__foreach_res_2_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
 if ($__foreach_res_2_total) {
+$__foreach_res_2_iteration=0;
 foreach ($_from as $_smarty_tpl->tpl_vars['res']->value) {
+$__foreach_res_2_iteration++;
+$_smarty_tpl->tpl_vars['res']->last = $__foreach_res_2_iteration == $__foreach_res_2_total;
 $__foreach_res_2_saved_local_item = $_smarty_tpl->tpl_vars['res'];
 ?>
-                        <li>
-                            <ul>
-                                <?php
+                    <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'i') {?>
+                    <h4>
+                        <?php echo $_smarty_tpl->tpl_vars['res']->value[3];?>
+ <?php echo $_smarty_tpl->tpl_vars['res']->value[4];?>
+ (<?php echo $_smarty_tpl->tpl_vars['res']->value[5];?>
+)
+                    </h4>
+                    <h3>
+                        <?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
+
+                    </h3>
+                    <p>
+                        (image of <?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
+ from folder <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
+)
+                    </p>
+                    <?php if ($_smarty_tpl->tpl_vars['res']->value[7] != '') {?>
+                    <p>
+                        by <?php echo $_smarty_tpl->tpl_vars['res']->value[7];?>
+
+                    </p>
+                    <?php }?>
+                    <?php if (!($_smarty_tpl->tpl_vars['res']->last)) {?>
+                    <hr>
+                    <?php }?>
+                    <?php } else { ?>
+                    <ul>
+                        <?php
 $_from = $_smarty_tpl->tpl_vars['res']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -151,11 +178,11 @@ if ($__foreach_attr_3_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['attr']->value) {
 $__foreach_attr_3_saved_local_item = $_smarty_tpl->tpl_vars['attr'];
 ?>
-                                <li>
-                                    <?php echo $_smarty_tpl->tpl_vars['attr']->value;?>
+                        <li>
+                            <?php echo $_smarty_tpl->tpl_vars['attr']->value;?>
 
-                                </li>
-                                <?php
+                        </li>
+                        <?php
 $_smarty_tpl->tpl_vars['attr'] = $__foreach_attr_3_saved_local_item;
 }
 }
@@ -163,9 +190,9 @@ if ($__foreach_attr_3_saved_item) {
 $_smarty_tpl->tpl_vars['attr'] = $__foreach_attr_3_saved_item;
 }
 ?>
-                            </ul>
-                        </li>
-                        <?php
+                    </ul>
+                    <?php }?>
+                    <?php
 $_smarty_tpl->tpl_vars['res'] = $__foreach_res_2_saved_local_item;
 }
 }
@@ -173,7 +200,6 @@ if ($__foreach_res_2_saved_item) {
 $_smarty_tpl->tpl_vars['res'] = $__foreach_res_2_saved_item;
 }
 ?>
-                    </ul> 
                 </section>
             </div>
         </div>

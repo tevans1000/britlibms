@@ -48,19 +48,35 @@
                         You are on page {$pageno} of {$maxpage},
                         viewing {$perpage} of the {$rescount} results.
                     </p>
+                    {foreach $reslist as $res}
+                    {if $get['grouping']=='i'}
+                    <h4>
+                        {$res[3]} {$res[4]} ({$res[5]})
+                    </h4>
+                    <h3>
+                        {$res[6]}
+                    </h3>
+                    <p>
+                        (image of {$res[2]} from folder {$res[1]})
+                    </p>
+                    {if $res[7] != ''}
+                    <p>
+                        by {$res[7]}
+                    </p>
+                    {/if}
+                    {if !($res@last)}
+                    <hr>
+                    {/if}
+                    {else}
                     <ul>
-                        {foreach $reslist as $res}
+                        {foreach $res as $attr}
                         <li>
-                            <ul>
-                                {foreach $res as $attr}
-                                <li>
-                                    {$attr}
-                                </li>
-                                {/foreach}
-                            </ul>
+                            {$attr}
                         </li>
                         {/foreach}
-                    </ul> 
+                    </ul>
+                    {/if}
+                    {/foreach}
                 </section>
             </div>
         </div>
