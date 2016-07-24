@@ -84,9 +84,11 @@ $resstmt->execute();
 $result = $resstmt ->fetchAll(PDO::FETCH_NUM);
 ///////////////////////////////////////////////////////////////////////
 // Create and prepare query string
-$qstr = file_get_contents('../../async/filters/region.sql');
+$qstr  = file_get_contents('../../async/filters/region/select.sql');
+$qstr .= ", COUNT(DISTINCT v.$id_type) ";
+$qstr .= file_get_contents('../../async/filters/region/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../async/filters/group_by_order_by.sql');
+$qstr .= file_get_contents('../../async/filters/region/group_by_order_by.sql');
 $region_stmt = $db->prepare($qstr);
 if (isset($region)){
     $region_stmt->bindParam(':region', $region, PDO::PARAM_INT);
@@ -102,6 +104,7 @@ $smarty->assign('rescount',$rescount);
 $smarty->assign('reslist',$result);
 $smarty->assign('region_list',$region_list);
 $smarty->assign('get',$_GET);
+$smarty->assign('returncount', count($result));
 
 // Display
 $smarty->display('index.tpl');

@@ -46,7 +46,7 @@
                     </h1>
                     <p>
                         You are on page {$pageno} of {$maxpage},
-                        viewing {$perpage} of the {$rescount} results.
+                        viewing {$returncount} of the {$rescount} results.
                     </p>
                     {foreach $reslist as $res}
                     {if $get['grouping']=='i'}
@@ -54,7 +54,9 @@
                         {$res[3]} {$res[4]} ({$res[5]})
                     </h4>
                     <h3>
-                        {$res[6]}
+                        <a href='illumination?ID={$res[0]}'>
+                            {$res[6]}
+                        </a>
                     </h3>
                     <p>
                         (image of {$res[2]} from folder {$res[1]})
@@ -64,17 +66,30 @@
                         by {$res[7]}
                     </p>
                     {/if}
+                    {elseif $get['grouping']=='p'}
+                    <h4>
+                        {$res[1]} {$res[2]} ({$res[3]})
+                        [part {$res[6]} of {$res[7]}]
+                    </h4>
+                    <h3>
+                        <a href='part?id={$res[0]}'>
+                            {$res[5]}
+                        </a>
+                    </h3>
+                    {if $res[4] != ''}
+                    <h5>
+                        by {$res[4]}
+                    </h5>
+                    {/if}
+                    {elseif $get['grouping']='m'}
+                    <h3>
+                        <a href='manuscript?id={$res[0]}'>
+                            {$res[1]} {$res[2]}
+                        </a>
+                    </h3>
+                    {/if}
                     {if !($res@last)}
                     <hr>
-                    {/if}
-                    {else}
-                    <ul>
-                        {foreach $res as $attr}
-                        <li>
-                            {$attr}
-                        </li>
-                        {/foreach}
-                    </ul>
                     {/if}
                     {/foreach}
                 </section>
