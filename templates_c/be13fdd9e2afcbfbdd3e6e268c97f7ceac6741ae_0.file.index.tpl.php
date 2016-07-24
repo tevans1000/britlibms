@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-24 00:37:50
+/* Smarty version 3.1.28, created on 2016-07-24 14:07:55
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_5793ffce558273_33094628',
+  'unifunc' => 'content_5794bdab917f48_64806613',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469317067,
+      1 => 1469365673,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5793ffce558273_33094628 ($_smarty_tpl) {
+function content_5794bdab917f48_64806613 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -166,8 +166,32 @@ $_smarty_tpl->tpl_vars['linkno']->first = $_smarty_tpl->tpl_vars['linkno']->iter
                         <?php } else { ?>
                         <li>
                         <?php }?>
-                            <a href='?page=<?php echo $_smarty_tpl->tpl_vars['linkno']->value;?>
-'><?php echo $_smarty_tpl->tpl_vars['linkno']->value;?>
+                            <a href='?page=<?php echo $_smarty_tpl->tpl_vars['linkno']->value;
+$_from = $_smarty_tpl->tpl_vars['get']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_value_3_saved_item = isset($_smarty_tpl->tpl_vars['value']) ? $_smarty_tpl->tpl_vars['value'] : false;
+$__foreach_value_3_saved_key = isset($_smarty_tpl->tpl_vars['name']) ? $_smarty_tpl->tpl_vars['name'] : false;
+$_smarty_tpl->tpl_vars['value'] = new Smarty_Variable();
+$__foreach_value_3_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_value_3_total) {
+$_smarty_tpl->tpl_vars['name'] = new Smarty_Variable();
+foreach ($_from as $_smarty_tpl->tpl_vars['name']->value => $_smarty_tpl->tpl_vars['value']->value) {
+$__foreach_value_3_saved_local_item = $_smarty_tpl->tpl_vars['value'];
+if ($_smarty_tpl->tpl_vars['name']->value != 'page') {?>&amp;<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+=<?php echo $_smarty_tpl->tpl_vars['value']->value;
+}
+$_smarty_tpl->tpl_vars['value'] = $__foreach_value_3_saved_local_item;
+}
+}
+if ($__foreach_value_3_saved_item) {
+$_smarty_tpl->tpl_vars['value'] = $__foreach_value_3_saved_item;
+}
+if ($__foreach_value_3_saved_key) {
+$_smarty_tpl->tpl_vars['name'] = $__foreach_value_3_saved_key;
+}
+?>'><?php echo $_smarty_tpl->tpl_vars['linkno']->value;?>
 </a>
                         </li>
                         <?php }

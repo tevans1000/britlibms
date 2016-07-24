@@ -98,6 +98,7 @@ $smarty->assign('maxpage',$maxpage);
 $smarty->assign('rescount',$rescount);
 $smarty->assign('reslist',$result);
 $smarty->assign('region_list',$region_list);
+$smarty->assign('get',$_GET);
 
 // Display
 $smarty->display('index.tpl');

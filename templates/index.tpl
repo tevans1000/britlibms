@@ -75,7 +75,7 @@
                         {else}
                         <li>
                         {/if}
-                            <a href='?page={$linkno}'>{$linkno}</a>
+                            <a href='?page={$linkno}{foreach $get as $name => $value}{if $name != 'page'}&amp;{$name}={$value}{/if}{/foreach}'>{$linkno}</a>
                         </li>
                         {/for}
                     </ul>
