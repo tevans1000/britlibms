@@ -75,7 +75,13 @@
                         Select bibliography
                     </dt>
                     <dd>
-                        {$bib}
+                        <ul>
+                            {foreach $bib as $ref}
+                            <li>
+                                {$ref}
+                            </li>
+                            {/foreach}
+                        </ul>
                     </dd>
                 </dl>
                 <h2>Parts</h2>

@@ -21,7 +21,7 @@ $parts = $partstmt ->fetchAll(PDO::FETCH_NUM);
 
 $provenance = explode("\n", trim($record[0][6]));
 $notes = explode("\n", trim($record[0][7]));
-$bib = trim(preg_replace('/~([^~]*)~/', '<cite>\1</cite>', $record[0][8]));
+$bib = array_filter(explode("\n", trim(preg_replace('/~([^~]*)~/', '<cite>\1</cite>', $record[0][8]))));
 
 // Assign variables
 $smarty->assign('record',$record[0]);
