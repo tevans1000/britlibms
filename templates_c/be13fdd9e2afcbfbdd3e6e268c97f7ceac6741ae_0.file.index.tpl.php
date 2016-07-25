@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-25 15:33:07
+/* Smarty version 3.1.28, created on 2016-07-25 18:43:51
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57962323e63687_43528465',
+  'unifunc' => 'content_57964fd7f30ba0_21427084',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469457184,
+      1 => 1469468625,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57962323e63687_43528465 ($_smarty_tpl) {
+function content_57964fd7f30ba0_21427084 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/results/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -230,7 +230,8 @@ $__foreach_res_3_saved_local_item = $_smarty_tpl->tpl_vars['res'];
 ]
                     </h4>
                     <h3>
-                        <a href='part?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[0];?>
+                        <a href='../manuscript?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[8];?>
+#part<?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
 '>
                             <?php echo $_smarty_tpl->tpl_vars['res']->value[5];?>
 
@@ -238,6 +239,7 @@ $__foreach_res_3_saved_local_item = $_smarty_tpl->tpl_vars['res'];
                     </h3>
                     <?php if ($_smarty_tpl->tpl_vars['res']->value[4] != '') {?>
                     <h5>
+                        
                         by <?php echo smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['res']->value[4],"/\(index[^\)]*\)/",'');?>
 
                     </h5>

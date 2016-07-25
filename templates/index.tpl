@@ -92,7 +92,7 @@
                         [part {$res[6]} of {$res[7]}]
                     </h4>
                     <h3>
-                        <a href='part?id={$res[0]}'>
+                        <a href='../manuscript?id={$res[8]}#part{$res[6]}'>
                             {$res[5]}
                         </a>
                     </h3>
