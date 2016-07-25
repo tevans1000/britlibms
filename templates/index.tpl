@@ -45,9 +45,29 @@
                         Results
                     </h1>
                     <p>
-                        You are on page {$pageno} of {$maxpage},
-                        viewing {$returncount} of the {$rescount} results.
+                        {$firstret}&ndash;{$lastret} of {$rescount} (page {$pageno} / {$maxpage})
                     </p>
+                    <nav>
+                        <ul class='pagination'>
+                            {for $linkno=$pageno-4 to $pageno+4}
+                            {if ($linkno<=0)}
+                            {continue}
+                            {/if}
+                            {if $linkno==$pageno}
+                            <li class='active'>
+                            {else}
+                            <li>
+                            {/if}
+                                <a href='?page={$linkno}{foreach $get as $name => $value}{if $name != 'page'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                    {$linkno}
+                                </a>
+                            </li>
+                            {if ($linkno==$maxpage)}
+                            {break}
+                            {/if}
+                            {/for}
+                        </ul>
+                    </nav>
                     {foreach $reslist as $res}
                     {if $get['grouping']=='i'}
                     <h4>
@@ -78,7 +98,9 @@
                     </h3>
                     {if $res[4] != ''}
                     <h5>
-                        by {$res[4]}
+                        {* regex_replace gets rid of indexing details
+                           - of no interest to visitors *}
+                        by {$res[4]|regex_replace:"/\(index[^\)]*\)/":""}
                     </h5>
                     {/if}
                     {elseif $get['grouping']='m'}

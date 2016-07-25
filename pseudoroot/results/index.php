@@ -97,14 +97,14 @@ $region_stmt->execute();
 $region_list = $region_stmt->fetchAll(PDO::FETCH_NUM);
 
 // Assign variables
-$smarty->assign('perpage',$perpage);
+$smarty->assign('firstret',1+$offset);
+$smarty->assign('lastret',count($result)+$offset);
 $smarty->assign('pageno',$pageno);
 $smarty->assign('maxpage',$maxpage);
 $smarty->assign('rescount',$rescount);
 $smarty->assign('reslist',$result);
 $smarty->assign('region_list',$region_list);
 $smarty->assign('get',$_GET);
-$smarty->assign('returncount', count($result));
 
 // Display
 $smarty->display('index.tpl');
