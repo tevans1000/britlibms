@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-19 16:19:25
+/* Smarty version 3.1.28, created on 2016-07-26 11:59:48
   from "/var/www/html/britlibms/sync/templates/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_578e44fd1fccd6_91015278',
+  'unifunc' => 'content_579742a44ec3c0_67368119',
   'file_dependency' => 
   array (
     '2dbf01d10aabe9d317684f233c3a73b6fbe3ba98' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/index.tpl',
-      1 => 1468941560,
+      1 => 1469530761,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,8 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_578e44fd1fccd6_91015278 ($_smarty_tpl) {
+function content_579742a44ec3c0_67368119 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/pseudoroot/results/../../includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -37,7 +38,8 @@ function content_578e44fd1fccd6_91015278 ($_smarty_tpl) {
 </head>
 <body>
     <div class='container-fluid'>
-        <div class='row'>
+        
+        <div id='header-row' class='row'>
             <div class='col-sm-12'>
                 <header>
                     <h2>
@@ -45,105 +47,244 @@ function content_578e44fd1fccd6_91015278 ($_smarty_tpl) {
                     </h2>
                 </header>
             </div>
-        </div>
-        <div class='row'>
-            <div class='col-sm-2'>
+        </div> <!-- end of header-row -->
+        
+        <div id='content-row' class='row'>
+            <div id='filter-column' class='col-sm-2'>
                 <nav>
                     <h2>
-                        Filter tabs
+                        Filters
                     </h2>
-                    <ul>
+                    <h3>
+                        Regions
+                    </h3>
+                    <ul id='region-list'>
+                        <?php
+$_from = $_smarty_tpl->tpl_vars['region_list']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_row_0_saved_item = isset($_smarty_tpl->tpl_vars['row']) ? $_smarty_tpl->tpl_vars['row'] : false;
+$_smarty_tpl->tpl_vars['row'] = new Smarty_Variable();
+$__foreach_row_0_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_row_0_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->value) {
+$__foreach_row_0_saved_local_item = $_smarty_tpl->tpl_vars['row'];
+?>
                         <li>
-                            Year
+                            <a href='?region=<?php echo $_smarty_tpl->tpl_vars['row']->value[0];
+$_from = $_smarty_tpl->tpl_vars['get']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_value_1_saved_item = isset($_smarty_tpl->tpl_vars['value']) ? $_smarty_tpl->tpl_vars['value'] : false;
+$__foreach_value_1_saved_key = isset($_smarty_tpl->tpl_vars['name']) ? $_smarty_tpl->tpl_vars['name'] : false;
+$_smarty_tpl->tpl_vars['value'] = new Smarty_Variable();
+$__foreach_value_1_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_value_1_total) {
+$_smarty_tpl->tpl_vars['name'] = new Smarty_Variable();
+foreach ($_from as $_smarty_tpl->tpl_vars['name']->value => $_smarty_tpl->tpl_vars['value']->value) {
+$__foreach_value_1_saved_local_item = $_smarty_tpl->tpl_vars['value'];
+if ($_smarty_tpl->tpl_vars['name']->value != 'page' && $_smarty_tpl->tpl_vars['name']->value != 'region') {?>&amp;<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+=<?php echo $_smarty_tpl->tpl_vars['value']->value;
+}
+$_smarty_tpl->tpl_vars['value'] = $__foreach_value_1_saved_local_item;
+}
+}
+if ($__foreach_value_1_saved_item) {
+$_smarty_tpl->tpl_vars['value'] = $__foreach_value_1_saved_item;
+}
+if ($__foreach_value_1_saved_key) {
+$_smarty_tpl->tpl_vars['name'] = $__foreach_value_1_saved_key;
+}
+?>'>
+                                <?php echo $_smarty_tpl->tpl_vars['row']->value[1];?>
+ (<?php echo $_smarty_tpl->tpl_vars['row']->value[2];?>
+)
+                            </a>
                         </li>
-                        <li>
-                            Language
-                        </li>
-                        <li>
-                            Region
-                        </li>
-                        <li>
-                            etc.
-                        </li>
-                    </ul>
+                        <?php
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_local_item;
+}
+}
+if ($__foreach_row_0_saved_item) {
+$_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
+}
+?>
+                    </ul> <!-- end of region-list -->
                 </nav>
-            </div>
-            <div class='col-sm-10'>
+            </div> <!-- end of filter-column -->
+            <div id='results-column' class='col-sm-10'>
                 <section>
                     <h1>
                         Results
                     </h1>
                     <p>
-                        You are on page <?php echo $_smarty_tpl->tpl_vars['pageno']->value;?>
- of <?php echo $_smarty_tpl->tpl_vars['maxpage']->value;?>
-,
-                        viewing <?php echo $_smarty_tpl->tpl_vars['perpage']->value;?>
- of the <?php echo $_smarty_tpl->tpl_vars['mscount']->value;?>
- results.
+                        <?php echo $_smarty_tpl->tpl_vars['firstret']->value;?>
+&ndash;<?php echo $_smarty_tpl->tpl_vars['lastret']->value;?>
+ of <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
+ (page <?php echo $_smarty_tpl->tpl_vars['pageno']->value;?>
+ / <?php echo $_smarty_tpl->tpl_vars['maxpage']->value;?>
+)
                     </p>
-                    <ul>
-                        <?php
-$_from = $_smarty_tpl->tpl_vars['mslist']->value;
+                    <nav>
+                        <ul class='pagination'>
+                            <?php
+$_smarty_tpl->tpl_vars['linkno'] = new Smarty_Variable;$_smarty_tpl->tpl_vars['linkno']->step = 1;$_smarty_tpl->tpl_vars['linkno']->total = (int) ceil(($_smarty_tpl->tpl_vars['linkno']->step > 0 ? $_smarty_tpl->tpl_vars['pageno']->value+4+1 - ($_smarty_tpl->tpl_vars['pageno']->value-4) : $_smarty_tpl->tpl_vars['pageno']->value-4-($_smarty_tpl->tpl_vars['pageno']->value+4)+1)/abs($_smarty_tpl->tpl_vars['linkno']->step));
+if ($_smarty_tpl->tpl_vars['linkno']->total > 0) {
+for ($_smarty_tpl->tpl_vars['linkno']->value = $_smarty_tpl->tpl_vars['pageno']->value-4, $_smarty_tpl->tpl_vars['linkno']->iteration = 1;$_smarty_tpl->tpl_vars['linkno']->iteration <= $_smarty_tpl->tpl_vars['linkno']->total;$_smarty_tpl->tpl_vars['linkno']->value += $_smarty_tpl->tpl_vars['linkno']->step, $_smarty_tpl->tpl_vars['linkno']->iteration++) {
+$_smarty_tpl->tpl_vars['linkno']->first = $_smarty_tpl->tpl_vars['linkno']->iteration == 1;$_smarty_tpl->tpl_vars['linkno']->last = $_smarty_tpl->tpl_vars['linkno']->iteration == $_smarty_tpl->tpl_vars['linkno']->total;?>
+                            <?php if (($_smarty_tpl->tpl_vars['linkno']->value <= 0)) {?>
+                            <?php continue 1;?>
+                            <?php }?>
+                            <?php if ($_smarty_tpl->tpl_vars['linkno']->value == $_smarty_tpl->tpl_vars['pageno']->value) {?>
+                            <li class='active'>
+                            <?php } else { ?>
+                            <li>
+                            <?php }?>
+                                <a href='?page=<?php echo $_smarty_tpl->tpl_vars['linkno']->value;
+$_from = $_smarty_tpl->tpl_vars['get']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_ms_0_saved_item = isset($_smarty_tpl->tpl_vars['ms']) ? $_smarty_tpl->tpl_vars['ms'] : false;
-$_smarty_tpl->tpl_vars['ms'] = new Smarty_Variable();
-$__foreach_ms_0_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_ms_0_total) {
-foreach ($_from as $_smarty_tpl->tpl_vars['ms']->value) {
-$__foreach_ms_0_saved_local_item = $_smarty_tpl->tpl_vars['ms'];
-?>
-                        <li>
-                            <ul>
-                                <?php
-$_from = $_smarty_tpl->tpl_vars['ms']->value;
-if (!is_array($_from) && !is_object($_from)) {
-settype($_from, 'array');
+$__foreach_value_2_saved_item = isset($_smarty_tpl->tpl_vars['value']) ? $_smarty_tpl->tpl_vars['value'] : false;
+$__foreach_value_2_saved_key = isset($_smarty_tpl->tpl_vars['name']) ? $_smarty_tpl->tpl_vars['name'] : false;
+$_smarty_tpl->tpl_vars['value'] = new Smarty_Variable();
+$__foreach_value_2_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_value_2_total) {
+$_smarty_tpl->tpl_vars['name'] = new Smarty_Variable();
+foreach ($_from as $_smarty_tpl->tpl_vars['name']->value => $_smarty_tpl->tpl_vars['value']->value) {
+$__foreach_value_2_saved_local_item = $_smarty_tpl->tpl_vars['value'];
+if ($_smarty_tpl->tpl_vars['name']->value != 'page') {?>&amp;<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+=<?php echo $_smarty_tpl->tpl_vars['value']->value;
 }
-$__foreach_attr_1_saved_item = isset($_smarty_tpl->tpl_vars['attr']) ? $_smarty_tpl->tpl_vars['attr'] : false;
-$_smarty_tpl->tpl_vars['attr'] = new Smarty_Variable();
-$__foreach_attr_1_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_attr_1_total) {
-foreach ($_from as $_smarty_tpl->tpl_vars['attr']->value) {
-$__foreach_attr_1_saved_local_item = $_smarty_tpl->tpl_vars['attr'];
-?>
-                                <li>
-                                    <?php echo $_smarty_tpl->tpl_vars['attr']->value;?>
+$_smarty_tpl->tpl_vars['value'] = $__foreach_value_2_saved_local_item;
+}
+}
+if ($__foreach_value_2_saved_item) {
+$_smarty_tpl->tpl_vars['value'] = $__foreach_value_2_saved_item;
+}
+if ($__foreach_value_2_saved_key) {
+$_smarty_tpl->tpl_vars['name'] = $__foreach_value_2_saved_key;
+}
+?>'>
+                                    <?php echo $_smarty_tpl->tpl_vars['linkno']->value;?>
 
-                                </li>
-                                <?php
-$_smarty_tpl->tpl_vars['attr'] = $__foreach_attr_1_saved_local_item;
-}
-}
-if ($__foreach_attr_1_saved_item) {
-$_smarty_tpl->tpl_vars['attr'] = $__foreach_attr_1_saved_item;
-}
-?>
-                            </ul>
-                        </li>
-                        <?php
-$_smarty_tpl->tpl_vars['ms'] = $__foreach_ms_0_saved_local_item;
-}
-}
-if ($__foreach_ms_0_saved_item) {
-$_smarty_tpl->tpl_vars['ms'] = $__foreach_ms_0_saved_item;
+                                </a>
+                            </li>
+                            <?php if (($_smarty_tpl->tpl_vars['linkno']->value == $_smarty_tpl->tpl_vars['maxpage']->value)) {?>
+                            <?php break 1;?>
+                            <?php }?>
+                            <?php }
 }
 ?>
-                    </ul> 
+
+                        </ul>
+                    </nav>
+                    <?php
+$_from = $_smarty_tpl->tpl_vars['reslist']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_res_3_saved_item = isset($_smarty_tpl->tpl_vars['res']) ? $_smarty_tpl->tpl_vars['res'] : false;
+$_smarty_tpl->tpl_vars['res'] = new Smarty_Variable();
+$__foreach_res_3_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_res_3_total) {
+$__foreach_res_3_iteration=0;
+foreach ($_from as $_smarty_tpl->tpl_vars['res']->value) {
+$__foreach_res_3_iteration++;
+$_smarty_tpl->tpl_vars['res']->last = $__foreach_res_3_iteration == $__foreach_res_3_total;
+$__foreach_res_3_saved_local_item = $_smarty_tpl->tpl_vars['res'];
+?>
+                    <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'i') {?>
+                    <h4>
+                        <?php echo $_smarty_tpl->tpl_vars['res']->value[3];?>
+ <?php echo $_smarty_tpl->tpl_vars['res']->value[4];?>
+ (<?php echo $_smarty_tpl->tpl_vars['res']->value[5];?>
+)
+                    </h4>
+                    <h3>
+                        <a href='illumination?ID=<?php echo $_smarty_tpl->tpl_vars['res']->value[0];?>
+'>
+                            <?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
+
+                        </a>
+                    </h3>
+                    <p>
+                        (image of <?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
+ from folder <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
+)
+                    </p>
+                    <?php if ($_smarty_tpl->tpl_vars['res']->value[7]) {?>
+                    <p>
+                        by <?php echo $_smarty_tpl->tpl_vars['res']->value[7];?>
+
+                    </p>
+                    <?php }?>
+                    
+                    <?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>
+                    <h4>
+                        <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
+ <?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
+ (<?php echo $_smarty_tpl->tpl_vars['res']->value[3];?>
+)
+                        [part <?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
+ of <?php echo $_smarty_tpl->tpl_vars['res']->value[7];?>
+]
+                    </h4>
+                    <h3>
+                        <a href='../manuscript?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[8];?>
+#part<?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
+'>
+                            <?php echo $_smarty_tpl->tpl_vars['res']->value[5];?>
+
+                        </a>
+                    </h3>
+                    <?php if ($_smarty_tpl->tpl_vars['res']->value[4]) {?>
+                    <h5>
+                        
+                        by <?php echo smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['res']->value[4],"/\(index[^\)]*\)/",'');?>
+
+                    </h5>
+                    <?php }?>
+                    
+                    <?php } else { if (!isset($_smarty_tpl->tpl_vars['get']) || !is_array($_smarty_tpl->tpl_vars['get']->value)) $_smarty_tpl->smarty->ext->_var->createLocalArrayVariable($_smarty_tpl, 'get');
+if ($_smarty_tpl->tpl_vars['get']->value['grouping'] = 'm') {?>
+                    <h3>
+                        <a href='../manuscript?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[0];?>
+'>
+                            <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
+ <?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
+
+                        </a>
+                    </h3>
+                    
+                    <?php }}?>
+                    <?php if (!($_smarty_tpl->tpl_vars['res']->last)) {?>
+                    <hr>
+                    <?php }?>
+                    <?php
+$_smarty_tpl->tpl_vars['res'] = $__foreach_res_3_saved_local_item;
+}
+}
+if ($__foreach_res_3_saved_item) {
+$_smarty_tpl->tpl_vars['res'] = $__foreach_res_3_saved_item;
+}
+?>
                 </section>
-            </div>
-        </div>
-        <div class='row'>
+            </div> <!-- end of results-column -->
+        </div> <!-- end of content-row -->
+        
+        <div id='pagination-row' class='row'>
             <div class='col-sm-12'>
                 <nav>
                     <ul class='pagination'>
                         <?php
-$_smarty_tpl->tpl_vars['linkno'] = new Smarty_Variable;$_smarty_tpl->tpl_vars['linkno']->step = 1;$_smarty_tpl->tpl_vars['linkno']->total = (int) ceil(($_smarty_tpl->tpl_vars['linkno']->step > 0 ? $_smarty_tpl->tpl_vars['pageno']->value+2+1 - ($_smarty_tpl->tpl_vars['pageno']->value-2) : $_smarty_tpl->tpl_vars['pageno']->value-2-($_smarty_tpl->tpl_vars['pageno']->value+2)+1)/abs($_smarty_tpl->tpl_vars['linkno']->step));
+$_smarty_tpl->tpl_vars['linkno'] = new Smarty_Variable;$_smarty_tpl->tpl_vars['linkno']->step = 1;$_smarty_tpl->tpl_vars['linkno']->total = (int) ceil(($_smarty_tpl->tpl_vars['linkno']->step > 0 ? $_smarty_tpl->tpl_vars['pageno']->value+4+1 - ($_smarty_tpl->tpl_vars['pageno']->value-4) : $_smarty_tpl->tpl_vars['pageno']->value-4-($_smarty_tpl->tpl_vars['pageno']->value+4)+1)/abs($_smarty_tpl->tpl_vars['linkno']->step));
 if ($_smarty_tpl->tpl_vars['linkno']->total > 0) {
-for ($_smarty_tpl->tpl_vars['linkno']->value = $_smarty_tpl->tpl_vars['pageno']->value-2, $_smarty_tpl->tpl_vars['linkno']->iteration = 1;$_smarty_tpl->tpl_vars['linkno']->iteration <= $_smarty_tpl->tpl_vars['linkno']->total;$_smarty_tpl->tpl_vars['linkno']->value += $_smarty_tpl->tpl_vars['linkno']->step, $_smarty_tpl->tpl_vars['linkno']->iteration++) {
+for ($_smarty_tpl->tpl_vars['linkno']->value = $_smarty_tpl->tpl_vars['pageno']->value-4, $_smarty_tpl->tpl_vars['linkno']->iteration = 1;$_smarty_tpl->tpl_vars['linkno']->iteration <= $_smarty_tpl->tpl_vars['linkno']->total;$_smarty_tpl->tpl_vars['linkno']->value += $_smarty_tpl->tpl_vars['linkno']->step, $_smarty_tpl->tpl_vars['linkno']->iteration++) {
 $_smarty_tpl->tpl_vars['linkno']->first = $_smarty_tpl->tpl_vars['linkno']->iteration == 1;$_smarty_tpl->tpl_vars['linkno']->last = $_smarty_tpl->tpl_vars['linkno']->iteration == $_smarty_tpl->tpl_vars['linkno']->total;?>
-                        <?php if (($_smarty_tpl->tpl_vars['linkno']->value <= 0) || ($_smarty_tpl->tpl_vars['linkno']->value > $_smarty_tpl->tpl_vars['maxpage']->value)) {?>
+                        <?php if (($_smarty_tpl->tpl_vars['linkno']->value <= 0)) {?>
                         <?php continue 1;?>
                         <?php }?>
                         <?php if ($_smarty_tpl->tpl_vars['linkno']->value == $_smarty_tpl->tpl_vars['pageno']->value) {?>
@@ -151,10 +292,39 @@ $_smarty_tpl->tpl_vars['linkno']->first = $_smarty_tpl->tpl_vars['linkno']->iter
                         <?php } else { ?>
                         <li>
                         <?php }?>
-                            <a href='?page=<?php echo $_smarty_tpl->tpl_vars['linkno']->value;?>
-'><?php echo $_smarty_tpl->tpl_vars['linkno']->value;?>
-</a>
+                            <a href='?page=<?php echo $_smarty_tpl->tpl_vars['linkno']->value;
+$_from = $_smarty_tpl->tpl_vars['get']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_value_4_saved_item = isset($_smarty_tpl->tpl_vars['value']) ? $_smarty_tpl->tpl_vars['value'] : false;
+$__foreach_value_4_saved_key = isset($_smarty_tpl->tpl_vars['name']) ? $_smarty_tpl->tpl_vars['name'] : false;
+$_smarty_tpl->tpl_vars['value'] = new Smarty_Variable();
+$__foreach_value_4_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_value_4_total) {
+$_smarty_tpl->tpl_vars['name'] = new Smarty_Variable();
+foreach ($_from as $_smarty_tpl->tpl_vars['name']->value => $_smarty_tpl->tpl_vars['value']->value) {
+$__foreach_value_4_saved_local_item = $_smarty_tpl->tpl_vars['value'];
+if ($_smarty_tpl->tpl_vars['name']->value != 'page') {?>&amp;<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+=<?php echo $_smarty_tpl->tpl_vars['value']->value;
+}
+$_smarty_tpl->tpl_vars['value'] = $__foreach_value_4_saved_local_item;
+}
+}
+if ($__foreach_value_4_saved_item) {
+$_smarty_tpl->tpl_vars['value'] = $__foreach_value_4_saved_item;
+}
+if ($__foreach_value_4_saved_key) {
+$_smarty_tpl->tpl_vars['name'] = $__foreach_value_4_saved_key;
+}
+?>'>
+                                <?php echo $_smarty_tpl->tpl_vars['linkno']->value;?>
+
+                            </a>
                         </li>
+                        <?php if (($_smarty_tpl->tpl_vars['linkno']->value == $_smarty_tpl->tpl_vars['maxpage']->value)) {?>
+                        <?php break 1;?>
+                        <?php }?>
                         <?php }
 }
 ?>
@@ -162,7 +332,8 @@ $_smarty_tpl->tpl_vars['linkno']->first = $_smarty_tpl->tpl_vars['linkno']->iter
                     </ul>
                 </nav>
             </div>
-        </div>
+        </div> <!-- end of pagination-row -->
+        
         <div class='row'>
             <div class='col-sm-12'>
                 <footer>

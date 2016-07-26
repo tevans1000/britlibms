@@ -101,6 +101,20 @@
                     </h4>
                     {/if}
                     <dl>
+                        <dt>
+                            Origin
+                        </dt>
+                        <dd>
+                            <ul>
+                                {foreach $regions[$details[11]] as $region}
+                                <li>
+                                    <a href='../results?region={$region[0]}'>
+                                        {$region[1]}
+                                    </a>
+                                </li>
+                                {/foreach}
+                            </ul>
+                        </dd>
                         {if $details[3]}
                         <dt>
                             Dates
