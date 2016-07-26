@@ -83,7 +83,7 @@
                     <p>
                         (image of {$res[2]} from folder {$res[1]})
                     </p>
-                    {if $res[7] != ''}
+                    {if $res[7]}
                     <p>
                         by {$res[7]}
                     </p>
@@ -99,7 +99,7 @@
                             {$res[5]}
                         </a>
                     </h3>
-                    {if $res[4] != ''}
+                    {if $res[4]}
                     <h5>
                         {* regex_replace gets rid of indexing details
                            - of no interest to visitors *}

@@ -92,57 +92,71 @@
                 {foreach $parts as $no => $details}
                 <article id='part{$details[10]}'>
                     <h3>
-                        {1+$no}{if $details[0] != ''} ({$details[0]}){/if}: {$details[2]|default:'(untitled)'}
+                        {1+$no}{if $details[0]} ({$details[0]}){/if}: {$details[2]|default:'(untitled)'}
                     </h3>
-                    {if $details[1] != ''}
+                    {if $details[1]}
                     <h4>
                         {* regex_replace removes indexing details *}
                         by {$details[1]|regex_replace:"/\(index[^\)]*\)/":""}
                     </h4>
                     {/if}
                     <dl>
+                        {if $details[3]}
                         <dt>
                             Dates
                         </dt>
                         <dd>
                             {$details[3]}
                         </dd>
+                        {/if}
+                        {if $details[4]}
                         <dt>
                             Language
                         </dt>
                         <dd>
                             {$details[4]}
                         </dd>
+                        {/if}
+                        {if $details[5]}
                         <dt>
                             Dimensions
                         </dt>
                         <dd>
                             {$details[5]}
                         </dd>
+                        {/if}
+                        {if $details[6]}
                         <dt>
                             Script
                         </dt>
                         <dd>
                             {$details[6]}
                         </dd>
+                        {/if}
+                        {if $details[7]}
                         <dt>
                             Scribe
                         </dt>
                         <dd>
                             {$details[7]}
                         </dd>
+                        {/if}
+                        {if $details[8]}
                         <dt>
                             Provenance
                         </dt>
                         <dd>
                             {$details[8]}
                         </dd>
+                        {/if}
+                        {if $details[9]}
                         <dt>
                             Attribution
                         </dt>
                         <dd>
                             {$details[9]}
                         </dd>
+                        {/if}
                     </dl>
                 </article>
                 {if !($details@last)}
