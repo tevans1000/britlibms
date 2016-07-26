@@ -10,7 +10,8 @@
 </head>
 <body>
     <div class='container-fluid'>
-        <div class='row'>
+        
+        <div id='header-row' class='row'>
             <div class='col-sm-12'>
                 <header>
                     <h2>
@@ -18,13 +19,14 @@
                     </h2>
                 </header>
             </div>
-        </div>
-        <div class='row'>
+        </div> <!-- end of header-row -->
+        
+        <div id='content-row' class='row'>
             <div class='col-sm-12'>
                 <h1>
                     {$record[0]} {$record[1]}
                 </h1>
-                <dl>
+                <dl id='manuscript-details-list'>
                     <dt>
                         Official foliation
                     </dt>
@@ -83,72 +85,73 @@
                             {/foreach}
                         </ul>
                     </dd>
-                </dl>
-                <h2>Parts</h2>
-                <ul>
-                    {foreach $parts as $no => $details}
-                    <article id='part{$details[10]}'>
-                        <h3>
-                            {1+$no}{if $details[0] != ''} ({$details[0]}){/if}: {$details[2]|default:'(untitled)'}
-                        </h3>
-                        {if $details[1] != ''}
-                        <h4>
-                            {* regex_replace removes indexing details *}
-                            by {$details[1]|regex_replace:"/\(index[^\)]*\)/":""}
-                        </h4>
-                        {/if}
-                        <dl>
-                            <dt>
-                                Dates
-                            </dt>
-                            <dd>
-                                {$details[3]}
-                            </dd>
-                            <dt>
-                                Language
-                            </dt>
-                            <dd>
-                                {$details[4]}
-                            </dd>
-                            <dt>
-                                Dimensions
-                            </dt>
-                            <dd>
-                                {$details[5]}
-                            </dd>
-                            <dt>
-                                Script
-                            </dt>
-                            <dd>
-                                {$details[6]}
-                            </dd>
-                            <dt>
-                                Scribe
-                            </dt>
-                            <dd>
-                                {$details[7]}
-                            </dd>
-                            <dt>
-                                Provenance
-                            </dt>
-                            <dd>
-                                {$details[8]}
-                            </dd>
-                            <dt>
-                                Attribution
-                            </dt>
-                            <dd>
-                                {$details[9]}
-                            </dd>
-                        </dl>
-                    </article>
-                    {if !($details@last)}
-                    <hr>
+                </dl> <!-- end of manuscript-details-list -->
+                <h2>
+                    Parts
+                </h2>
+                {foreach $parts as $no => $details}
+                <article id='part{$details[10]}'>
+                    <h3>
+                        {1+$no}{if $details[0] != ''} ({$details[0]}){/if}: {$details[2]|default:'(untitled)'}
+                    </h3>
+                    {if $details[1] != ''}
+                    <h4>
+                        {* regex_replace removes indexing details *}
+                        by {$details[1]|regex_replace:"/\(index[^\)]*\)/":""}
+                    </h4>
                     {/if}
-                    {/foreach}
-                </ul>
+                    <dl>
+                        <dt>
+                            Dates
+                        </dt>
+                        <dd>
+                            {$details[3]}
+                        </dd>
+                        <dt>
+                            Language
+                        </dt>
+                        <dd>
+                            {$details[4]}
+                        </dd>
+                        <dt>
+                            Dimensions
+                        </dt>
+                        <dd>
+                            {$details[5]}
+                        </dd>
+                        <dt>
+                            Script
+                        </dt>
+                        <dd>
+                            {$details[6]}
+                        </dd>
+                        <dt>
+                            Scribe
+                        </dt>
+                        <dd>
+                            {$details[7]}
+                        </dd>
+                        <dt>
+                            Provenance
+                        </dt>
+                        <dd>
+                            {$details[8]}
+                        </dd>
+                        <dt>
+                            Attribution
+                        </dt>
+                        <dd>
+                            {$details[9]}
+                        </dd>
+                    </dl>
+                </article>
+                {if !($details@last)}
+                <hr>
+                {/if}
+                {/foreach}
             </div>
-        </div>
+        </div> <!-- end of content-row -->
+        
         <div class='row'>
             <div class='col-sm-12'>
                 <footer>

@@ -10,7 +10,8 @@
 </head>
 <body>
     <div class='container-fluid'>
-        <div class='row'>
+        
+        <div id='header-row' class='row'>
             <div class='col-sm-12'>
                 <header>
                     <h2>
@@ -18,9 +19,10 @@
                     </h2>
                 </header>
             </div>
-        </div>
-        <div class='row'>
-            <div class='col-sm-2'>
+        </div> <!-- end of header-row -->
+        
+        <div id='content-row' class='row'>
+            <div id='filter-column' class='col-sm-2'>
                 <nav>
                     <h2>
                         Filters
@@ -28,7 +30,7 @@
                     <h3>
                         Regions
                     </h3>
-                    <ul>
+                    <ul id='region-list'>
                         {foreach $region_list as $row}
                         <li>
                             <a href='?region={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != region}&amp;{$name}={$value}{/if}{/foreach}'>
@@ -36,10 +38,10 @@
                             </a>
                         </li>
                         {/foreach}
-                    </ul>
+                    </ul> <!-- end of region-list -->
                 </nav>
-            </div>
-            <div class='col-sm-10'>
+            </div> <!-- end of filter-column -->
+            <div id='results-column' class='col-sm-10'>
                 <section>
                     <h1>
                         Results
@@ -86,6 +88,7 @@
                         by {$res[7]}
                     </p>
                     {/if}
+                    {* end of image results formatting block *}
                     {elseif $get['grouping']=='p'}
                     <h4>
                         {$res[1]} {$res[2]} ({$res[3]})
@@ -103,21 +106,24 @@
                         by {$res[4]|regex_replace:"/\(index[^\)]*\)/":""}
                     </h5>
                     {/if}
+                    {* end of part results formatting block *}
                     {elseif $get['grouping']='m'}
                     <h3>
                         <a href='../manuscript?id={$res[0]}'>
                             {$res[1]} {$res[2]}
                         </a>
                     </h3>
+                    {* end of manuscript results formatting block *}
                     {/if}
                     {if !($res@last)}
                     <hr>
                     {/if}
                     {/foreach}
                 </section>
-            </div>
-        </div>
-        <div class='row'>
+            </div> <!-- end of results-column -->
+        </div> <!-- end of content-row -->
+        
+        <div id='pagination-row' class='row'>
             <div class='col-sm-12'>
                 <nav>
                     <ul class='pagination'>
@@ -141,7 +147,8 @@
                     </ul>
                 </nav>
             </div>
-        </div>
+        </div> <!-- end of pagination-row -->
+        
         <div class='row'>
             <div class='col-sm-12'>
                 <footer>
