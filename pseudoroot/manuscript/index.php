@@ -3,7 +3,7 @@
 require_once( '../../../async/conf.php' );
 
 if (!empty($_GET['id'])){
-    $id = $_GET['id'];
+    $id = (int)$_GET['id'];
 }
 // Do SQL
 // details for manuscript as a whole
