@@ -33,12 +33,24 @@
                     <ul id='region-list'>
                         {foreach $region_list as $row}
                         <li>
-                            <a href='?region={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != region}&amp;{$name}={$value}{/if}{/foreach}'>
+                            <a href='?region={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'region'}&amp;{$name}={$value}{/if}{/foreach}'>
                                 {$row[1]} ({$row[2]})
                             </a>
                         </li>
                         {/foreach}
                     </ul> <!-- end of region-list -->
+                    <h3>
+                        Collections
+                    </h3>
+                    <ul id='collection-list'>
+                        {foreach $collection_list as $row}
+                        <li>
+                            <a href='?collection={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'collection'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                {$row[1]} ({$row[2]})
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul> <!-- end of collection-list -->
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-sm-10'>

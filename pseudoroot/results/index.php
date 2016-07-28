@@ -27,15 +27,35 @@ $id_type = file_get_contents("../../../async/results/$grouping/idtype");
 if ( !empty($_GET['region']) ){
     $region = (int)$_GET['region'];
 }
+if ( !empty($_GET['collection']) ){
+    $coll = (int)$_GET['collection'];
+}
+// function to bind variables in the subquery
+function bind_subq($stmt){
+    global $region;
+    global $coll;
+    if (isset($region)){
+        $stmt->bindParam(':region', $region, PDO::PARAM_INT);
+    }
+    if (isset($coll)){
+        $stmt->bindParam(':collection', $coll, PDO::PARAM_INT);
+    }
+}
 
 // Construct result set subquery string
 $subqstr = file_get_contents("../../../async/results/$grouping.sql");
 if (isset($region)){
     $subqstr .= file_get_contents('../../../async/results/join/region.sql');
 }
+if (isset($coll)){
+    $subqstr .= file_get_contents('../../../async/results/join/manuscript.sql');
+}
 $subqstr .= 'WHERE TRUE ';
 if (isset($region)){
     $subqstr .= file_get_contents('../../../async/results/where/region.sql');
+}
+if (isset($coll)){
+    $subqstr .= file_get_contents('../../../async/results/where/collection.sql');
 }
 //echo($subqstr);
 
@@ -47,9 +67,7 @@ $qstr = file_get_contents( "../../../async/results/$grouping/count.sql" );
 $qstr .= "WHERE $id_type IN ($subqstr)";
 $stmt = $db->prepare($qstr);
 // conditional bindings
-if (isset($region)){
-    $stmt->bindParam(':region', $region, PDO::PARAM_INT);
-}
+bind_subq($stmt);
 $stmt->execute();
 $stmt -> setFetchMode(PDO::FETCH_ASSOC);
 $result = $stmt -> fetchAll();
@@ -62,6 +80,8 @@ $maxpage = ceil($rescount/$perpage);
 ////////////
 // Do SQL //
 ///////////////////////////////////////////////////////////////////////
+// Results //
+/////////////
 // Create and prepare query string
 $qstr  = file_get_contents("../../../async/results/$grouping/select.sql");
 // TODO: stuff with GET/SESSION/COOKIE to determine extra fields as required
@@ -73,9 +93,7 @@ $qstr .= file_get_contents('../../../async/offset.sql');
 $resstmt = $db->prepare($qstr);
 
 // Bind parameters
-if (isset($region)){
-    $resstmt->bindParam(':region', $region, PDO::PARAM_INT);
-}
+bind_subq($resstmt);
 $resstmt->bindParam(':limit',$perpage,PDO::PARAM_INT);
 $resstmt->bindParam(':offset',$offset,PDO::PARAM_INT);
 
@@ -83,6 +101,8 @@ $resstmt->bindParam(':offset',$offset,PDO::PARAM_INT);
 $resstmt->execute();
 $result = $resstmt ->fetchAll(PDO::FETCH_NUM);
 ///////////////////////////////////////////////////////////////////////
+// Regions //
+/////////////
 // Create and prepare query string
 $qstr  = file_get_contents('../../../async/filters/region/select.sql');
 $qstr .= ", COUNT(DISTINCT v.$id_type) ";
@@ -90,11 +110,24 @@ $qstr .= file_get_contents('../../../async/filters/region/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
 $qstr .= file_get_contents('../../../async/filters/region/group_by_order_by.sql');
 $region_stmt = $db->prepare($qstr);
-if (isset($region)){
-    $region_stmt->bindParam(':region', $region, PDO::PARAM_INT);
-}
+// bind parameter, execute, fetch
+bind_subq($region_stmt);
 $region_stmt->execute();
 $region_list = $region_stmt->fetchAll(PDO::FETCH_NUM);
+///////////////////////////////////////////////////////////////////////
+// Collections //
+/////////////////
+// Create and prepare query string
+$qstr  = file_get_contents('../../../async/filters/collection/select.sql');
+$qstr .= ", COUNT(DISTINCT v.$id_type) ";
+$qstr .= file_get_contents('../../../async/filters/collection/from.sql');
+$qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+$qstr .= file_get_contents('../../../async/filters/collection/group_by_order_by.sql');
+echo($qstr);
+$coll_stmt = $db->prepare($qstr);
+bind_subq($coll_stmt);
+$coll_stmt->execute();
+$coll_list = $coll_stmt->fetchAll(PDO::FETCH_NUM);
 
 // Assign variables
 $smarty->assign('firstret',1+$offset);
@@ -104,6 +137,7 @@ $smarty->assign('maxpage',$maxpage);
 $smarty->assign('rescount',$rescount);
 $smarty->assign('reslist',$result);
 $smarty->assign('region_list',$region_list);
+$smarty->assign('collection_list',$coll_list);
 $smarty->assign('get',$_GET);
 
 // Display
