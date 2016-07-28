@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-25 18:43:51
+/* Smarty version 3.1.28, created on 2016-07-28 17:28:34
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57964fd7f30ba0_21427084',
+  'unifunc' => 'content_579a32b2b20a87_98037288',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469468625,
+      1 => 1469523032,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57964fd7f30ba0_21427084 ($_smarty_tpl) {
+function content_579a32b2b20a87_98037288 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/results/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,8 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/bri
 </head>
 <body>
     <div class='container-fluid'>
-        <div class='row'>
+        
+        <div id='header-row' class='row'>
             <div class='col-sm-12'>
                 <header>
                     <h2>
@@ -46,9 +47,10 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/bri
                     </h2>
                 </header>
             </div>
-        </div>
-        <div class='row'>
-            <div class='col-sm-2'>
+        </div> <!-- end of header-row -->
+        
+        <div id='content-row' class='row'>
+            <div id='filter-column' class='col-sm-2'>
                 <nav>
                     <h2>
                         Filters
@@ -56,7 +58,7 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/bri
                     <h3>
                         Regions
                     </h3>
-                    <ul>
+                    <ul id='region-list'>
                         <?php
 $_from = $_smarty_tpl->tpl_vars['region_list']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -109,10 +111,10 @@ if ($__foreach_row_0_saved_item) {
 $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
 }
 ?>
-                    </ul>
+                    </ul> <!-- end of region-list -->
                 </nav>
-            </div>
-            <div class='col-sm-10'>
+            </div> <!-- end of filter-column -->
+            <div id='results-column' class='col-sm-10'>
                 <section>
                     <h1>
                         Results
@@ -213,12 +215,13 @@ $__foreach_res_3_saved_local_item = $_smarty_tpl->tpl_vars['res'];
  from folder <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
 )
                     </p>
-                    <?php if ($_smarty_tpl->tpl_vars['res']->value[7] != '') {?>
+                    <?php if ($_smarty_tpl->tpl_vars['res']->value[7]) {?>
                     <p>
                         by <?php echo $_smarty_tpl->tpl_vars['res']->value[7];?>
 
                     </p>
                     <?php }?>
+                    
                     <?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>
                     <h4>
                         <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
@@ -237,13 +240,14 @@ $__foreach_res_3_saved_local_item = $_smarty_tpl->tpl_vars['res'];
 
                         </a>
                     </h3>
-                    <?php if ($_smarty_tpl->tpl_vars['res']->value[4] != '') {?>
+                    <?php if ($_smarty_tpl->tpl_vars['res']->value[4]) {?>
                     <h5>
                         
                         by <?php echo smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['res']->value[4],"/\(index[^\)]*\)/",'');?>
 
                     </h5>
                     <?php }?>
+                    
                     <?php } else { if (!isset($_smarty_tpl->tpl_vars['get']) || !is_array($_smarty_tpl->tpl_vars['get']->value)) $_smarty_tpl->smarty->ext->_var->createLocalArrayVariable($_smarty_tpl, 'get');
 if ($_smarty_tpl->tpl_vars['get']->value['grouping'] = 'm') {?>
                     <h3>
@@ -254,6 +258,7 @@ if ($_smarty_tpl->tpl_vars['get']->value['grouping'] = 'm') {?>
 
                         </a>
                     </h3>
+                    
                     <?php }}?>
                     <?php if (!($_smarty_tpl->tpl_vars['res']->last)) {?>
                     <hr>
@@ -267,9 +272,10 @@ $_smarty_tpl->tpl_vars['res'] = $__foreach_res_3_saved_item;
 }
 ?>
                 </section>
-            </div>
-        </div>
-        <div class='row'>
+            </div> <!-- end of results-column -->
+        </div> <!-- end of content-row -->
+        
+        <div id='pagination-row' class='row'>
             <div class='col-sm-12'>
                 <nav>
                     <ul class='pagination'>
@@ -326,7 +332,8 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_value_4_saved_key;
                     </ul>
                 </nav>
             </div>
-        </div>
+        </div> <!-- end of pagination-row -->
+        
         <div class='row'>
             <div class='col-sm-12'>
                 <footer>
