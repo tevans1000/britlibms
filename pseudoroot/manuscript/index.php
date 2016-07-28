@@ -19,14 +19,24 @@ $partstmt = $db->prepare($qstr);
 $partstmt->bindParam(':id', $id, PDO::PARAM_INT);
 $partstmt->execute();
 $parts = $partstmt ->fetchAll(PDO::FETCH_NUM);
-// regions
-$qstr = file_get_contents('../../../async/manuscript/region.sql');
+// multi-value attributes
+// region init
+$region_qstr = file_get_contents('../../../async/manuscript/region.sql');
 $regions = array();
+// language init
+$language_qstr = file_get_contents('../../../async/manuscript/language.sql');
+$languages = array();
 foreach ($parts as $part){
-    $regionstmt = $db -> prepare($qstr);
-    $regionstmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
-    $regionstmt -> execute();
-    $regions[$part[11]] = $regionstmt -> fetchAll(PDO::FETCH_NUM);
+    // get regions for this part
+    $region_stmt = $db -> prepare($region_qstr);
+    $region_stmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
+    $region_stmt -> execute();
+    $regions[$part[11]] = $region_stmt -> fetchAll(PDO::FETCH_NUM);
+    // get languages for this part
+    $language_stmt = $db -> prepare($language_qstr);
+    $language_stmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
+    $language_stmt -> execute();
+    $languages[$part[11]] = $language_stmt -> fetchAll(PDO::FETCH_NUM);
 }
 
 $provenance = explode("\n", trim($record[0][6]));
@@ -39,7 +49,8 @@ $smarty->assign('provenance', $provenance);
 $smarty->assign('note', $notes);
 $smarty->assign('bib', $bib);
 $smarty->assign('parts',$parts);
-$smarty->assign('regions', $regions);
+$smarty -> assign('regions', $regions);
+$smarty -> assign('languages', $languages);
 
 // Display
 $smarty->display('manuscript.tpl');

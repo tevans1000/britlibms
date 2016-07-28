@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-28 22:40:10
+/* Smarty version 3.1.28, created on 2016-07-29 00:45:27
   from "C:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579a7bba3f7646_81563035',
+  'unifunc' => 'content_579a9917d03ba0_51331882',
   'file_dependency' => 
   array (
     '4cf0f0cff95880e0a3a5b6fb392d32223473ad17' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1469626719,
+      1 => 1469749524,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579a7bba3f7646_81563035 ($_smarty_tpl) {
+function content_579a9917d03ba0_51331882 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/manuscript/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -243,6 +243,40 @@ $_smarty_tpl->tpl_vars['region'] = $__foreach_region_4_saved_local_item;
 }
 if ($__foreach_region_4_saved_item) {
 $_smarty_tpl->tpl_vars['region'] = $__foreach_region_4_saved_item;
+}
+?>
+                            </ul>
+                        </dd>
+                        <dt>
+                            Language<?php if (count($_smarty_tpl->tpl_vars['languages']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) > 1) {?>s<?php }?>
+                        </dt>
+                        <dd>
+                            <ul>
+                                <?php
+$_from = $_smarty_tpl->tpl_vars['languages']->value[$_smarty_tpl->tpl_vars['details']->value[11]];
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_lang_5_saved_item = isset($_smarty_tpl->tpl_vars['lang']) ? $_smarty_tpl->tpl_vars['lang'] : false;
+$_smarty_tpl->tpl_vars['lang'] = new Smarty_Variable();
+$__foreach_lang_5_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_lang_5_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['lang']->value) {
+$__foreach_lang_5_saved_local_item = $_smarty_tpl->tpl_vars['lang'];
+?>
+                                <li>
+                                    <a href='../results?language=<?php echo $_smarty_tpl->tpl_vars['lang']->value[0];?>
+'>
+                                        <?php echo $_smarty_tpl->tpl_vars['lang']->value[1];?>
+
+                                    </a>
+                                </li>
+                                <?php
+$_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_local_item;
+}
+}
+if ($__foreach_lang_5_saved_item) {
+$_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
 }
 ?>
                             </ul>

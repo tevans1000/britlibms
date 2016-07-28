@@ -115,6 +115,20 @@
                                 {/foreach}
                             </ul>
                         </dd>
+                        <dt>
+                            Language{if count($languages[$details[11]]) > 1}s{/if}
+                        </dt>
+                        <dd>
+                            <ul>
+                                {foreach $languages[$details[11]] as $lang}
+                                <li>
+                                    <a href='../results?language={$lang[0]}'>
+                                        {$lang[1]}
+                                    </a>
+                                </li>
+                                {/foreach}
+                            </ul>
+                        </dd>
                         {if $details[3]}
                         <dt>
                             Dates
