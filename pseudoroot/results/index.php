@@ -123,7 +123,6 @@ $qstr .= ", COUNT(DISTINCT v.$id_type) ";
 $qstr .= file_get_contents('../../../async/filters/collection/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
 $qstr .= file_get_contents('../../../async/filters/collection/group_by_order_by.sql');
-echo($qstr);
 $coll_stmt = $db->prepare($qstr);
 bind_subq($coll_stmt);
 $coll_stmt->execute();
