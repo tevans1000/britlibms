@@ -27,6 +27,7 @@
                     <h2>
                         Filters
                     </h2>
+                    {if count($region_list) > 1} {* else region facet is exhausted *}
                     <h3>
                         Regions
                     </h3>
@@ -39,6 +40,8 @@
                         </li>
                         {/foreach}
                     </ul> <!-- end of region-list -->
+                    {/if}
+                    {if count($collection_list) > 1} {* else collection facet is exhausted *}
                     <h3>
                         Collections
                     </h3>
@@ -51,6 +54,7 @@
                         </li>
                         {/foreach}
                     </ul> <!-- end of collection-list -->
+                    {/if}
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-sm-10'>
@@ -61,6 +65,7 @@
                     <p>
                         {$firstret}&ndash;{$lastret} of {$rescount} (page {$pageno} / {$maxpage})
                     </p>
+                    {if $maxpage > 1} {* pagination not required if only 1 page *}
                     <nav>
                         <ul class='pagination'>
                             {for $linkno=$pageno-4 to $pageno+4}
@@ -82,6 +87,7 @@
                             {/for}
                         </ul>
                     </nav>
+                    {/if}
                     {foreach $reslist as $res}
                     {if $get['grouping']=='i'}
                     <h4>
@@ -135,6 +141,7 @@
             </div> <!-- end of results-column -->
         </div> <!-- end of content-row -->
         
+        {if $maxpage > 1} {* Pagination not required for only 1 page *}
         <div id='pagination-row' class='row'>
             <div class='col-sm-12'>
                 <nav>
@@ -160,6 +167,7 @@
                 </nav>
             </div>
         </div> <!-- end of pagination-row -->
+        {/if}
         
         <div class='row'>
             <div class='col-sm-12'>

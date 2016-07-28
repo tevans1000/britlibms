@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-28 22:29:48
+/* Smarty version 3.1.28, created on 2016-07-29 00:08:58
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579a794c2e7989_67622160',
+  'unifunc' => 'content_579a908aee36d7_88214843',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469741376,
+      1 => 1469747325,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579a794c2e7989_67622160 ($_smarty_tpl) {
+function content_579a908aee36d7_88214843 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/results/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -55,6 +55,7 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/bri
                     <h2>
                         Filters
                     </h2>
+                    <?php if (count($_smarty_tpl->tpl_vars['region_list']->value) > 1) {?> 
                     <h3>
                         Regions
                     </h3>
@@ -112,6 +113,8 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_0_saved_item;
 }
 ?>
                     </ul> <!-- end of region-list -->
+                    <?php }?>
+                    <?php if (count($_smarty_tpl->tpl_vars['collection_list']->value) > 1) {?> 
                     <h3>
                         Collections
                     </h3>
@@ -169,6 +172,7 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_2_saved_item;
 }
 ?>
                     </ul> <!-- end of collection-list -->
+                    <?php }?>
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-sm-10'>
@@ -184,6 +188,7 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_2_saved_item;
  / <?php echo $_smarty_tpl->tpl_vars['maxpage']->value;?>
 )
                     </p>
+                    <?php if ($_smarty_tpl->tpl_vars['maxpage']->value > 1) {?> 
                     <nav>
                         <ul class='pagination'>
                             <?php
@@ -238,6 +243,7 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_value_4_saved_key;
 
                         </ul>
                     </nav>
+                    <?php }?>
                     <?php
 $_from = $_smarty_tpl->tpl_vars['reslist']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -332,6 +338,7 @@ $_smarty_tpl->tpl_vars['res'] = $__foreach_res_5_saved_item;
             </div> <!-- end of results-column -->
         </div> <!-- end of content-row -->
         
+        <?php if ($_smarty_tpl->tpl_vars['maxpage']->value > 1) {?> 
         <div id='pagination-row' class='row'>
             <div class='col-sm-12'>
                 <nav>
@@ -390,6 +397,7 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_value_6_saved_key;
                 </nav>
             </div>
         </div> <!-- end of pagination-row -->
+        <?php }?>
         
         <div class='row'>
             <div class='col-sm-12'>
