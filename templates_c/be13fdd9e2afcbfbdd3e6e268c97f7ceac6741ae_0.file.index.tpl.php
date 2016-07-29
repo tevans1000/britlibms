@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-29 01:04:44
+/* Smarty version 3.1.28, created on 2016-07-29 01:44:00
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579a9d9c7d4374_47584717',
+  'unifunc' => 'content_579aa6d0051466_39976456',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469750679,
+      1 => 1469753037,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579a9d9c7d4374_47584717 ($_smarty_tpl) {
+function content_579aa6d0051466_39976456 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/results/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -358,7 +358,7 @@ $__foreach_res_7_saved_local_item = $_smarty_tpl->tpl_vars['res'];
                         <a href='../manuscript?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[8];?>
 #part<?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
 '>
-                            <?php echo $_smarty_tpl->tpl_vars['res']->value[5];?>
+                            <?php echo (($tmp = @$_smarty_tpl->tpl_vars['res']->value[5])===null||$tmp==='' ? '(untitled)' : $tmp);?>
 
                         </a>
                     </h3>

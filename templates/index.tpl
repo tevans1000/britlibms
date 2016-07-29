@@ -128,7 +128,7 @@
                     </h4>
                     <h3>
                         <a href='../manuscript?id={$res[8]}#part{$res[6]}'>
-                            {$res[5]}
+                            {$res[5]|default:'(untitled)'}
                         </a>
                     </h3>
                     {if $res[4]}
