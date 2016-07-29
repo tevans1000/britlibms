@@ -69,6 +69,20 @@
                         {/foreach}
                     </ul> <!-- end of language-list -->
                     {/if}
+                    {if count($attribution_list) > 1} {* else attribution facet is exhausted *}
+                    <h3>
+                       Attribution
+                    </h3>
+                    <ul id='attribution-list'>
+                        {foreach $attribution_list as $row}
+                        <li>
+                            <a href='?attribution={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'attribution'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                {$row[1]} ({$row[2]})
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul> <!-- end of attribution-list -->
+                    {/if}
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-sm-10'>
@@ -77,7 +91,11 @@
                         Results
                     </h1>
                     <p>
+                        {if $maxpage > 1}
                         {$firstret}&ndash;{$lastret} of {$rescount} (page {$pageno} / {$maxpage})
+                        {else}
+                        Viewing all {$rescount} results found
+                        {/if}
                     </p>
                     {if $maxpage > 1} {* pagination not required if only 1 page *}
                     <nav>

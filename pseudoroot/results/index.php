@@ -33,11 +33,15 @@ if ( !empty($_GET['collection']) ){
 if ( !empty($_GET['language']) ){
     $lang = (int)$_GET['language'];
 }
+if ( !empty($_GET['attribution']) ){
+    $attr = (int)$_GET['attribution'];
+}
 // function to bind variables in the subquery
 function bind_subq($stmt){
     global $region;
     global $coll;
     global $lang;
+    global $attr;
     if (isset($region)){
         $stmt->bindParam(':region', $region, PDO::PARAM_INT);
     }
@@ -46,6 +50,9 @@ function bind_subq($stmt){
     }
     if (isset($lang)){
         $stmt->bindParam(':language', $lang, PDO::PARAM_INT);
+    }
+    if (isset($attr)){
+        $stmt->bindParam(':attribution', $attr, PDO::PARAM_INT);
     }
 }
 
@@ -60,6 +67,9 @@ if (isset($coll)){
 if (isset($lang)){
     $subqstr .= file_get_contents('../../../async/results/join/language.sql');
 }
+if (isset($attr)){
+    $subqstr .= file_get_contents('../../../async/results/join/attribution.sql');
+}
 $subqstr .= 'WHERE TRUE ';
 if (isset($region)){
     $subqstr .= file_get_contents('../../../async/results/where/region.sql');
@@ -69,6 +79,9 @@ if (isset($coll)){
 }
 if (isset($lang)){
     $subqstr .= file_get_contents('../../../async/results/where/language.sql');
+}
+if (isset($attr)){
+    $subqstr .= file_get_contents('../../../async/results/where/attribution.sql');
 }
 //echo($subqstr);
 
@@ -124,7 +137,7 @@ $qstr .= file_get_contents('../../../async/filters/region/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
 $qstr .= file_get_contents('../../../async/filters/region/group_by_order_by.sql');
 $region_stmt = $db->prepare($qstr);
-// bind parameter, execute, fetch
+// bind parameters, execute, fetch
 bind_subq($region_stmt);
 $region_stmt->execute();
 $region_list = $region_stmt->fetchAll(PDO::FETCH_NUM);
@@ -138,6 +151,7 @@ $qstr .= file_get_contents('../../../async/filters/collection/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
 $qstr .= file_get_contents('../../../async/filters/collection/group_by_order_by.sql');
 $coll_stmt = $db->prepare($qstr);
+// bind parameters, execute, fetch
 bind_subq($coll_stmt);
 $coll_stmt->execute();
 $coll_list = $coll_stmt->fetchAll(PDO::FETCH_NUM);
@@ -151,9 +165,24 @@ $qstr .= file_get_contents('../../../async/filters/language/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
 $qstr .= file_get_contents('../../../async/filters/language/group_by_order_by.sql');
 $lang_stmt = $db->prepare($qstr);
+// bind parameters, execute, fetch
 bind_subq($lang_stmt);
 $lang_stmt->execute();
 $lang_list = $lang_stmt->fetchAll(PDO::FETCH_NUM);
+///////////////////////////////////////////////////////////////////////
+// Attributions //
+///////////////
+// Create and prepare query string
+$qstr  = file_get_contents('../../../async/filters/attribution/select.sql');
+$qstr .= ", COUNT(DISTINCT v.$id_type) ";
+$qstr .= file_get_contents('../../../async/filters/attribution/from.sql');
+$qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+$qstr .= file_get_contents('../../../async/filters/attribution/group_by_order_by.sql');
+$attr_stmt = $db->prepare($qstr);
+// bind parameters, execute, fetch
+bind_subq($attr_stmt);
+$attr_stmt->execute();
+$attr_list = $attr_stmt->fetchAll(PDO::FETCH_NUM);
 
 // Assign variables
 $smarty->assign('firstret',1+$offset);
@@ -165,6 +194,7 @@ $smarty->assign('reslist',$result);
 $smarty->assign('region_list',$region_list);
 $smarty->assign('collection_list',$coll_list);
 $smarty->assign('language_list',$lang_list);
+$smarty->assign('attribution_list',$attr_list);
 $smarty->assign('get',$_GET);
 
 // Display
