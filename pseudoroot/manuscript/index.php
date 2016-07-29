@@ -39,9 +39,9 @@ foreach ($parts as $part){
     $languages[$part[11]] = $language_stmt -> fetchAll(PDO::FETCH_NUM);
 }
 
-$notes = explode("\n", trim($record[0][7]));
 // regex-ing
-$provenance = explode("\n", trim($record[0][6]));
+$notes = explode("\n", trim(preg_replace('/~([^~]*)~/', '<cite>\1</cite>', $record[0][7])));
+$provenance = explode("\n", trim(preg_replace('/~([^~]*)~/', '<cite>\1</cite>', $record[0][6])));
 $bib = array_filter(explode("\n", trim(preg_replace('/~([^~]*)~/', '<cite>\1</cite>', $record[0][8]))));
 $record[0][5] = preg_replace('/\^([^\^]*)\^/', '<sup>\1</sup>', $record[0][5]);
 $record[0][1] = preg_replace('/\(index[^\)]*\)/', '', $record[0][1]);
