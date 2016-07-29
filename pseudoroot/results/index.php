@@ -30,15 +30,22 @@ if ( !empty($_GET['region']) ){
 if ( !empty($_GET['collection']) ){
     $coll = (int)$_GET['collection'];
 }
+if ( !empty($_GET['language']) ){
+    $lang = (int)$_GET['language'];
+}
 // function to bind variables in the subquery
 function bind_subq($stmt){
     global $region;
     global $coll;
+    global $lang;
     if (isset($region)){
         $stmt->bindParam(':region', $region, PDO::PARAM_INT);
     }
     if (isset($coll)){
         $stmt->bindParam(':collection', $coll, PDO::PARAM_INT);
+    }
+    if (isset($lang)){
+        $stmt->bindParam(':language', $lang, PDO::PARAM_INT);
     }
 }
 
@@ -50,12 +57,18 @@ if (isset($region)){
 if (isset($coll)){
     $subqstr .= file_get_contents('../../../async/results/join/manuscript.sql');
 }
+if (isset($lang)){
+    $subqstr .= file_get_contents('../../../async/results/join/language.sql');
+}
 $subqstr .= 'WHERE TRUE ';
 if (isset($region)){
     $subqstr .= file_get_contents('../../../async/results/where/region.sql');
 }
 if (isset($coll)){
     $subqstr .= file_get_contents('../../../async/results/where/collection.sql');
+}
+if (isset($lang)){
+    $subqstr .= file_get_contents('../../../async/results/where/language.sql');
 }
 //echo($subqstr);
 
@@ -65,6 +78,7 @@ $perpage     = 20;
 // Total count
 $qstr = file_get_contents( "../../../async/results/$grouping/count.sql" );
 $qstr .= "WHERE $id_type IN ($subqstr)";
+//echo($qstr);
 $stmt = $db->prepare($qstr);
 // conditional bindings
 bind_subq($stmt);
@@ -127,6 +141,19 @@ $coll_stmt = $db->prepare($qstr);
 bind_subq($coll_stmt);
 $coll_stmt->execute();
 $coll_list = $coll_stmt->fetchAll(PDO::FETCH_NUM);
+///////////////////////////////////////////////////////////////////////
+// Languages //
+///////////////
+// Create and prepare query string
+$qstr  = file_get_contents('../../../async/filters/language/select.sql');
+$qstr .= ", COUNT(DISTINCT v.$id_type) ";
+$qstr .= file_get_contents('../../../async/filters/language/from.sql');
+$qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+$qstr .= file_get_contents('../../../async/filters/language/group_by_order_by.sql');
+$lang_stmt = $db->prepare($qstr);
+bind_subq($lang_stmt);
+$lang_stmt->execute();
+$lang_list = $lang_stmt->fetchAll(PDO::FETCH_NUM);
 
 // Assign variables
 $smarty->assign('firstret',1+$offset);
@@ -137,6 +164,7 @@ $smarty->assign('rescount',$rescount);
 $smarty->assign('reslist',$result);
 $smarty->assign('region_list',$region_list);
 $smarty->assign('collection_list',$coll_list);
+$smarty->assign('language_list',$lang_list);
 $smarty->assign('get',$_GET);
 
 // Display

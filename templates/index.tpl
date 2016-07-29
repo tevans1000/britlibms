@@ -55,6 +55,20 @@
                         {/foreach}
                     </ul> <!-- end of collection-list -->
                     {/if}
+                    {if count($language_list) > 1} {* else collection facet is exhausted *}
+                    <h3>
+                       Languages
+                    </h3>
+                    <ul id='collection-list'>
+                        {foreach $language_list as $row}
+                        <li>
+                            <a href='?language={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'language'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                {$row[1]} ({$row[2]})
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul> <!-- end of language-list -->
+                    {/if}
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-sm-10'>
