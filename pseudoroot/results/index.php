@@ -36,6 +36,9 @@ if ( !empty($_GET['language']) ){
 if ( !empty($_GET['attribution']) ){
     $attr = (int)$_GET['attribution'];
 }
+if ( !empty($_GET['scribe']) ){
+    $scribe = (int)$_GET['scribe'];
+}
 if ( !empty($_GET['yearstart']) ){
     $year_start = (int)$_GET['yearstart'];
 }
@@ -48,6 +51,7 @@ function bind_subq($stmt){
     global $coll;
     global $lang;
     global $attr;
+    global $scribe;
     global $year_start;
     global $year_end;
     if (isset($region)){
@@ -61,6 +65,9 @@ function bind_subq($stmt){
     }
     if (isset($attr)){
         $stmt->bindParam(':attribution', $attr, PDO::PARAM_INT);
+    }
+    if (isset($scribe)){
+        $stmt->bindParam(':scribe', $scribe, PDO::PARAM_INT);
     }
     if (isset($year_start)){
         $stmt->bindParam(':year_start', $year_start, PDO::PARAM_INT);
@@ -84,6 +91,9 @@ if (isset($lang)){
 if (isset($attr)){
     $subqstr .= file_get_contents('../../../async/results/join/attribution.sql');
 }
+if (isset($scribe)){
+    $subqstr .= file_get_contents('../../../async/results/join/scribe.sql');
+}
 if (isset($year_start) or isset($year_end)){
     $subqstr .= file_get_contents('../../../async/results/join/part.sql');
 }
@@ -99,6 +109,9 @@ if (isset($lang)){
 }
 if (isset($attr)){
     $subqstr .= file_get_contents('../../../async/results/where/attribution.sql');
+}
+if (isset($scribe)){
+    $subqstr .= file_get_contents('../../../async/results/where/scribe.sql');
 }
 if (isset($year_start)){
     $subqstr .= file_get_contents('../../../async/results/where/year_start.sql');
@@ -207,6 +220,21 @@ bind_subq($attr_stmt);
 $attr_stmt->execute();
 $attr_list = $attr_stmt->fetchAll(PDO::FETCH_NUM);
 ///////////////////////////////////////////////////////////////////////
+// Scribes //
+/////////////
+// Create and prepare query string
+$qstr  = file_get_contents('../../../async/filters/scribe/select.sql');
+$qstr .= ", COUNT(DISTINCT v.$id_type) ";
+$qstr .= file_get_contents('../../../async/filters/scribe/from.sql');
+$qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+$qstr .= file_get_contents('../../../async/filters/scribe/group_by_order_by.sql');
+//echo($qstr);
+$scribe_stmt = $db->prepare($qstr);
+// bind parameters, execute, fetch
+bind_subq($scribe_stmt);
+$scribe_stmt->execute();
+$scribe_list = $scribe_stmt->fetchAll(PDO::FETCH_NUM);
+///////////////////////////////////////////////////////////////////////
 // Date //
 //////////
 // Determine min start and max end dates in current subset
@@ -271,18 +299,6 @@ if (!(isset($year_start) or isset($year_end))){ // get undated
     $freq = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
     $dates[] = ['start' => '', 'end' => '', 'count' => $freq];
 }
-/*/ Create and prepare query string
-$qstr  = file_get_contents('../../../async/filters/attribution/select.sql');
-$qstr .= ", COUNT(DISTINCT v.$id_type) ";
-$qstr .= file_get_contents('../../../async/filters/attribution/from.sql');
-$qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../../async/filters/attribution/group_by_order_by.sql');
-$attr_stmt = $db->prepare($qstr);
-// bind parameters, execute, fetch
-bind_subq($attr_stmt);
-$attr_stmt->execute();
-$attr_list = $attr_stmt->fetchAll(PDO::FETCH_NUM);
-//*/
 
 // Assign variables
 $smarty->assign('firstret',1+$offset);
@@ -295,6 +311,7 @@ $smarty->assign('region_list',$region_list);
 $smarty->assign('collection_list',$coll_list);
 $smarty->assign('language_list',$lang_list);
 $smarty->assign('attribution_list',$attr_list);
+$smarty->assign('scribe_list',$scribe_list);
 $smarty->assign('dates',$dates);
 $smarty->assign('get',$_GET);
 

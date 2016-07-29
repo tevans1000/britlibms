@@ -83,6 +83,20 @@
                         {/foreach}
                     </ul> <!-- end of attribution-list -->
                     {/if}
+                    {if count($scribe_list) > 1} {* else attribution facet is exhausted *}
+                    <h3>
+                       Scribe
+                    </h3>
+                    <ul id='scribe-list'>
+                        {foreach $scribe_list as $row}
+                        <li>
+                            <a href='?scribe={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'scribe'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                {$row[1]} ({$row[2]})
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul> <!-- end of scribe-list -->
+                    {/if}
                     {if count($dates) > 1} {* else attribution facet is exhausted *}
                     <h3>
                        Date
