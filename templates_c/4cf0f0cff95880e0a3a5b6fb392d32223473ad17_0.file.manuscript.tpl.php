@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-29 00:45:27
+/* Smarty version 3.1.28, created on 2016-07-29 02:00:24
   from "C:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579a9917d03ba0_51331882',
+  'unifunc' => 'content_579aaaa8081406_50640092',
   'file_dependency' => 
   array (
     '4cf0f0cff95880e0a3a5b6fb392d32223473ad17' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1469749524,
+      1 => 1469753826,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579a9917d03ba0_51331882 ($_smarty_tpl) {
+function content_579aaaa8081406_50640092 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/manuscript/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>

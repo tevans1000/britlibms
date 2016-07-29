@@ -96,8 +96,7 @@
                     </h3>
                     {if $details[1]}
                     <h4>
-                        {* regex_replace removes indexing details *}
-                        by {$details[1]|regex_replace:"/\(index[^\)]*\)/":""}
+                        by {$details[1]}
                     </h4>
                     {/if}
                     <dl>
