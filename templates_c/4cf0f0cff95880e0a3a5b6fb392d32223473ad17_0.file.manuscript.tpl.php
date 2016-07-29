@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-29 02:00:24
+/* Smarty version 3.1.28, created on 2016-07-29 13:21:07
   from "C:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579aaaa8081406_50640092',
+  'unifunc' => 'content_579b4a332ae1a6_15823447',
   'file_dependency' => 
   array (
     '4cf0f0cff95880e0a3a5b6fb392d32223473ad17' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1469753826,
+      1 => 1469794864,
       2 => 'file',
     ),
   ),
@@ -19,8 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579aaaa8081406_50640092 ($_smarty_tpl) {
-if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/manuscript/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
+function content_579b4a332ae1a6_15823447 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -207,8 +206,7 @@ if ($_smarty_tpl->tpl_vars['details']->value[0]) {?> (<?php echo $_smarty_tpl->t
                     </h3>
                     <?php if ($_smarty_tpl->tpl_vars['details']->value[1]) {?>
                     <h4>
-                        
-                        by <?php echo smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['details']->value[1],"/\(index[^\)]*\)/",'');?>
+                        by <?php echo $_smarty_tpl->tpl_vars['details']->value[1];?>
 
                     </h4>
                     <?php }?>
@@ -247,8 +245,17 @@ $_smarty_tpl->tpl_vars['region'] = $__foreach_region_4_saved_item;
 ?>
                             </ul>
                         </dd>
+                        <?php if ($_smarty_tpl->tpl_vars['details']->value[4]) {?>
                         <dt>
-                            Language<?php if (count($_smarty_tpl->tpl_vars['languages']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) > 1) {?>s<?php }?>
+                            Language
+                        </dt>
+                        <dd>
+                            <?php echo $_smarty_tpl->tpl_vars['details']->value[4];?>
+
+                        </dd>
+                        <?php }?>
+                        <dt>
+                            Language list
                         </dt>
                         <dd>
                             <ul>
@@ -287,15 +294,6 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         </dt>
                         <dd>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[3];?>
-
-                        </dd>
-                        <?php }?>
-                        <?php if ($_smarty_tpl->tpl_vars['details']->value[4]) {?>
-                        <dt>
-                            Language
-                        </dt>
-                        <dd>
-                            <?php echo $_smarty_tpl->tpl_vars['details']->value[4];?>
 
                         </dd>
                         <?php }?>

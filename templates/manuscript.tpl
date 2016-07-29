@@ -114,8 +114,16 @@
                                 {/foreach}
                             </ul>
                         </dd>
+                        {if $details[4]}
                         <dt>
-                            Language{if count($languages[$details[11]]) > 1}s{/if}
+                            Language
+                        </dt>
+                        <dd>
+                            {$details[4]}
+                        </dd>
+                        {/if}
+                        <dt>
+                            Language list
                         </dt>
                         <dd>
                             <ul>
@@ -134,14 +142,6 @@
                         </dt>
                         <dd>
                             {$details[3]}
-                        </dd>
-                        {/if}
-                        {if $details[4]}
-                        <dt>
-                            Language
-                        </dt>
-                        <dd>
-                            {$details[4]}
                         </dd>
                         {/if}
                         {if $details[5]}
