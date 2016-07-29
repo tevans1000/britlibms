@@ -83,6 +83,35 @@
                         {/foreach}
                     </ul> <!-- end of attribution-list -->
                     {/if}
+                    {if count($dates) > 1} {* else attribution facet is exhausted *}
+                    <h3>
+                       Date
+                    </h3>
+                    <ul id='date-list'>
+                        {foreach $dates as $row}
+                        {if $row['start']}
+                        <li>
+                            {if $row['count'] != 0}
+                            <a href='?yearstart={$row['start']}&amp;yearend={$row['end']}{foreach $get as $name => $value}{if $name != 'page' and $name != 'yearstart' and $name != 'yearend'}&amp;{$name}={$value}{/if}{/foreach}'>
+                            {/if}
+                                {if ($row['start']%10==0 and $row['end']==$row['start']+9 and $row['start']%100!=0) or ($row['start']%100==0 and $row['end']==$row['start']+99)}
+                                {$row['start']}s {* 1400-1499 -> 1400s, 1490-1500 -> 1490s, 1400-1409 -> 1400-1409 *}
+                                {elseif $row['start'] == $row['end']}
+                                {$row['start']} {* 1 year not considered a range *}
+                                {else}
+                                {$row['start']}&ndash;{$row['end']} {* nicely formatted range *}
+                                {/if}
+                                ({$row['count']})
+                            {if $row['count'] != 0}
+                            </a>
+                            {/if}
+                        </li>
+                        {else}
+                        {* TODO: link for undatable manuscripts *}
+                        {/if}
+                        {/foreach}
+                    </ul> <!-- end of date-list -->
+                    {/if}
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-sm-10'>

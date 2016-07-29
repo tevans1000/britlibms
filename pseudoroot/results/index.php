@@ -194,7 +194,7 @@ $lang_stmt->execute();
 $lang_list = $lang_stmt->fetchAll(PDO::FETCH_NUM);
 ///////////////////////////////////////////////////////////////////////
 // Attributions //
-///////////////
+//////////////////
 // Create and prepare query string
 $qstr  = file_get_contents('../../../async/filters/attribution/select.sql');
 $qstr .= ", COUNT(DISTINCT v.$id_type) ";
@@ -206,6 +206,83 @@ $attr_stmt = $db->prepare($qstr);
 bind_subq($attr_stmt);
 $attr_stmt->execute();
 $attr_list = $attr_stmt->fetchAll(PDO::FETCH_NUM);
+///////////////////////////////////////////////////////////////////////
+// Date //
+//////////
+// Determine min start and max end dates in current subset
+$qstr  = file_get_contents('../../../async/filters/date/bounds.sql');
+$qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+//echo($qstr);
+$stmt = $db->prepare($qstr);
+bind_subq($stmt);
+$stmt->execute();
+$minimax = $stmt->fetchAll(PDO::FETCH_NUM);
+if (isset($year_start)){
+    $min = max($year_start, $minimax[0][0]);
+} else {
+    $min = $minimax[0][0];
+}
+if (isset($year_end)){
+    $max = min($year_end, $minimax[0][1]);
+} else {
+    $max = $minimax[0][1];
+}
+//echo("($min, $max)<br>");
+// Determine appropriate granularity
+$year_diff = $max - $min;
+if ($year_diff > 1158){
+    $grain = 250;
+} elseif ($year_diff > 289){
+    $grain = 100;
+} elseif ($year_diff > 115){
+    $grain = 25;
+} elseif ($year_diff > 28){
+    $grain = 10;
+} else {
+    $grain = 1;
+}
+//echo("$grain<br>");
+// Count results in each bin
+$dates = array();
+for ($bin = floor($min/$grain); $bin <= floor($max/$grain); $bin++){
+    $binmin = max($min, $bin*$grain);
+    $binmax = min($max, (1+$bin)*$grain-1);
+    $qstr  = "SELECT COUNT(DISTINCT v.$id_type) ";
+    $qstr .= file_get_contents('../../../async/filters/date/count/from.sql');
+    $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+    $qstr .= file_get_contents('../../../async/filters/date/count/where.sql');
+    $stmt = $db->prepare($qstr);
+    bind_subq($stmt);
+    $stmt->bindParam(':lo', $binmin, PDO::PARAM_INT);
+    $stmt->bindParam(':hi', $binmax, PDO::PARAM_INT);
+    $stmt->execute();
+    $freq = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
+    //echo("$binmin&ndash;$binmax: $freq<br>");
+    $dates[] = ['start' => $binmin, 'end' => $binmax, 'count' => $freq];
+}
+if (!(isset($year_start) or isset($year_end))){ // get undated
+    $qstr  = "SELECT COUNT(DISTINCT v.$id_type) ";
+    $qstr .= file_get_contents('../../../async/filters/date/count/undatable/from.sql');
+    $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+    $qstr .= file_get_contents('../../../async/filters/date/count/undatable/where.sql');
+    $stmt = $db->prepare($qstr);
+    bind_subq($stmt);
+    $stmt->execute();
+    $freq = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
+    $dates[] = ['start' => '', 'end' => '', 'count' => $freq];
+}
+/*/ Create and prepare query string
+$qstr  = file_get_contents('../../../async/filters/attribution/select.sql');
+$qstr .= ", COUNT(DISTINCT v.$id_type) ";
+$qstr .= file_get_contents('../../../async/filters/attribution/from.sql');
+$qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+$qstr .= file_get_contents('../../../async/filters/attribution/group_by_order_by.sql');
+$attr_stmt = $db->prepare($qstr);
+// bind parameters, execute, fetch
+bind_subq($attr_stmt);
+$attr_stmt->execute();
+$attr_list = $attr_stmt->fetchAll(PDO::FETCH_NUM);
+//*/
 
 // Assign variables
 $smarty->assign('firstret',1+$offset);
@@ -218,6 +295,7 @@ $smarty->assign('region_list',$region_list);
 $smarty->assign('collection_list',$coll_list);
 $smarty->assign('language_list',$lang_list);
 $smarty->assign('attribution_list',$attr_list);
+$smarty->assign('dates',$dates);
 $smarty->assign('get',$_GET);
 
 // Display
