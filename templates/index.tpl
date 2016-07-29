@@ -89,7 +89,7 @@
                     </h3>
                     <ul id='date-list'>
                         {foreach $dates as $row}
-                        {if $row['start']}
+                        {if $row['start']} {* datable *}
                         <li>
                             {if $row['count'] != 0}
                             <a href='?yearstart={$row['start']}&amp;yearend={$row['end']}{foreach $get as $name => $value}{if $name != 'page' and $name != 'yearstart' and $name != 'yearend'}&amp;{$name}={$value}{/if}{/foreach}'>
