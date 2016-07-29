@@ -36,12 +36,20 @@ if ( !empty($_GET['language']) ){
 if ( !empty($_GET['attribution']) ){
     $attr = (int)$_GET['attribution'];
 }
+if ( !empty($_GET['yearstart']) ){
+    $year_start = (int)$_GET['yearstart'];
+}
+if ( !empty($_GET['yearend']) ){
+    $year_end = (int)$_GET['yearend'];
+}
 // function to bind variables in the subquery
 function bind_subq($stmt){
     global $region;
     global $coll;
     global $lang;
     global $attr;
+    global $year_start;
+    global $year_end;
     if (isset($region)){
         $stmt->bindParam(':region', $region, PDO::PARAM_INT);
     }
@@ -53,6 +61,12 @@ function bind_subq($stmt){
     }
     if (isset($attr)){
         $stmt->bindParam(':attribution', $attr, PDO::PARAM_INT);
+    }
+    if (isset($year_start)){
+        $stmt->bindParam(':year_start', $year_start, PDO::PARAM_INT);
+    }
+    if (isset($year_end)){
+        $stmt->bindParam(':year_end', $year_end, PDO::PARAM_INT);
     }
 }
 
@@ -70,6 +84,9 @@ if (isset($lang)){
 if (isset($attr)){
     $subqstr .= file_get_contents('../../../async/results/join/attribution.sql');
 }
+if (isset($year_start) or isset($year_end)){
+    $subqstr .= file_get_contents('../../../async/results/join/part.sql');
+}
 $subqstr .= 'WHERE TRUE ';
 if (isset($region)){
     $subqstr .= file_get_contents('../../../async/results/where/region.sql');
@@ -82,6 +99,12 @@ if (isset($lang)){
 }
 if (isset($attr)){
     $subqstr .= file_get_contents('../../../async/results/where/attribution.sql');
+}
+if (isset($year_start)){
+    $subqstr .= file_get_contents('../../../async/results/where/year_start.sql');
+}
+if (isset($year_end)){
+    $subqstr .= file_get_contents('../../../async/results/where/year_end.sql');
 }
 //echo($subqstr);
 
