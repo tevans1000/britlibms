@@ -184,7 +184,7 @@
                     {* end of image results formatting block *}
                     {elseif $get['grouping']=='p'}
                     <h4>
-                        {$res[1]} {$res[2]} ({$res[3]})
+                        {$res[1]} {$res[2]} {if $res[3]}({$res[3]}){/if}
                         [part {$res[6]} of {$res[7]}]
                     </h4>
                     <h3>
