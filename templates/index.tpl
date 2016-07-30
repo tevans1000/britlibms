@@ -203,7 +203,7 @@
                     </h4>
                     <h3>
                         <a href='../manuscript?id={$res[8]}#part{$res[6]}'>
-                            {$res[5]|default:'(untitled)'}
+                            {$res[5]|default:'(untitled)'|regex_replace:"/~([^~]*)~/":"<i>\\1</i>"}
                         </a>
                     </h3>
                     {if $res[4]}

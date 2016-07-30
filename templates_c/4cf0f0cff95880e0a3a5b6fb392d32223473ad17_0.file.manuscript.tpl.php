@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-29 13:21:07
+/* Smarty version 3.1.28, created on 2016-07-30 15:31:08
   from "C:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579b4a332ae1a6_15823447',
+  'unifunc' => 'content_579cba2c2f11b6_14435885',
   'file_dependency' => 
   array (
     '4cf0f0cff95880e0a3a5b6fb392d32223473ad17' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1469794864,
+      1 => 1469889064,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,8 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579b4a332ae1a6_15823447 ($_smarty_tpl) {
+function content_579cba2c2f11b6_14435885 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/manuscript/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -201,7 +202,8 @@ $__foreach_details_3_saved_local_item = $_smarty_tpl->tpl_vars['details'];
                     <h3>
                         <?php echo 1+$_smarty_tpl->tpl_vars['no']->value;
 if ($_smarty_tpl->tpl_vars['details']->value[0]) {?> (<?php echo $_smarty_tpl->tpl_vars['details']->value[0];?>
-)<?php }?>: <?php echo (($tmp = @$_smarty_tpl->tpl_vars['details']->value[2])===null||$tmp==='' ? '(untitled)' : $tmp);?>
+)<?php }?>:
+                        <?php echo smarty_modifier_regex_replace((($tmp = @$_smarty_tpl->tpl_vars['details']->value[2])===null||$tmp==='' ? '(untitled)' : $tmp),"/~([^~]*)~/","<i>\\1</i>");?>
 
                     </h3>
                     <?php if ($_smarty_tpl->tpl_vars['details']->value[1]) {?>

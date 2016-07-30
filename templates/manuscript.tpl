@@ -92,7 +92,8 @@
                 {foreach $parts as $no => $details}
                 <article id='part{$details[10]}'>
                     <h3>
-                        {1+$no}{if $details[0]} ({$details[0]}){/if}: {$details[2]|default:'(untitled)'}
+                        {1+$no}{if $details[0]} ({$details[0]}){/if}:
+                        {$details[2]|default:'(untitled)'|regex_replace:"/~([^~]*)~/":"<i>\\1</i>"}
                     </h3>
                     {if $details[1]}
                     <h4>
