@@ -185,11 +185,37 @@
                             {$details[9]}
                         </dd>
                         {/if}
+                        {if $images[$details[11]]}
+                        {/if}
+                    </dl>
+                    <h4>
+                        Images
+                    </h4>
+                    <dl>
+                        {foreach $images[$details[11]] as $image}
+                        <dt>
+                            {$image[5]}{if $image[4]} ({$image[4]}){/if}
+                        </dt>
+                        <dd>
+                            <a href='../illumination?id={$image[0]}'>
+                                {if $image[1]==1}
+                                <p>
+                                    (image of {$image[3]} from folder {$image[2]})
+                                </p>
+                                {elseif $image[1]==5 or $image[1]==8 or $image[1]==9}
+                                <img src="http://www.bl.uk/IllImages/{$image[2]}/thm/{$image[3]|truncate:4:"":true}/{$image[3]}.jpg">
+                                {else}
+                                <img src="http://www.bl.uk/IllImages/{$image[2]}/thm/{$image[3]}.jpg">
+                                {/if}
+                            </a>
+                        </dd>
+                        {/foreach}
                     </dl>
                 </article>
                 {if !($details@last)}
                 <hr>
                 {/if}
+
                 {/foreach}
             </div>
         </div> <!-- end of content-row -->

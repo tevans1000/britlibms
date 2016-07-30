@@ -26,6 +26,9 @@ $regions = array();
 // language init
 $language_qstr = file_get_contents('../../../async/manuscript/language.sql');
 $languages = array();
+// image init
+$image_qstr = file_get_contents('../../../async/manuscript/image.sql');
+$images = array();
 foreach ($parts as $part){
     // get regions for this part
     $region_stmt = $db -> prepare($region_qstr);
@@ -37,6 +40,11 @@ foreach ($parts as $part){
     $language_stmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
     $language_stmt -> execute();
     $languages[$part[11]] = $language_stmt -> fetchAll(PDO::FETCH_NUM);
+    // get images for this part
+    $image_stmt = $db -> prepare($image_qstr);
+    $image_stmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
+    $image_stmt -> execute();
+    $images[$part[11]] = $image_stmt -> fetchAll(PDO::FETCH_NUM);
 }
 
 // regex-ing
@@ -54,6 +62,7 @@ $smarty->assign('bib', $bib);
 $smarty->assign('parts',$parts);
 $smarty -> assign('regions', $regions);
 $smarty -> assign('languages', $languages);
+$smarty -> assign('images', $images);
 
 // Display
 $smarty->display('manuscript.tpl');
