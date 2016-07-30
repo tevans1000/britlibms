@@ -150,10 +150,34 @@
                     <p>
                         {if $maxpage > 1}
                         {$firstret}&ndash;{$lastret} of {$rescount} (page {$pageno} / {$maxpage})
-                        {else}
+                        {elseif $rescount>1}
                         Viewing all {$rescount} results found
+                        {elseif $rescount==1}
+                        Only 1 result found
+                        {else}
+                        None found
                         {/if}
                     </p>
+                    <h6>
+                        Group by:
+                    </h6>
+                    <ul class='nav nav-pills'>
+                        <li{if $get['grouping']=='m'} class='active'{/if}>
+                            <a href='?grouping=m{foreach $get as $name => $value}{if $name != 'page' and $name != 'grouping'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                Manuscript
+                            </a>
+                        </li>
+                        <li{if $get['grouping']=='p'} class='active'{/if}>
+                            <a href='?grouping=p{foreach $get as $name => $value}{if $name != 'page' and $name != 'grouping'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                Part
+                            </a>
+                        </li>
+                        <li{if $get['grouping']=='i'} class='active'{/if}>
+                            <a href='?grouping=i{foreach $get as $name => $value}{if $name != 'page' and $name != 'grouping'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                Image
+                            </a>
+                        </li>
+                    </ul>
                     {if $maxpage > 1} {* pagination not required if only 1 page *}
                     <nav>
                         <ul class='pagination'>
