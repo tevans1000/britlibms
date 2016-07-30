@@ -126,6 +126,20 @@
                         {/foreach}
                     </ul> <!-- end of date-list -->
                     {/if}
+                    {if count($script_list) > 1} {* else attribution facet is exhausted *}
+                    <h3>
+                       Script
+                    </h3>
+                    <ul id='script-list'>
+                        {foreach $script_list as $row}
+                        <li>
+                            <a href='?script={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'script'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                {$row[1]} ({$row[2]})
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul> <!-- end of script-list -->
+                    {/if}
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-sm-10'>

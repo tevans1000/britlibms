@@ -45,6 +45,9 @@ if ( !empty($_GET['yearstart']) ){
 if ( !empty($_GET['yearend']) ){
     $year_end = (int)$_GET['yearend'];
 }
+if ( !empty($_GET['script']) ){
+    $script = (int)$_GET['script'];
+}
 // function to bind variables in the subquery
 function bind_subq($stmt){
     global $region;
@@ -54,6 +57,7 @@ function bind_subq($stmt){
     global $scribe;
     global $year_start;
     global $year_end;
+    global $script;
     if (isset($region)){
         $stmt->bindParam(':region', $region, PDO::PARAM_INT);
     }
@@ -74,6 +78,9 @@ function bind_subq($stmt){
     }
     if (isset($year_end)){
         $stmt->bindParam(':year_end', $year_end, PDO::PARAM_INT);
+    }
+    if (isset($script)){
+        $stmt->bindParam(':script', $script, PDO::PARAM_INT);
     }
 }
 
@@ -97,6 +104,9 @@ if (isset($scribe)){
 if (isset($year_start) or isset($year_end)){
     $subqstr .= file_get_contents('../../../async/results/join/part.sql');
 }
+if (isset($script)){
+    $subqstr .= file_get_contents('../../../async/results/join/script.sql');
+}
 $subqstr .= 'WHERE TRUE ';
 if (isset($region)){
     $subqstr .= file_get_contents('../../../async/results/where/region.sql');
@@ -119,6 +129,9 @@ if (isset($year_start)){
 if (isset($year_end)){
     $subqstr .= file_get_contents('../../../async/results/where/year_end.sql');
 }
+if (isset($script)){
+    $subqstr .= file_get_contents('../../../async/results/where/script.sql');
+}
 //echo($subqstr);
 
 // Set up variables for pagination
@@ -127,7 +140,7 @@ $perpage     = 20;
 // Total count
 $qstr = file_get_contents( "../../../async/results/$grouping/count.sql" );
 $qstr .= "WHERE $id_type IN ($subqstr)";
-//echo($qstr);
+//echo("<br>$qstr");
 $stmt = $db->prepare($qstr);
 // conditional bindings
 bind_subq($stmt);
@@ -299,6 +312,21 @@ if (!(isset($year_start) or isset($year_end))){ // get undated
     $freq = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
     $dates[] = ['start' => '', 'end' => '', 'count' => $freq];
 }
+///////////////////////////////////////////////////////////////////////
+// Scripts //
+/////////////
+// Create and prepare query string
+$qstr  = file_get_contents('../../../async/filters/script/select.sql');
+$qstr .= ", COUNT(DISTINCT v.$id_type) ";
+$qstr .= file_get_contents('../../../async/filters/script/from.sql');
+$qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+$qstr .= file_get_contents('../../../async/filters/script/group_by_order_by.sql');
+//echo($qstr);
+$script_stmt = $db->prepare($qstr);
+// bind parameters, execute, fetch
+bind_subq($script_stmt);
+$script_stmt->execute();
+$script_list = $script_stmt->fetchAll(PDO::FETCH_NUM);
 
 // Assign variables
 $smarty->assign('firstret',1+$offset);
@@ -313,6 +341,7 @@ $smarty->assign('language_list',$lang_list);
 $smarty->assign('attribution_list',$attr_list);
 $smarty->assign('scribe_list',$scribe_list);
 $smarty->assign('dates',$dates);
+$smarty->assign('script_list',$script_list);
 $smarty->assign('get',$_GET);
 
 // Display
