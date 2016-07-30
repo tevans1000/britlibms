@@ -239,7 +239,7 @@
                         {$res[3]} {$res[4]} ({$res[5]})
                     </h4>
                     <h3>
-                        <a href='illumination?ID={$res[0]}'>
+                        <a href='../illumination?id={$res[0]}'>
                             {$res[6]}
                         </a>
                     </h3>
