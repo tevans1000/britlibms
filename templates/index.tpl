@@ -172,96 +172,6 @@
                             </ul> <!-- end of script-list -->
                         </div>
                     </div>
-                    {*if count($collection_list) > 1} {* else collection facet is exhausted }
-                    <h3>
-                        Collections
-                    </h3>
-                    {/if}
-                    {if count($language_list) > 1} {* else collection facet is exhausted }
-                    <h3>
-                       Languages
-                    </h3>
-                    <ul id='collection-list'>
-                        {foreach $language_list as $row}
-                        <li>
-                            <a href='?language={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'language'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                {$row[1]} ({$row[2]})
-                            </a>
-                        </li>
-                        {/foreach}
-                    </ul> <!-- end of language-list -->
-                    {/if}
-                    {if count($attribution_list) > 1} {* else attribution facet is exhausted }
-                    <h3>
-                       Attribution
-                    </h3>
-                    <ul id='attribution-list'>
-                        {foreach $attribution_list as $row}
-                        <li>
-                            <a href='?attribution={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'attribution'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                {$row[1]} ({$row[2]})
-                            </a>
-                        </li>
-                        {/foreach}
-                    </ul> <!-- end of attribution-list -->
-                    {/if}
-                    {if count($scribe_list) > 1} {* else attribution facet is exhausted }
-                    <h3>
-                       Scribe
-                    </h3>
-                    <ul id='scribe-list'>
-                        {foreach $scribe_list as $row}
-                        <li>
-                            <a href='?scribe={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'scribe'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                {$row[1]} ({$row[2]})
-                            </a>
-                        </li>
-                        {/foreach}
-                    </ul> <!-- end of scribe-list -->
-                    {/if}
-                    {if count($dates) > 1} {* else date facet is exhausted }
-                    <h3>
-                       Date
-                    </h3>
-                    <ul id='date-list'>
-                        {foreach $dates as $row}
-                        {if $row['start']} {* datable }
-                        <li>
-                            {if $row['count'] != 0}
-                            <a href='?yearstart={$row['start']}&amp;yearend={$row['end']}{foreach $get as $name => $value}{if $name != 'page' and $name != 'yearstart' and $name != 'yearend'}&amp;{$name}={$value}{/if}{/foreach}'>
-                            {/if}
-                                {if ($row['start']%10==0 and $row['end']==$row['start']+9 and $row['start']%100!=0) or ($row['start']%100==0 and $row['end']==$row['start']+99)}
-                                {$row['start']}s {* 1400-1499 -> 1400s, 1490-1500 -> 1490s, 1400-1409 -> 1400-1409 }
-                                {elseif $row['start'] == $row['end']}
-                                {$row['start']} {* 1 year not considered a range }
-                                {else}
-                                {$row['start']}&ndash;{$row['end']} {* nicely formatted range }
-                                {/if}
-                                ({$row['count']})
-                            {if $row['count'] != 0}
-                            </a>
-                            {/if}
-                        </li>
-                        {else}
-                        {* TODO: link for undatable manuscripts }
-                        {/if}
-                        {/foreach}
-                    </ul> <!-- end of date-list -->
-                    {/if}
-                    {if count($script_list) > 1} {* else attribution facet is exhausted }
-                    <h3>
-                       Script
-                    </h3>
-                    <ul id='script-list'>
-                        {foreach $script_list as $row}
-                        <li>
-                            <a href='?script={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'script'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                {$row[1]} ({$row[2]})
-                            </a>
-                        </li>
-                        {/foreach}
-                    </ul> <!-- end of script-list -->
-                    {/if*}
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-sm-10'>
@@ -333,9 +243,15 @@
                             {$res[6]}
                         </a>
                     </h3>
+                    {if $res[8]==1}
                     <p>
                         (image of {$res[2]} from folder {$res[1]})
                     </p>
+                    {elseif $res[8]==5 or $res[8]==8 or $res[8]==9}
+                    <img src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]|truncate:4:"":true}/{$res[2]}.jpg">
+                    {else}
+                    <img src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]}.jpg">
+                    {/if}
                     {if $res[7]}
                     <p>
                         by {$res[7]}

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-30 16:10:15
+/* Smarty version 3.1.28, created on 2016-07-30 17:31:24
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579cc35775eed0_63262911',
+  'unifunc' => 'content_579cd65c954df0_38371896',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469891411,
+      1 => 1469896281,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,8 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579cc35775eed0_63262911 ($_smarty_tpl) {
+function content_579cd65c954df0_38371896 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_truncate')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/results/../../includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/results/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -519,7 +520,6 @@ $_smarty_tpl->tpl_vars['row'] = $__foreach_row_12_saved_item;
                             </ul> <!-- end of script-list -->
                         </div>
                     </div>
-                    
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-sm-10'>
@@ -724,11 +724,22 @@ $__foreach_res_18_saved_local_item = $_smarty_tpl->tpl_vars['res'];
 
                         </a>
                     </h3>
+                    <?php if ($_smarty_tpl->tpl_vars['res']->value[8] == 1) {?>
                     <p>
                         (image of <?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
  from folder <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
 )
                     </p>
+                    <?php } elseif ($_smarty_tpl->tpl_vars['res']->value[8] == 5 || $_smarty_tpl->tpl_vars['res']->value[8] == 8 || $_smarty_tpl->tpl_vars['res']->value[8] == 9) {?>
+                    <img src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
+/mid/<?php echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['res']->value[2],4,'',true);?>
+/<?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
+.jpg">
+                    <?php } else { ?>
+                    <img src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
+/mid/<?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
+.jpg">
+                    <?php }?>
                     <?php if ($_smarty_tpl->tpl_vars['res']->value[7]) {?>
                     <p>
                         by <?php echo $_smarty_tpl->tpl_vars['res']->value[7];?>
