@@ -240,28 +240,28 @@
                     <div class='row'>
                     {/if}
                         <div class='col-lg-6'>
-                            <h4>
-                                {$res[3]} {$res[4]} ({$res[5]})
-                            </h4>
-                            <h3>
-                                <a href='../illumination?id={$res[0]}'>
+                            <a href='../illumination?id={$res[0]}'>
+                                <h4>
+                                    {$res[3]} {$res[4]} ({$res[5]})
+                                </h4>
+                                <h3>
                                     {$res[6]}
-                                </a>
-                            </h3>
-                            {if $res[8]==1}
-                            <p>
-                                (image of {$res[2]} from folder {$res[1]})
-                            </p>
-                            {elseif $res[8]==5 or $res[8]==8 or $res[8]==9}
-                            <img class='img-responsive' src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]|truncate:4:"":true}/{$res[2]}.jpg">
-                            {else}
-                            <img class='img-responsive' src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]}.jpg">
-                            {/if}
-                            {if $res[7]}
-                            <p>
-                                by {$res[7]}
-                            </p>
-                            {/if}
+                                </h3>
+                                {if $res[8]==1}
+                                <p>
+                                    (image of {$res[2]} from folder {$res[1]})
+                                </p>
+                                {elseif $res[8]==5 or $res[8]==8 or $res[8]==9}
+                                <img class='img-responsive' src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]|truncate:4:"":true}/{$res[2]}.jpg">
+                                {else}
+                                <img class='img-responsive' src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]}.jpg">
+                                {/if}
+                                {if $res[7]}
+                                <p>
+                                    by {$res[7]}
+                                </p>
+                                {/if}
+                            </a>
                         </div>
                     {if $res@iteration is div by 2}
                     </div>
@@ -271,22 +271,22 @@
                     {* end of image results formatting block *}
                     {elseif $get['grouping']=='p'}
                     <hr>
-                    <h4>
-                        {$res[1]} {$res[2]} {if $res[3]}({$res[3]}){/if}
-                        [part {$res[6]} of {$res[7]}]
-                    </h4>
-                    <h3>
-                        <a href='../manuscript?id={$res[8]}#part{$res[6]}'>
+                    <a href='../manuscript?id={$res[8]}#part{$res[6]}'>
+                        <h4>
+                            {$res[1]} {$res[2]} {if $res[3]}({$res[3]}){/if}
+                            [part {$res[6]} of {$res[7]}]
+                        </h4>
+                        <h3>
                             {$res[5]|default:'(untitled)'|regex_replace:"/~([^~]*)~/":"<i>\\1</i>"}
-                        </a>
-                    </h3>
-                    {if $res[4]}
-                    <h5>
-                        {* regex_replace gets rid of indexing details
-                           - of no interest to visitors *}
-                        by {$res[4]|regex_replace:"/\(index[^\)]*\)/":""}
-                    </h5>
-                    {/if}
+                        </h3>
+                        {if $res[4]}
+                        <h5>
+                            {* regex_replace gets rid of indexing details
+                               - of no interest to visitors *}
+                            by {$res[4]|regex_replace:"/\(index[^\)]*\)/":""}
+                        </h5>
+                        {/if}
+                    </a>
                     {if count($images[$res[0]])>0}
                     {foreach $images[$res[0]] as $image}
                     {if ($image@iteration - 1) is div by 6}
@@ -297,18 +297,20 @@
                             <div class='row'>
                         {/if}
                                 <div class='col-sm-4'>
-                                    <h6>
-                                        {if $image[1]}{$image[1]}:{/if} {$image[2]|default:'(No caption)'}
-                                    </h6>
-                                    {if $image[3]==1}
-                                    <p>
-                                        (image of {$image[5]} from folder {$image[4]})
-                                    </p>
-                                    {elseif $image[3]==5 or $image[3]==8 or $image[3]==9}
-                                    <img src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]|truncate:4:"":true}/{$image[5]}.jpg">
-                                    {else}
-                                    <img src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]}.jpg">
-                                    {/if}
+                                    <a href='../illumination?id={$image[0]}'>
+                                        <h6>
+                                            {if $image[1]}{$image[1]}:{/if} {$image[2]|default:'(No caption)'}
+                                        </h6>
+                                        {if $image[3]==1}
+                                        <p>
+                                            (image of {$image[5]} from folder {$image[4]})
+                                        </p>
+                                        {elseif $image[3]==5 or $image[3]==8 or $image[3]==9}
+                                        <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]|truncate:4:"":true}/{$image[5]}.jpg">
+                                        {else}
+                                        <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]}.jpg">
+                                        {/if}
+                                    </a>
                                 </div>
                         {if $image@iteration is div by 3}
                             </div>

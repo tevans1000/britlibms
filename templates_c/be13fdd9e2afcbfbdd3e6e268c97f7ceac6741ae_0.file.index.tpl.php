@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-31 15:12:59
+/* Smarty version 3.1.28, created on 2016-07-31 16:37:05
   from "C:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579e076b2935a0_87526667',
+  'unifunc' => 'content_579e1b21502e16_27944611',
   'file_dependency' => 
   array (
     'be13fdd9e2afcbfbdd3e6e268c97f7ceac6741ae' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1469974375,
+      1 => 1469979422,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579e076b2935a0_87526667 ($_smarty_tpl) {
+function content_579e1b21502e16_27944611 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_truncate')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/results/../../includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/results/../../includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
@@ -718,41 +718,41 @@ $__foreach_res_18_saved_local_item = $_smarty_tpl->tpl_vars['res'];
                     <div class='row'>
                     <?php }?>
                         <div class='col-lg-6'>
-                            <h4>
-                                <?php echo $_smarty_tpl->tpl_vars['res']->value[3];?>
+                            <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[0];?>
+'>
+                                <h4>
+                                    <?php echo $_smarty_tpl->tpl_vars['res']->value[3];?>
  <?php echo $_smarty_tpl->tpl_vars['res']->value[4];?>
  (<?php echo $_smarty_tpl->tpl_vars['res']->value[5];?>
 )
-                            </h4>
-                            <h3>
-                                <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[0];?>
-'>
+                                </h4>
+                                <h3>
                                     <?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
 
-                                </a>
-                            </h3>
-                            <?php if ($_smarty_tpl->tpl_vars['res']->value[8] == 1) {?>
-                            <p>
-                                (image of <?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
+                                </h3>
+                                <?php if ($_smarty_tpl->tpl_vars['res']->value[8] == 1) {?>
+                                <p>
+                                    (image of <?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
  from folder <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
 )
-                            </p>
-                            <?php } elseif ($_smarty_tpl->tpl_vars['res']->value[8] == 5 || $_smarty_tpl->tpl_vars['res']->value[8] == 8 || $_smarty_tpl->tpl_vars['res']->value[8] == 9) {?>
-                            <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
+                                </p>
+                                <?php } elseif ($_smarty_tpl->tpl_vars['res']->value[8] == 5 || $_smarty_tpl->tpl_vars['res']->value[8] == 8 || $_smarty_tpl->tpl_vars['res']->value[8] == 9) {?>
+                                <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
 /mid/<?php echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['res']->value[2],4,'',true);?>
 /<?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
 .jpg">
-                            <?php } else { ?>
-                            <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
+                                <?php } else { ?>
+                                <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
 /mid/<?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
 .jpg">
-                            <?php }?>
-                            <?php if ($_smarty_tpl->tpl_vars['res']->value[7]) {?>
-                            <p>
-                                by <?php echo $_smarty_tpl->tpl_vars['res']->value[7];?>
+                                <?php }?>
+                                <?php if ($_smarty_tpl->tpl_vars['res']->value[7]) {?>
+                                <p>
+                                    by <?php echo $_smarty_tpl->tpl_vars['res']->value[7];?>
 
-                            </p>
-                            <?php }?>
+                                </p>
+                                <?php }?>
+                            </a>
                         </div>
                     <?php if (!($_smarty_tpl->tpl_vars['res']->iteration % 2)) {?>
                     </div>
@@ -762,30 +762,30 @@ $__foreach_res_18_saved_local_item = $_smarty_tpl->tpl_vars['res'];
                     
                     <?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>
                     <hr>
-                    <h4>
-                        <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
+                    <a href='../manuscript?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[8];?>
+#part<?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
+'>
+                        <h4>
+                            <?php echo $_smarty_tpl->tpl_vars['res']->value[1];?>
  <?php echo $_smarty_tpl->tpl_vars['res']->value[2];?>
  <?php if ($_smarty_tpl->tpl_vars['res']->value[3]) {?>(<?php echo $_smarty_tpl->tpl_vars['res']->value[3];?>
 )<?php }?>
-                        [part <?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
+                            [part <?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
  of <?php echo $_smarty_tpl->tpl_vars['res']->value[7];?>
 ]
-                    </h4>
-                    <h3>
-                        <a href='../manuscript?id=<?php echo $_smarty_tpl->tpl_vars['res']->value[8];?>
-#part<?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
-'>
+                        </h4>
+                        <h3>
                             <?php echo smarty_modifier_regex_replace((($tmp = @$_smarty_tpl->tpl_vars['res']->value[5])===null||$tmp==='' ? '(untitled)' : $tmp),"/~([^~]*)~/","<i>\\1</i>");?>
 
-                        </a>
-                    </h3>
-                    <?php if ($_smarty_tpl->tpl_vars['res']->value[4]) {?>
-                    <h5>
-                        
-                        by <?php echo smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['res']->value[4],"/\(index[^\)]*\)/",'');?>
+                        </h3>
+                        <?php if ($_smarty_tpl->tpl_vars['res']->value[4]) {?>
+                        <h5>
+                            
+                            by <?php echo smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['res']->value[4],"/\(index[^\)]*\)/",'');?>
 
-                    </h5>
-                    <?php }?>
+                        </h5>
+                        <?php }?>
+                    </a>
                     <?php if (count($_smarty_tpl->tpl_vars['images']->value[$_smarty_tpl->tpl_vars['res']->value[0]]) > 0) {?>
                     <?php
 $_from = $_smarty_tpl->tpl_vars['images']->value[$_smarty_tpl->tpl_vars['res']->value[0]];
@@ -812,28 +812,31 @@ $__foreach_image_19_saved_local_item = $_smarty_tpl->tpl_vars['image'];
                             <div class='row'>
                         <?php }?>
                                 <div class='col-sm-4'>
-                                    <h6>
-                                        <?php if ($_smarty_tpl->tpl_vars['image']->value[1]) {
+                                    <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
+'>
+                                        <h6>
+                                            <?php if ($_smarty_tpl->tpl_vars['image']->value[1]) {
 echo $_smarty_tpl->tpl_vars['image']->value[1];?>
 :<?php }?> <?php echo (($tmp = @$_smarty_tpl->tpl_vars['image']->value[2])===null||$tmp==='' ? '(No caption)' : $tmp);?>
 
-                                    </h6>
-                                    <?php if ($_smarty_tpl->tpl_vars['image']->value[3] == 1) {?>
-                                    <p>
-                                        (image of <?php echo $_smarty_tpl->tpl_vars['image']->value[5];?>
+                                        </h6>
+                                        <?php if ($_smarty_tpl->tpl_vars['image']->value[3] == 1) {?>
+                                        <p>
+                                            (image of <?php echo $_smarty_tpl->tpl_vars['image']->value[5];?>
  from folder <?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )
-                                    </p>
-                                    <?php } elseif ($_smarty_tpl->tpl_vars['image']->value[3] == 5 || $_smarty_tpl->tpl_vars['image']->value[3] == 8 || $_smarty_tpl->tpl_vars['image']->value[3] == 9) {?>
-                                    <img src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
+                                        </p>
+                                        <?php } elseif ($_smarty_tpl->tpl_vars['image']->value[3] == 5 || $_smarty_tpl->tpl_vars['image']->value[3] == 8 || $_smarty_tpl->tpl_vars['image']->value[3] == 9) {?>
+                                        <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 /thm/<?php echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['image']->value[5],4,'',true);?>
 /<?php echo $_smarty_tpl->tpl_vars['image']->value[5];?>
 .jpg">
-                                    <?php } else { ?>
-                                    <img src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
+                                        <?php } else { ?>
+                                        <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 /thm/<?php echo $_smarty_tpl->tpl_vars['image']->value[5];?>
 .jpg">
-                                    <?php }?>
+                                        <?php }?>
+                                    </a>
                                 </div>
                         <?php if (!($_smarty_tpl->tpl_vars['image']->iteration % 3)) {?>
                             </div>
