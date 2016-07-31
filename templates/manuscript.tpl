@@ -185,32 +185,64 @@
                             {$details[9]}
                         </dd>
                         {/if}
-                        {if $images[$details[11]]}
-                        {/if}
                     </dl>
+                    {if $images[$details[11]]}
                     <h4>
                         Images
                     </h4>
                     <dl>
                         {foreach $images[$details[11]] as $image}
-                        <dt>
-                            {$image[5]}{if $image[4]} ({$image[4]}){/if}
-                        </dt>
-                        <dd>
-                            <a href='../illumination?id={$image[0]}'>
-                                {if $image[1]==1}
-                                <p>
-                                    (image of {$image[3]} from folder {$image[2]})
-                                </p>
-                                {elseif $image[1]==5 or $image[1]==8 or $image[1]==9}
-                                <img src="http://www.bl.uk/IllImages/{$image[2]}/thm/{$image[3]|truncate:4:"":true}/{$image[3]}.jpg">
-                                {else}
-                                <img src="http://www.bl.uk/IllImages/{$image[2]}/thm/{$image[3]}.jpg">
-                                {/if}
-                            </a>
-                        </dd>
+                        {if ($image@iteration-1) is div by 8}
+                        <div class='row'>
+                        {/if}
+                            {if ($image@iteration-1) is div by 4}
+                            <div class='col-lg-6'>
+                                <div class='row'>
+                            {/if}
+                                    {if ($image@iteration-1) is div by 2}
+                                    <div class='col-sm-6'>
+                                        <div class='row'>
+                                    {/if}
+                                            <div class='col-xs-6'>
+                                                <a href='../illumination?id={$image[0]}'>
+                                                    <dt>
+                                                        {$image[5]}{if $image[4]} ({$image[4]}){/if}
+                                                    </dt>
+                                                    <dd>
+                                                            {if $image[1]==1}
+                                                            <p>
+                                                                (image of {$image[3]} from folder {$image[2]})
+                                                            </p>
+                                                            {elseif $image[1]==5 or $image[1]==8 or $image[1]==9}
+                                                            <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[2]}/thm/{$image[3]|truncate:4:"":true}/{$image[3]}.jpg">
+                                                            {else}
+                                                            <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[2]}/thm/{$image[3]}.jpg">
+                                                            {/if}
+                                                    </dd>
+                                                </a>
+                                            </div>
+                                    {if $image@iteration is div by 2}
+                                        </div>
+                                    </div>
+                                    {elseif $image@last}
+                                        </div>
+                                    </div>
+                                    {/if}
+                            {if $image@iteration is div by 4}
+                                </div>
+                            </div>
+                            {elseif $image@last}
+                                </div>
+                            </div>
+                            {/if}
+                        {if $image@iteration is div by 8}
+                        </div>
+                        {elseif $image@last}
+                        </div>
+                        {/if}
                         {/foreach}
                     </dl>
+                    {/if}
                 </article>
                 {if !($details@last)}
                 <hr>
