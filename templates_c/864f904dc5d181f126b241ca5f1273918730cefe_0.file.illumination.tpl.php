@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-30 23:50:58
+/* Smarty version 3.1.28, created on 2016-07-31 17:43:45
   from "C:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579d2f528646f1_17874051',
+  'unifunc' => 'content_579e2ac14fe248_82586886',
   'file_dependency' => 
   array (
     '864f904dc5d181f126b241ca5f1273918730cefe' => 
     array (
       0 => 'C:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1469919056,
+      1 => 1469983416,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579d2f528646f1_17874051 ($_smarty_tpl) {
+function content_579e2ac14fe248_82586886 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_truncate')) require_once 'C:/wamp/www/britlibms/sync/pseudoroot/illumination/../../includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
 <!DOCTYPE html>
@@ -81,12 +81,12 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'C:/wamp/www/britlibm
 )
                 </p>
                 <?php } elseif ($_smarty_tpl->tpl_vars['record']->value[8] == 5 || $_smarty_tpl->tpl_vars['record']->value[8] == 8 || $_smarty_tpl->tpl_vars['record']->value[8] == 9) {?>
-                <img src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['record']->value[9];?>
+                <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['record']->value[9];?>
 /big/<?php echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['record']->value[10],4,'',true);?>
 /<?php echo $_smarty_tpl->tpl_vars['record']->value[10];?>
 .jpg">
                 <?php } else { ?>
-                <img src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['record']->value[9];?>
+                <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['record']->value[9];?>
 /big/<?php echo $_smarty_tpl->tpl_vars['record']->value[10];?>
 .jpg">
                 <?php }?>

@@ -43,9 +43,9 @@
                     (image of {$record[10]} from folder {$record[9]})
                 </p>
                 {elseif $record[8]==5 or $record[8]==8 or $record[8]==9}
-                <img src="http://www.bl.uk/IllImages/{$record[9]}/big/{$record[10]|truncate:4:"":true}/{$record[10]}.jpg">
+                <img class='img-responsive' src="http://www.bl.uk/IllImages/{$record[9]}/big/{$record[10]|truncate:4:"":true}/{$record[10]}.jpg">
                 {else}
-                <img src="http://www.bl.uk/IllImages/{$record[9]}/big/{$record[10]}.jpg">
+                <img class='img-responsive' src="http://www.bl.uk/IllImages/{$record[9]}/big/{$record[10]}.jpg">
                 {/if}
                 <h2>
                     Description
