@@ -22,7 +22,7 @@
         </div> <!-- end of header-row -->
         
         <div id='content-row' class='row'>
-            <div id='filter-column' class='col-sm-2'>
+            <div id='filter-column' class='col-xs-3'>
                 <nav>
                     <h2>
                         Filters
@@ -174,7 +174,7 @@
                     </div>
                 </nav>
             </div> <!-- end of filter-column -->
-            <div id='results-column' class='col-sm-10'>
+            <div id='results-column' class='col-xs-9'>
                 <section>
                     <h1>
                         Results
@@ -235,27 +235,37 @@
                     {/if}
                     {foreach $reslist as $res}
                     {if $get['grouping']=='i'}
-                    <h4>
-                        {$res[3]} {$res[4]} ({$res[5]})
-                    </h4>
-                    <h3>
-                        <a href='../illumination?id={$res[0]}'>
-                            {$res[6]}
-                        </a>
-                    </h3>
-                    {if $res[8]==1}
-                    <p>
-                        (image of {$res[2]} from folder {$res[1]})
-                    </p>
-                    {elseif $res[8]==5 or $res[8]==8 or $res[8]==9}
-                    <img src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]|truncate:4:"":true}/{$res[2]}.jpg">
-                    {else}
-                    <img src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]}.jpg">
+                    {if $res@iteration is even by 1}
+                    <div class='row'>
                     {/if}
-                    {if $res[7]}
-                    <p>
-                        by {$res[7]}
-                    </p>
+                        <div class='col-lg-6'>
+                            <h4>
+                                {$res[3]} {$res[4]} ({$res[5]})
+                            </h4>
+                            <h3>
+                                <a href='../illumination?id={$res[0]}'>
+                                    {$res[6]}
+                                </a>
+                            </h3>
+                            {if $res[8]==1}
+                            <p>
+                                (image of {$res[2]} from folder {$res[1]})
+                            </p>
+                            {elseif $res[8]==5 or $res[8]==8 or $res[8]==9}
+                            <img class='img-responsive' src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]|truncate:4:"":true}/{$res[2]}.jpg">
+                            {else}
+                            <img class='img-responsive' src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]}.jpg">
+                            {/if}
+                            {if $res[7]}
+                            <p>
+                                by {$res[7]}
+                            </p>
+                            {/if}
+                        </div>
+                    {if $res@iteration is even by 1}
+                    </div>
+                    {elseif $res@last}
+                    <div class='row'>
                     {/if}
                     {* end of image results formatting block *}
                     {elseif $get['grouping']=='p'}
@@ -300,9 +310,9 @@
                     </h3>
                     {* end of manuscript results formatting block *}
                     {/if}
-                    {if !($res@last)}
+                    {*if !($res@last)}
                     <hr>
-                    {/if}
+                    {/if*}
                     {/foreach}
                 </section>
             </div> <!-- end of results-column -->
