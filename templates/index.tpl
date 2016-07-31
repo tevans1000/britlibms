@@ -135,6 +135,27 @@
                             </ul> <!-- end of scribe-list -->
                         </div>
                         <div id='date' class='tab-pane'>
+                            {* TODO: Allow users to input years via form *}
+                            <form class='form-inline' role='form' method='get'>
+                                <div class='form-group'>
+                                    <label for='yearstart'>From year:</label>
+                                    <input type='number' min='300' max='1873' name='yearstart'>
+                                </div>
+                                <div class='form-group'>
+                                    <label for='yearend'>to year:</label>
+                                    <input type='number' min='300' max='1873' name='yearend'>
+                                </div>
+                                {foreach $get as $k => $v}
+                                {if $k != 'yearstart' and $k != 'yearend' and $k != 'page'}
+                                <input type='hidden' name='{$k}' value='{$v}'>
+                                {/if}
+                                {/foreach}
+                                <div class='form-group'>
+                                    <button type='submit' class='btn btn-primary'>
+                                        <span class='glyphicon glyphicon-refresh'></span>
+                                    </button>
+                                </div>
+                            </form>
                             <ul id='date-list'>
                                 {foreach $dates as $row}
                                 {if $row['start']} {* datable *}
@@ -158,7 +179,7 @@
                                 {* TODO: link for undatable manuscripts *}
                                 {/if}
                                 {/foreach}
-                            </ul> <!-- end of collection-list -->
+                            </ul> <!-- end of date-list -->
                         </div>
                         <div id='script' class='tab-pane'>
                             <ul id='script-list'>
