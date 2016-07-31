@@ -152,6 +152,8 @@ $rescount = $result[0]['rescount'];
 $offset = $perpage * ($pageno - 1);
 $maxpage = ceil($rescount/$perpage);
 
+// Set number of image thumbnails per result
+$img_limit = 12;
 
 ////////////
 // Do SQL //
@@ -162,20 +164,31 @@ $maxpage = ceil($rescount/$perpage);
 $qstr  = file_get_contents("../../../async/results/$grouping/select.sql");
 // TODO: stuff with GET/SESSION/COOKIE to determine extra fields as required
 $qstr .= file_get_contents("../../../async/results/$grouping/from.sql");
-// TODO: stuff with GET/SESSION/COOKIE to determine extra JOINS as required
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
 $qstr .= file_get_contents('../../../async/limit.sql');
 $qstr .= file_get_contents('../../../async/offset.sql');
 $resstmt = $db->prepare($qstr);
-
 // Bind parameters
 bind_subq($resstmt);
 $resstmt->bindParam(':limit',$perpage,PDO::PARAM_INT);
 $resstmt->bindParam(':offset',$offset,PDO::PARAM_INT);
-
 // Execute and fetch
 $resstmt->execute();
 $result = $resstmt ->fetchAll(PDO::FETCH_NUM);
+// Image thumbnails
+if ($grouping != 'i'){
+    $images = array();
+    foreach ($result as $record){
+        $qstr  = file_get_contents('../../../async/results/thumbnails/select.sql');
+        $qstr .= "WHERE $id_type = " . $record[0] . " ";
+        $qstr .= file_get_contents('../../../async/results/thumbnails/order_by_limit.sql');
+        //echo("$qstr<br>");
+        $imgstmt = $db->prepare($qstr);
+        $imgstmt->bindParam(':imglimit', $img_limit, PDO::PARAM_INT);
+        $imgstmt->execute();
+        $images[$record[0]] = $imgstmt->fetchAll(PDO::FETCH_NUM);
+    }
+}
 ///////////////////////////////////////////////////////////////////////
 // Regions //
 /////////////
@@ -335,6 +348,9 @@ $smarty->assign('pageno',$pageno);
 $smarty->assign('maxpage',$maxpage);
 $smarty->assign('rescount',$rescount);
 $smarty->assign('reslist',$result);
+if ($grouping != 'i'){
+    $smarty->assign('images',$images);
+}
 $smarty->assign('region_list',$region_list);
 $smarty->assign('collection_list',$coll_list);
 $smarty->assign('language_list',$lang_list);
@@ -346,8 +362,5 @@ $smarty->assign('get',$_GET);
 
 // Display
 $smarty->display('index.tpl');
-
-
-
 
 ?>

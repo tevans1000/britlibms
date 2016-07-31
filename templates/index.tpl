@@ -275,6 +275,22 @@
                         by {$res[4]|regex_replace:"/\(index[^\)]*\)/":""}
                     </h5>
                     {/if}
+                    {if count($images[$res[0]])>0}
+                    {foreach $images[$res[0]] as $image}
+                    <h6>
+                        {if $image[1]}{$image[1]}:{/if} {$image[2]|default:'(No caption)'}
+                    </h6>
+                    {if $image[3]==1}
+                    <p>
+                        (image of {$image[5]} from folder {$image[4]})
+                    </p>
+                    {elseif $image[3]==5 or $image[3]==8 or $image[3]==9}
+                    <img src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]|truncate:4:"":true}/{$image[5]}.jpg">
+                    {else}
+                    <img src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]}.jpg">
+                    {/if}
+                    {/foreach}
+                    {/if}
                     {* end of part results formatting block *}
                     {elseif $get['grouping']='m'}
                     <h3>
