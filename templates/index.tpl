@@ -334,6 +334,79 @@
                             {$res[1]} {$res[2]}
                         </a>
                     </h3>
+                    <dl>
+                        {if $res[3]}
+                        <dt>
+                            Official foliation
+                        </dt>
+                        <dd>
+                            {$res[3]}
+                        </dd>
+                        {/if}
+                        {if $res[4]}
+                        <dt>
+                            Collation
+                        </dt>
+                        <dd>
+                            {$res[4]}
+                        </dd>
+                        {/if}
+                        {if $res[5]}
+                        <dt>
+                            Form
+                        </dt>
+                        <dd>
+                            {$res[5]}
+                        </dd>
+                        {/if}
+                        {if $res[6]}
+                        <dt>
+                            Binding
+                        </dt>
+                        <dd>
+                            {$res[6]}
+                        </dd>
+                        {/if}
+                    </dl>
+                    {if count($images[$res[0]])>0}
+                    {foreach $images[$res[0]] as $image}
+                    {if ($image@iteration - 1) is div by 6}
+                    <div class='row'>
+                    {/if}
+                        {if ($image@iteration - 1) is div by 3}
+                        <div class='col-lg-6'>
+                            <div class='row'>
+                        {/if}
+                                <div class='col-sm-4'>
+                                    <a href='../illumination?id={$image[0]}'>
+                                        <h6>
+                                            {if $image[1]}{$image[1]}:{/if} {$image[2]|default:'(No caption)'}
+                                        </h6>
+                                        {if $image[3]==1}
+                                        <p>
+                                            (image of {$image[5]} from folder {$image[4]})
+                                        </p>
+                                        {elseif $image[3]==5 or $image[3]==8 or $image[3]==9}
+                                        <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]|truncate:4:"":true}/{$image[5]}.jpg">
+                                        {else}
+                                        <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]}.jpg">
+                                        {/if}
+                                    </a>
+                                </div>
+                        {if $image@iteration is div by 3}
+                            </div>
+                        </div>
+                        {elseif $image@last}
+                            </div>
+                        </div>
+                        {/if}
+                    {if $image@iteration is div by 6}
+                    </div>
+                    {elseif $image@last}
+                    </div>
+                    {/if}
+                    {/foreach}
+                    {/if}
                     {* end of manuscript results formatting block *}
                     {/if}
                     {*if !($res@last)}
