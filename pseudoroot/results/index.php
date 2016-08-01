@@ -250,7 +250,7 @@ foreach (unserialize(MS_FILTER_LIST) as $filter){
                 //echo("$binmin&ndash;$binmax: $freq<br>");
                 $dates[] = ['start' => $binmin, 'end' => $binmax, 'count' => $freq];
             }
-            // Count undatables
+            /*/ Count undatables
             if (!(isset($year_start) or isset($year_end))){
                 $qstr  = "SELECT COUNT(DISTINCT v.$id_type) ";
                 $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/count/undatable/from.sql");
@@ -262,6 +262,7 @@ foreach (unserialize(MS_FILTER_LIST) as $filter){
                 $freq = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
                 $dates[] = ['start' => '', 'end' => '', 'count' => $freq];
             }
+            //*/
             $filter_lists[$filter] = $dates;
             break;
         default:
@@ -278,9 +279,17 @@ foreach (unserialize(MS_FILTER_LIST) as $filter){
     }
 }
 // unset exhausted filters
-foreach($filter_lists as $k => $v){
-    if (count($v) <= 1){
-        unset($filter_lists[$k]);
+foreach($filter_lists as $filter => $list){
+    $facet_exhausted = true;
+    foreach($list as $item){
+        $count = ($filter == 'date') ? $item['count'] : $item[2];
+        if ($count!=$rescount){
+            $facet_exhausted = false;
+            break;
+        }
+    }
+    if ($facet_exhausted){
+        unset($filter_lists[$filter]);
     }
 }
 ///////////////////////////////////////////////////////////////////////
