@@ -7,27 +7,27 @@ if (!empty($_GET['id'])){
 }
 // Do SQL
 // details for manuscript as a whole
-$qstr  = file_get_contents("../../../async/manuscript/whole.sql");
+$qstr  = file_get_contents(MS_SQL_DIR . "whole.sql");
 $recstmt = $db->prepare($qstr);
 $recstmt->bindParam(':id', $id, PDO::PARAM_INT);
 $recstmt->execute();
 $record = $recstmt ->fetchAll(PDO::FETCH_NUM);
 
 // details for manuscript parts
-$qstr = file_get_contents('../../../async/manuscript/part.sql');
+$qstr = file_get_contents(MS_SQL_DIR . 'part.sql');
 $partstmt = $db->prepare($qstr);
 $partstmt->bindParam(':id', $id, PDO::PARAM_INT);
 $partstmt->execute();
 $parts = $partstmt ->fetchAll(PDO::FETCH_NUM);
 // multi-value attributes
 // region init
-$region_qstr = file_get_contents('../../../async/manuscript/region.sql');
+$region_qstr = file_get_contents(MS_SQL_DIR . 'region.sql');
 $regions = array();
 // language init
-$language_qstr = file_get_contents('../../../async/manuscript/language.sql');
+$language_qstr = file_get_contents(MS_SQL_DIR . 'language.sql');
 $languages = array();
 // image init
-$image_qstr = file_get_contents('../../../async/manuscript/image.sql');
+$image_qstr = file_get_contents(MS_SQL_DIR . 'image.sql');
 $images = array();
 foreach ($parts as $part){
     // get regions for this part

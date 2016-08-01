@@ -21,7 +21,7 @@ if ( empty($_GET['grouping']) ){
             $_GET['grouping'] = 'p';  // for smarty
     }
 }
-$id_type = file_get_contents("../../../async/results/$grouping/idtype");
+$id_type = file_get_contents(RESULT_SQL_DIR . "$grouping/idtype");
 
 // Set up parameters for binding
 if ( !empty($_GET['region']) ){
@@ -85,52 +85,52 @@ function bind_subq($stmt){
 }
 
 // Construct result set subquery string
-$subqstr = file_get_contents("../../../async/results/$grouping.sql");
+$subqstr = file_get_contents(RESULT_SQL_DIR . "$grouping.sql");
 if (isset($region)){
-    $subqstr .= file_get_contents('../../../async/results/join/region.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/region.sql');
 }
 if (isset($coll)){
-    $subqstr .= file_get_contents('../../../async/results/join/manuscript.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/manuscript.sql');
 }
 if (isset($lang)){
-    $subqstr .= file_get_contents('../../../async/results/join/language.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/language.sql');
 }
 if (isset($attr)){
-    $subqstr .= file_get_contents('../../../async/results/join/attribution.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/attribution.sql');
 }
 if (isset($scribe)){
-    $subqstr .= file_get_contents('../../../async/results/join/scribe.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/scribe.sql');
 }
 if (isset($year_start) or isset($year_end)){
-    $subqstr .= file_get_contents('../../../async/results/join/part.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/part.sql');
 }
 if (isset($script)){
-    $subqstr .= file_get_contents('../../../async/results/join/script.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/script.sql');
 }
 $subqstr .= 'WHERE TRUE ';
 if (isset($region)){
-    $subqstr .= file_get_contents('../../../async/results/where/region.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/region.sql');
 }
 if (isset($coll)){
-    $subqstr .= file_get_contents('../../../async/results/where/collection.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/collection.sql');
 }
 if (isset($lang)){
-    $subqstr .= file_get_contents('../../../async/results/where/language.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/language.sql');
 }
 if (isset($attr)){
-    $subqstr .= file_get_contents('../../../async/results/where/attribution.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/attribution.sql');
 }
 if (isset($scribe)){
-    $subqstr .= file_get_contents('../../../async/results/where/scribe.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/scribe.sql');
 }
 if (isset($year_start)){
-    $subqstr .= file_get_contents('../../../async/results/where/year_start.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/year_start.sql');
 }
 if (isset($year_end)){
-    $subqstr .= file_get_contents('../../../async/results/where/year_end.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/year_end.sql');
 }
 if (isset($script)){
-    $subqstr .= file_get_contents('../../../async/results/where/script.sql');
+    $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/script.sql');
 }
 //echo($subqstr);
 
@@ -138,7 +138,7 @@ if (isset($script)){
 $pageno      = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
 $perpage     = 20;
 // Total count
-$qstr = file_get_contents( "../../../async/results/$grouping/count.sql" );
+$qstr = file_get_contents( RESULT_SQL_DIR . "$grouping/count.sql" );
 $qstr .= "WHERE $id_type IN ($subqstr)";
 //echo("<br>$qstr");
 $stmt = $db->prepare($qstr);
@@ -161,9 +161,9 @@ $img_limit = 12;
 // Results //
 /////////////
 // Create and prepare query string
-$qstr  = file_get_contents("../../../async/results/$grouping/select.sql");
+$qstr  = file_get_contents(RESULT_SQL_DIR . "$grouping/select.sql");
 // TODO: stuff with GET/SESSION/COOKIE to determine extra fields as required
-$qstr .= file_get_contents("../../../async/results/$grouping/from.sql");
+$qstr .= file_get_contents(RESULT_SQL_DIR . "$grouping/from.sql");
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
 $qstr .= file_get_contents('../../../async/limit.sql');
 $qstr .= file_get_contents('../../../async/offset.sql');
@@ -179,9 +179,9 @@ $result = $resstmt ->fetchAll(PDO::FETCH_NUM);
 if ($grouping != 'i'){
     $images = array();
     foreach ($result as $record){
-        $qstr  = file_get_contents('../../../async/results/thumbnails/select.sql');
+        $qstr  = file_get_contents(RESULT_SQL_DIR . 'thumbnails/select.sql');
         $qstr .= "WHERE $id_type = " . $record[0] . " ";
-        $qstr .= file_get_contents('../../../async/results/thumbnails/order_by_limit.sql');
+        $qstr .= file_get_contents(RESULT_SQL_DIR . 'thumbnails/order_by_limit.sql');
         //echo("$qstr<br>");
         $imgstmt = $db->prepare($qstr);
         $imgstmt->bindParam(':imglimit', $img_limit, PDO::PARAM_INT);
@@ -193,11 +193,11 @@ if ($grouping != 'i'){
 // Regions //
 /////////////
 // Create and prepare query string
-$qstr  = file_get_contents('../../../async/filters/region/select.sql');
+$qstr  = file_get_contents(FILTER_SQL_DIR . 'region/select.sql');
 $qstr .= ", COUNT(DISTINCT v.$id_type) ";
-$qstr .= file_get_contents('../../../async/filters/region/from.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'region/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../../async/filters/region/group_by_order_by.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'region/group_by_order_by.sql');
 $region_stmt = $db->prepare($qstr);
 // bind parameters, execute, fetch
 bind_subq($region_stmt);
@@ -207,11 +207,11 @@ $region_list = $region_stmt->fetchAll(PDO::FETCH_NUM);
 // Collections //
 /////////////////
 // Create and prepare query string
-$qstr  = file_get_contents('../../../async/filters/collection/select.sql');
+$qstr  = file_get_contents(FILTER_SQL_DIR . 'collection/select.sql');
 $qstr .= ", COUNT(DISTINCT v.$id_type) ";
-$qstr .= file_get_contents('../../../async/filters/collection/from.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'collection/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../../async/filters/collection/group_by_order_by.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'collection/group_by_order_by.sql');
 $coll_stmt = $db->prepare($qstr);
 // bind parameters, execute, fetch
 bind_subq($coll_stmt);
@@ -221,11 +221,11 @@ $coll_list = $coll_stmt->fetchAll(PDO::FETCH_NUM);
 // Languages //
 ///////////////
 // Create and prepare query string
-$qstr  = file_get_contents('../../../async/filters/language/select.sql');
+$qstr  = file_get_contents(FILTER_SQL_DIR . 'language/select.sql');
 $qstr .= ", COUNT(DISTINCT v.$id_type) ";
-$qstr .= file_get_contents('../../../async/filters/language/from.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'language/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../../async/filters/language/group_by_order_by.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'language/group_by_order_by.sql');
 $lang_stmt = $db->prepare($qstr);
 // bind parameters, execute, fetch
 bind_subq($lang_stmt);
@@ -235,11 +235,11 @@ $lang_list = $lang_stmt->fetchAll(PDO::FETCH_NUM);
 // Attributions //
 //////////////////
 // Create and prepare query string
-$qstr  = file_get_contents('../../../async/filters/attribution/select.sql');
+$qstr  = file_get_contents(FILTER_SQL_DIR . 'attribution/select.sql');
 $qstr .= ", COUNT(DISTINCT v.$id_type) ";
-$qstr .= file_get_contents('../../../async/filters/attribution/from.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'attribution/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../../async/filters/attribution/group_by_order_by.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'attribution/group_by_order_by.sql');
 $attr_stmt = $db->prepare($qstr);
 // bind parameters, execute, fetch
 bind_subq($attr_stmt);
@@ -249,11 +249,11 @@ $attr_list = $attr_stmt->fetchAll(PDO::FETCH_NUM);
 // Scribes //
 /////////////
 // Create and prepare query string
-$qstr  = file_get_contents('../../../async/filters/scribe/select.sql');
+$qstr  = file_get_contents(FILTER_SQL_DIR . 'scribe/select.sql');
 $qstr .= ", COUNT(DISTINCT v.$id_type) ";
-$qstr .= file_get_contents('../../../async/filters/scribe/from.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'scribe/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../../async/filters/scribe/group_by_order_by.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'scribe/group_by_order_by.sql');
 //echo($qstr);
 $scribe_stmt = $db->prepare($qstr);
 // bind parameters, execute, fetch
@@ -264,7 +264,7 @@ $scribe_list = $scribe_stmt->fetchAll(PDO::FETCH_NUM);
 // Date //
 //////////
 // Determine min start and max end dates in current subset
-$qstr  = file_get_contents('../../../async/filters/date/bounds.sql');
+$qstr  = file_get_contents(FILTER_SQL_DIR . 'date/bounds.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
 //echo($qstr);
 $stmt = $db->prepare($qstr);
@@ -302,9 +302,9 @@ for ($bin = floor($min/$grain); $bin <= floor($max/$grain); $bin++){
     $binmin = max($min, $bin*$grain);
     $binmax = min($max, (1+$bin)*$grain-1);
     $qstr  = "SELECT COUNT(DISTINCT v.$id_type) ";
-    $qstr .= file_get_contents('../../../async/filters/date/count/from.sql');
+    $qstr .= file_get_contents(FILTER_SQL_DIR . 'date/count/from.sql');
     $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-    $qstr .= file_get_contents('../../../async/filters/date/count/where.sql');
+    $qstr .= file_get_contents(FILTER_SQL_DIR . 'date/count/where.sql');
     $stmt = $db->prepare($qstr);
     bind_subq($stmt);
     $stmt->bindParam(':lo', $binmin, PDO::PARAM_INT);
@@ -316,9 +316,9 @@ for ($bin = floor($min/$grain); $bin <= floor($max/$grain); $bin++){
 }
 if (!(isset($year_start) or isset($year_end))){ // get undated
     $qstr  = "SELECT COUNT(DISTINCT v.$id_type) ";
-    $qstr .= file_get_contents('../../../async/filters/date/count/undatable/from.sql');
+    $qstr .= file_get_contents(FILTER_SQL_DIR . 'date/count/undatable/from.sql');
     $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-    $qstr .= file_get_contents('../../../async/filters/date/count/undatable/where.sql');
+    $qstr .= file_get_contents(FILTER_SQL_DIR . 'date/count/undatable/where.sql');
     $stmt = $db->prepare($qstr);
     bind_subq($stmt);
     $stmt->execute();
@@ -329,11 +329,11 @@ if (!(isset($year_start) or isset($year_end))){ // get undated
 // Scripts //
 /////////////
 // Create and prepare query string
-$qstr  = file_get_contents('../../../async/filters/script/select.sql');
+$qstr  = file_get_contents(FILTER_SQL_DIR . 'script/select.sql');
 $qstr .= ", COUNT(DISTINCT v.$id_type) ";
-$qstr .= file_get_contents('../../../async/filters/script/from.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'script/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../../async/filters/script/group_by_order_by.sql');
+$qstr .= file_get_contents(FILTER_SQL_DIR . 'script/group_by_order_by.sql');
 //echo($qstr);
 $script_stmt = $db->prepare($qstr);
 // bind parameters, execute, fetch
