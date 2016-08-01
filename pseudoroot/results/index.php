@@ -2,6 +2,11 @@
 
 require_once( '../../../async/conf.php' );
 
+// Define the list of filters
+define('MS_FILTER_LIST', serialize(['region', 'collection', 'language',
+                                    'attribution', 'scribe', 'date',
+                                    'script']));
+
 // Determine results page grouping
 if ( empty($_GET['grouping']) ){
     $grouping = 'p';
@@ -189,6 +194,95 @@ if ($grouping != 'i'){
         $images[$record[0]] = $imgstmt->fetchAll(PDO::FETCH_NUM);
     }
 }
+// Filters
+// Create and prepare query string
+foreach (unserialize(MS_FILTER_LIST) as $filter){
+    switch ($filter){
+        case 'date':
+            // Determine min start and max end dates in current subset
+            $qstr  = file_get_contents(FILTER_SQL_DIR . "$filter/bounds.sql");
+            $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+            //echo($qstr);
+            $stmt = $db->prepare($qstr);
+            bind_subq($stmt);
+            $stmt->execute();
+            $minimax = $stmt->fetchAll(PDO::FETCH_NUM);
+            if (isset($year_start)){
+                $min = max($year_start, $minimax[0][0]);
+            } else {
+                $min = $minimax[0][0];
+            }
+            if (isset($year_end)){
+                $max = min($year_end, $minimax[0][1]);
+            } else {
+                $max = $minimax[0][1];
+            }
+            //echo("($min, $max)<br>");
+            // Determine appropriate granularity
+            $year_diff = $max - $min;
+            if ($year_diff > 1158){
+                $grain = 250;
+            } elseif ($year_diff > 289){
+                $grain = 100;
+            } elseif ($year_diff > 115){
+                $grain = 25;
+            } elseif ($year_diff > 28){
+                $grain = 10;
+            } else {
+                $grain = 1;
+            }
+            //echo("$grain<br>");
+            // Count results in each bin
+            $dates = array();
+            for ($bin = floor($min/$grain); $bin <= floor($max/$grain); $bin++){
+                $binmin = max($min, $bin*$grain);
+                $binmax = min($max, (1+$bin)*$grain-1);
+                $qstr  = "SELECT COUNT(DISTINCT v.$id_type) ";
+                $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/count/from.sql");
+                $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+                $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/count/where.sql");
+                $stmt = $db->prepare($qstr);
+                bind_subq($stmt);
+                $stmt->bindParam(':lo', $binmin, PDO::PARAM_INT);
+                $stmt->bindParam(':hi', $binmax, PDO::PARAM_INT);
+                $stmt->execute();
+                $freq = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
+                //echo("$binmin&ndash;$binmax: $freq<br>");
+                $dates[] = ['start' => $binmin, 'end' => $binmax, 'count' => $freq];
+            }
+            // Count undatables
+            if (!(isset($year_start) or isset($year_end))){
+                $qstr  = "SELECT COUNT(DISTINCT v.$id_type) ";
+                $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/count/undatable/from.sql");
+                $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+                $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/count/undatable/where.sql");
+                $stmt = $db->prepare($qstr);
+                bind_subq($stmt);
+                $stmt->execute();
+                $freq = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
+                $dates[] = ['start' => '', 'end' => '', 'count' => $freq];
+            }
+            $filter_lists[$filter] = $dates;
+            break;
+        default:
+            $qstr  = file_get_contents(FILTER_SQL_DIR . "$filter/select.sql");
+            $qstr .= ", COUNT(DISTINCT v.$id_type) ";
+            $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/from.sql");
+            $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+            $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/group_by_order_by.sql");
+            $stmt = $db->prepare($qstr);
+            // bind parameters, execute, fetch
+            bind_subq($stmt);
+            $stmt->execute();
+            $filter_lists[$filter] = $stmt->fetchAll(PDO::FETCH_NUM);
+    }
+}
+// unset exhausted filters
+foreach($filter_lists as $k => $v){
+    if (count($v) <= 1){
+        unset($filter_lists[$k]);
+    }
+}
 ///////////////////////////////////////////////////////////////////////
 // Regions //
 /////////////
@@ -351,14 +445,8 @@ $smarty->assign('reslist',$result);
 if ($grouping != 'i'){
     $smarty->assign('images',$images);
 }
-$smarty->assign('region_list',$region_list);
-$smarty->assign('collection_list',$coll_list);
-$smarty->assign('language_list',$lang_list);
-$smarty->assign('attribution_list',$attr_list);
-$smarty->assign('scribe_list',$scribe_list);
-$smarty->assign('dates',$dates);
-$smarty->assign('script_list',$script_list);
 $smarty->assign('get',$_GET);
+$smarty->assign('filter_lists', $filter_lists);
 
 // Display
 $smarty->display('index.tpl');

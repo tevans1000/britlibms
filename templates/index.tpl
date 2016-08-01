@@ -27,115 +27,24 @@
                     <h2>
                         Filters
                     </h2>
+                    {if count($filter_lists)==0}
+                    <p>
+                        No further filtering possible
+                    </p>
+                    {else}
                     <ul class='nav nav-tabs'>
-                        {if count($region_list) > 1} {* else region facet is exhausted *}
-                        <li class='active'>
-                            <a data-toggle='tab' href='#region'>
-                                Region
+                        {foreach $filter_lists as $name => $list}
+                        <li {if $list@first}class='active'{/if}>
+                            <a data-toggle='tab' href='#{$name}'>
+                                {$name|capitalize}
                             </a>
                         </li>
-                        {/if}
-                        {if count($collection_list) > 1} {* else collection facet is exhausted *}
-                        <li>
-                            <a data-toggle='tab' href='#collection'>
-                                Collection
-                            </a>
-                        </li>
-                        {/if}
-                        {if count($language_list) > 1} {* else language facet is exhausted *}
-                        <li>
-                            <a data-toggle='tab' href='#language'>
-                                Language
-                            </a>
-                        </li>
-                        {/if}
-                        {if count($attribution_list) > 1} {* else attribution facet is exhausted *}
-                        <li>
-                            <a data-toggle='tab' href='#attribution'>
-                                Attribution
-                            </a>
-                        </li>
-                        {/if}
-                        {if count($scribe_list) > 1} {* else scribe facet is exhausted *}
-                        <li>
-                            <a data-toggle='tab' href='#scribe'>
-                                Scribe
-                            </a>
-                        </li>
-                        {/if}
-                        {if count($dates) > 1} {* else language facet is exhausted *}
-                        <li>
-                            <a data-toggle='tab' href='#date'>
-                                Date
-                            </a>
-                        </li>
-                        {/if}
-                        {if count($script_list) > 1} {* else script facet is exhausted *}
-                        <li>
-                            <a data-toggle='tab' href='#script'>
-                                Script
-                            </a>
-                        </li>
-                        {/if}
+                        {/foreach}
                     </ul> <!-- end of facet tabs -->
                     <div class='tab-content'>
-                        <div id='region' class='tab-pane active'>
-                            <ul id='region-list'>
-                                {foreach $region_list as $row}
-                                <li>
-                                    <a href='?region={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'region'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                        {$row[1]} ({$row[2]})
-                                    </a>
-                                </li>
-                                {/foreach}
-                            </ul> <!-- end of region-list -->
-                        </div>
-                        <div id='collection' class='tab-pane'>
-                            <ul id='collection-list'>
-                                {foreach $collection_list as $row}
-                                <li>
-                                    <a href='?collection={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'collection'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                        {$row[1]} ({$row[2]})
-                                    </a>
-                                </li>
-                                {/foreach}
-                            </ul> <!-- end of collection-list -->
-                        </div>
-                        <div id='language' class='tab-pane'>
-                            <ul id='language-list'>
-                                {foreach $language_list as $row}
-                                <li>
-                                    <a href='?language={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'language'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                        {$row[1]} ({$row[2]})
-                                    </a>
-                                </li>
-                                {/foreach}
-                            </ul> <!-- end of language-list -->
-                        </div>
-                        <div id='attribution' class='tab-pane'>
-                            <ul id='attribution-list'>
-                                {foreach $attribution_list as $row}
-                                <li>
-                                    <a href='?attribution={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'attribution'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                        {$row[1]} ({$row[2]})
-                                    </a>
-                                </li>
-                                {/foreach}
-                            </ul> <!-- end of attribution-list -->
-                        </div>
-                        <div id='scribe' class='tab-pane'>
-                            <ul id='scribe-list'>
-                                {foreach $scribe_list as $row}
-                                <li>
-                                    <a href='?scribe={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'scribe'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                        {$row[1]} ({$row[2]})
-                                    </a>
-                                </li>
-                                {/foreach}
-                            </ul> <!-- end of scribe-list -->
-                        </div>
-                        <div id='date' class='tab-pane'>
-                            {* TODO: Allow users to input years via form *}
+                        {foreach $filter_lists as $name => $list}
+                        <div id='{$name}' class='tab-pane {if $list@first}active{/if}'>
+                            {if $name == 'date'}
                             <form class='form-inline' role='form' method='get'>
                                 <div class='form-group'>
                                     <label for='yearstart'>From year:</label>
@@ -156,22 +65,22 @@
                                     </button>
                                 </div>
                             </form>
-                            <ul id='date-list'>
-                                {foreach $dates as $row}
-                                {if $row['start']} {* datable *}
+                            <ul>
+                                {foreach $list as $item}
+                                {if $item['start']} {* datable *}
                                 <li>
-                                    {if $row['count'] != 0}
-                                    <a href='?yearstart={$row['start']}&amp;yearend={$row['end']}{foreach $get as $name => $value}{if $name != 'page' and $name != 'yearstart' and $name != 'yearend'}&amp;{$name}={$value}{/if}{/foreach}'>
+                                    {if $item['count'] != 0}
+                                    <a href='?yearstart={$item['start']}&amp;yearend={$item['end']}{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearstart' and $arg != 'yearend'}&amp;{$arg}={$val}{/if}{/foreach}'>
                                     {/if}
-                                        {if ($row['start']%10==0 and $row['end']==$row['start']+9 and $row['start']%100!=0) or ($row['start']%100==0 and $row['end']==$row['start']+99)}
-                                        {$row['start']}s {* 1400-1499 -> 1400s, 1490-1500 -> 1490s, 1400-1409 -> 1400-1409 *}
-                                        {elseif $row['start'] == $row['end']}
-                                        {$row['start']} {* 1 year not considered a range *}
+                                        {if ($item['start']%10==0 and $item['end']==$item['start']+9 and $item['start']%100!=0) or ($item['start']%100==0 and $item['end']==$item['start']+99)}
+                                        {$item['start']}s {* 1400-1499 -> 1400s, 1490-1500 -> 1490s, 1400-1409 -> 1400-1409 *}
+                                        {elseif $item['start'] == $item['end']}
+                                        {$item['start']} {* 1 year not considered a range *}
                                         {else}
-                                        {$row['start']}&ndash;{$row['end']} {* nicely formatted range *}
+                                        {$item['start']}&ndash;{$item['end']} {* nicely formatted range *}
                                         {/if}
-                                        ({$row['count']})
-                                    {if $row['count'] != 0}
+                                        ({$item['count']})
+                                    {if $item['count'] != 0}
                                     </a>
                                     {/if}
                                 </li>
@@ -180,19 +89,21 @@
                                 {/if}
                                 {/foreach}
                             </ul> <!-- end of date-list -->
-                        </div>
-                        <div id='script' class='tab-pane'>
-                            <ul id='script-list'>
-                                {foreach $script_list as $row}
+                            {else}
+                            <ul>
+                                {foreach $list as $item}
                                 <li>
-                                    <a href='?script={$row[0]}{foreach $get as $name => $value}{if $name != 'page' and $name != 'script'}&amp;{$name}={$value}{/if}{/foreach}'>
-                                        {$row[1]} ({$row[2]})
+                                    <a href='?{$name}={$item[0]}{foreach $get as $arg => $val}{if $arg != $name and $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}'>
+                                        {$item[1]} ({$item[2]})
                                     </a>
                                 </li>
                                 {/foreach}
-                            </ul> <!-- end of script-list -->
+                            </ul>
+                            {/if}
                         </div>
+                        {/foreach}
                     </div>
+                    {/if}
                 </nav>
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-xs-9'>
