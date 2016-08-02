@@ -6,7 +6,47 @@ require_once( '../../../async/conf.php' );
 define('MS_FILTER_LIST', serialize(['region', 'collection', 'language',
                                     'attribution', 'scribe', 'date',
                                     'script']));
+// Define acceptable GET parameters
+define('GETTABLES', serialize(['grouping', 'page', 'region',
+                               'collection', 'language', 'attribution',
+                               'scribe', 'yearstart', 'yearend',
+                               'script']));
+// Pagination constant
+define('RESULTS_PER_PAGE', 20);
 
+// retrieve GET parameters
+$params = array();
+foreach (unserialize(GETTABLES) as $name){
+    switch ($name){
+        case 'grouping':
+            if (isset($_GET[$name])){
+                switch (strtolower($_GET[$name])){
+                    case 'i': case 'm':
+                        $params[$name] = strtolower($_GET[$name]);
+                        break;
+                    default:
+                        $params[$name] = 'p';
+                }
+            } else {
+                $params[$name] = 'p';
+            }
+            break;
+        case 'page':
+            if (isset($_GET['page'])){
+                $params[$name] = (int)$_GET[$name];
+            } else {
+                $params[$name] = 1;
+            }
+        default:
+            if (isset($_GET[$name])){
+                $params[$name] = (int)$_GET[$name];
+            }
+    }
+}
+/*
+foreach ($params as $k => &$v){
+    echo("$k: $v<br>");
+}
 // Determine results page grouping
 if ( empty($_GET['grouping']) ){
     $grouping = 'p';
@@ -26,9 +66,11 @@ if ( empty($_GET['grouping']) ){
             $_GET['grouping'] = 'p';  // for smarty
     }
 }
-$id_type = file_get_contents(RESULT_SQL_DIR . "$grouping/idtype");
+*/
+$grouping = $params['grouping'];
+$id_type = file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/idtype');
 
-// Set up parameters for binding
+/*/ Set up parameters for binding
 if ( !empty($_GET['region']) ){
     $region = (int)$_GET['region'];
 }
@@ -53,8 +95,19 @@ if ( !empty($_GET['yearend']) ){
 if ( !empty($_GET['script']) ){
     $script = (int)$_GET['script'];
 }
+*/
 // function to bind variables in the subquery
 function bind_subq($stmt){
+    global $params;
+    foreach ($params as $name => &$value){
+        switch ($name){
+            case 'grouping': case 'page':
+                break;
+            default:
+                $stmt->bindParam(":$name", $value, PDO::PARAM_INT);
+        }
+    }
+    /*
     global $region;
     global $coll;
     global $lang;
@@ -79,18 +132,38 @@ function bind_subq($stmt){
         $stmt->bindParam(':scribe', $scribe, PDO::PARAM_INT);
     }
     if (isset($year_start)){
-        $stmt->bindParam(':year_start', $year_start, PDO::PARAM_INT);
+        $stmt->bindParam(':yearstart', $year_start, PDO::PARAM_INT);
     }
     if (isset($year_end)){
-        $stmt->bindParam(':year_end', $year_end, PDO::PARAM_INT);
+        $stmt->bindParam(':yearend', $year_end, PDO::PARAM_INT);
     }
     if (isset($script)){
         $stmt->bindParam(':script', $script, PDO::PARAM_INT);
     }
+    */
 }
 
 // Construct result set subquery string
-$subqstr = file_get_contents(RESULT_SQL_DIR . "$grouping.sql");
+$subqstr = file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '.sql');
+$part_joined = false;
+foreach (array_keys($params) as $param){
+    switch ($param){
+        case 'grouping': case 'page':
+            break;
+        case 'collection':
+            $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/manuscript.sql');
+            break;
+        case 'yearstart': case 'yearend':
+            if (!$part_joined){
+                $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/part.sql');
+                $part_joined = true;
+            }
+            break;
+        default:
+            $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/' . $param . '.sql');
+    }
+}
+/*
 if (isset($region)){
     $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/region.sql');
 }
@@ -112,7 +185,17 @@ if (isset($year_start) or isset($year_end)){
 if (isset($script)){
     $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/script.sql');
 }
+*/
 $subqstr .= 'WHERE TRUE ';
+foreach (array_keys($params) as $param){
+    switch ($param){
+        case 'grouping': case 'page':
+            break;
+        default:
+            $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/' . $param . '.sql');
+    }
+}
+/*
 if (isset($region)){
     $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/region.sql');
 }
@@ -137,13 +220,13 @@ if (isset($year_end)){
 if (isset($script)){
     $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/script.sql');
 }
+*/
 //echo($subqstr);
 
 // Set up variables for pagination
-$pageno      = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
-$perpage     = 20;
+$pageno      = $params['page'];
 // Total count
-$qstr = file_get_contents( RESULT_SQL_DIR . "$grouping/count.sql" );
+$qstr = file_get_contents( RESULT_SQL_DIR . $params['grouping'] .'/count.sql' );
 $qstr .= "WHERE $id_type IN ($subqstr)";
 //echo("<br>$qstr");
 $stmt = $db->prepare($qstr);
@@ -154,8 +237,8 @@ $stmt -> setFetchMode(PDO::FETCH_ASSOC);
 $result = $stmt -> fetchAll();
 $rescount = $result[0]['rescount'];
 // calculate pagination-related variables
-$offset = $perpage * ($pageno - 1);
-$maxpage = ceil($rescount/$perpage);
+$offset = RESULTS_PER_PAGE * ($pageno - 1);
+$maxpage = ceil($rescount/RESULTS_PER_PAGE);
 
 // Set number of image thumbnails per result
 $img_limit = 12;
@@ -166,16 +249,17 @@ $img_limit = 12;
 // Results //
 /////////////
 // Create and prepare query string
-$qstr  = file_get_contents(RESULT_SQL_DIR . "$grouping/select.sql");
+$qstr  = file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/select.sql');
 // TODO: stuff with GET/SESSION/COOKIE to determine extra fields as required
-$qstr .= file_get_contents(RESULT_SQL_DIR . "$grouping/from.sql");
+$qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/from.sql');
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-$qstr .= file_get_contents('../../../async/limit.sql');
+$qstr .= 'LIMIT ' . RESULTS_PER_PAGE . ' ';
+//$qstr .= file_get_contents('../../../async/limit.sql');
 $qstr .= file_get_contents('../../../async/offset.sql');
 $resstmt = $db->prepare($qstr);
 // Bind parameters
 bind_subq($resstmt);
-$resstmt->bindParam(':limit',$perpage,PDO::PARAM_INT);
+//$resstmt->bindParam(':limit', RESULTS_PER_PAGE, PDO::PARAM_INT);
 $resstmt->bindParam(':offset',$offset,PDO::PARAM_INT);
 // Execute and fetch
 $resstmt->execute();
@@ -207,6 +291,13 @@ foreach (unserialize(MS_FILTER_LIST) as $filter){
             bind_subq($stmt);
             $stmt->execute();
             $minimax = $stmt->fetchAll(PDO::FETCH_NUM);
+            $min = isset($params['yearstart']) ?
+                   max($params['yearstart'], $minimax[0][0])
+                   : $minimax[0][0];
+            $max = isset($params['yearend']) ?
+                   min($params['yearend'], $minimax[0][1])
+                   : $minimax[0][1];
+                   /*
             if (isset($year_start)){
                 $min = max($year_start, $minimax[0][0]);
             } else {
@@ -217,6 +308,7 @@ foreach (unserialize(MS_FILTER_LIST) as $filter){
             } else {
                 $max = $minimax[0][1];
             }
+            */
             //echo("($min, $max)<br>");
             // Determine appropriate granularity
             $year_diff = $max - $min;
@@ -292,7 +384,7 @@ foreach($filter_lists as $filter => $list){
         unset($filter_lists[$filter]);
     }
 }
-///////////////////////////////////////////////////////////////////////
+/*//////////////////////////////////////////////////////////////////////
 // Regions //
 /////////////
 // Create and prepare query string
@@ -442,7 +534,7 @@ $script_stmt = $db->prepare($qstr);
 // bind parameters, execute, fetch
 bind_subq($script_stmt);
 $script_stmt->execute();
-$script_list = $script_stmt->fetchAll(PDO::FETCH_NUM);
+$script_list = $script_stmt->fetchAll(PDO::FETCH_NUM);*/
 
 // Assign variables
 $smarty->assign('firstret',1+$offset);
@@ -454,7 +546,7 @@ $smarty->assign('reslist',$result);
 if ($grouping != 'i'){
     $smarty->assign('images',$images);
 }
-$smarty->assign('get',$_GET);
+$smarty->assign('get',$params);
 $smarty->assign('filter_lists', $filter_lists);
 
 // Display
