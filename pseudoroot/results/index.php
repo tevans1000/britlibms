@@ -21,14 +21,14 @@ foreach (unserialize(GETTABLES) as $name){
         case 'grouping':
             if (isset($_GET[$name])){
                 switch (strtolower($_GET[$name])){
-                    case 'i': case 'm':
+                    case 'm': case 'p':
                         $params[$name] = strtolower($_GET[$name]);
                         break;
                     default:
-                        $params[$name] = 'p';
+                        $params[$name] = 'i';
                 }
             } else {
-                $params[$name] = 'p';
+                $params[$name] = 'i';
             }
             break;
         case 'page':
