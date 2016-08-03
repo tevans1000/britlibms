@@ -13,6 +13,8 @@ define('GETTABLES', serialize(['grouping', 'page', 'region',
                                'script']));
 // Pagination constant
 define('RESULTS_PER_PAGE', 20);
+// Constant limiting number of images
+define('IMAGES_PER_RESULT', 12);
 
 // retrieve GET parameters
 $params = array();
@@ -241,7 +243,7 @@ $offset = RESULTS_PER_PAGE * ($pageno - 1);
 $maxpage = ceil($rescount/RESULTS_PER_PAGE);
 
 // Set number of image thumbnails per result
-$img_limit = 12;
+//$img_limit = 12;
 
 ////////////
 // Do SQL //
@@ -270,10 +272,11 @@ if ($grouping != 'i'){
     foreach ($result as $record){
         $qstr  = file_get_contents(RESULT_SQL_DIR . 'thumbnails/select.sql');
         $qstr .= "WHERE $id_type = " . $record[0] . " ";
-        $qstr .= file_get_contents(RESULT_SQL_DIR . 'thumbnails/order_by_limit.sql');
+        $qstr .= file_get_contents(RESULT_SQL_DIR . 'thumbnails/order_by.sql');
+        $qstr .= 'LIMIT ' . IMAGES_PER_RESULT . ' ';
         //echo("$qstr<br>");
         $imgstmt = $db->prepare($qstr);
-        $imgstmt->bindParam(':imglimit', $img_limit, PDO::PARAM_INT);
+        //$imgstmt->bindParam(':imglimit', $img_limit, PDO::PARAM_INT);
         $imgstmt->execute();
         $images[$record[0]] = $imgstmt->fetchAll(PDO::FETCH_NUM);
     }
