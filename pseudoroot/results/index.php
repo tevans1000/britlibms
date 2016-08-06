@@ -17,6 +17,7 @@ define('RESULTS_PER_PAGE', 20);
 define('IMAGES_PER_RESULT', 12);
 
 // retrieve GET parameters
+//echo(json_encode([17,81]));
 $params = array();
 foreach (unserialize(GETTABLES) as $name){
     switch ($name){
@@ -39,9 +40,23 @@ foreach (unserialize(GETTABLES) as $name){
             } else {
                 $params[$name] = 1;
             }
-        default:
+            break;
+        case 'collection': case 'yearstart': case 'yearend':
             if (isset($_GET[$name])){
                 $params[$name] = (int)$_GET[$name];
+            }
+            break;
+        default:
+            if (isset($_GET[$name])){
+                $unchecked_get_array = json_decode($_GET[$name]);
+                //echo(json_encode($_GET[$name]));
+                if (array_keys($unchecked_get_array) == range(0, count($unchecked_get_array)-1)){
+                    $params[$name] = array_filter($unchecked_get_array, 'is_int');
+                } else {
+                    $params[$name] = array();
+                }
+            } else {
+                $params[$name] = array();
             }
     }
 }
@@ -49,6 +64,7 @@ foreach (unserialize(GETTABLES) as $name){
 foreach ($params as $k => &$v){
     echo("$k: $v<br>");
 }
+/*
 // Determine results page grouping
 if ( empty($_GET['grouping']) ){
     $grouping = 'p';
@@ -105,8 +121,14 @@ function bind_subq($stmt){
         switch ($name){
             case 'grouping': case 'page':
                 break;
-            default:
+            case 'collection': case 'yearstart': case 'yearend':
                 $stmt->bindParam(":$name", $value, PDO::PARAM_INT);
+                break;
+            default:
+                foreach ($value as $index => &$component){
+                    $bindstr = ':' . $name . $index;
+                    $stmt->bindParam($bindstr, $component, PDO::PARAM_INT);
+                }
         }
     }
     /*
@@ -162,9 +184,11 @@ foreach (array_keys($params) as $param){
             }
             break;
         default:
-            $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/' . $param . '.sql');
+            //$subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/' . $param . '.sql');
+            // do nothing
     }
 }
+
 /*
 if (isset($region)){
     $subqstr .= file_get_contents(RESULT_SQL_DIR . 'join/region.sql');
@@ -189,14 +213,42 @@ if (isset($script)){
 }
 */
 $subqstr .= 'WHERE TRUE ';
-foreach (array_keys($params) as $param){
-    switch ($param){
+foreach ($params as $name => &$value){
+    switch ($name){
         case 'grouping': case 'page':
             break;
+        case 'collection': case 'yearstart': case 'yearend':
+            $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/' . $name . '.sql');
+            break;
         default:
-            $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/' . $param . '.sql');
+            foreach ($value as $index => &$component){
+                $bindstr = ':' . $name . $index;
+                $subqstr .= str_replace(":$name", $bindstr, file_get_contents(RESULT_SQL_DIR . 'where/' . $name . '.sql'));
+            }
     }
 }
+
+/*// testing multiple language filtering
+$testlangs = [17, 81];
+$testqstr  = file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '.sql');
+$testqstr .= file_get_contents(RESULT_SQL_DIR . 'join/language.sql');
+$testqstr .= 'WHERE TRUE ';
+foreach ($testlangs as $idx => $testlang){
+    $testqstr .= "AND v.PartID IN ( SELECT PartID FROM tbllanglink WHERE LangID = :language$idx ) ";
+    }
+echo("$testqstr<br>");
+$teststmt = $db->prepare($testqstr);
+foreach ($testlangs as $idx => &$testlang){
+    $paramstr = ":language$idx";
+    $teststmt->bindParam($paramstr, $testlang, PDO::PARAM_INT);
+}
+$teststmt->execute();
+$testres = $teststmt->fetchAll(PDO::FETCH_NUM);
+foreach ($testres as $row){
+    echo($row[0] . "<br>");
+}
+*/
+
 /*
 if (isset($region)){
     $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/region.sql');
@@ -549,7 +601,14 @@ $smarty->assign('reslist',$result);
 if ($grouping != 'i'){
     $smarty->assign('images',$images);
 }
-$smarty->assign('get',$params);
+foreach ($params as $name => &$value){
+    if (is_array($value)){
+        $array_params[$name] = json_encode($value);
+        unset($params[$name]);
+    }
+}
+$smarty->assign('get', $params);
+$smarty->assign('get_arrays', $array_params);
 $smarty->assign('filter_lists', $filter_lists);
 
 // Display
