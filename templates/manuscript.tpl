@@ -108,7 +108,7 @@
                             <ul>
                                 {foreach $regions[$details[11]] as $region}
                                 <li>
-                                    <a href='../results?region={$region[0]}'>
+                                    <a href='../results?region=[{$region[0]}]'>
                                         {$region[1]}
                                     </a>
                                 </li>
@@ -130,7 +130,7 @@
                             <ul>
                                 {foreach $languages[$details[11]] as $lang}
                                 <li>
-                                    <a href='../results?language={$lang[0]}'>
+                                    <a href='../results?language=[{$lang[0]}]'>
                                         {$lang[1]}
                                     </a>
                                 </li>

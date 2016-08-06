@@ -603,7 +603,7 @@ if ($grouping != 'i'){
 }
 foreach ($params as $name => &$value){
     if (is_array($value)){
-        $array_params[$name] = json_encode($value);
+        $array_params[$name] = json_encode($value, JSON_NUMERIC_CHECK);
         unset($params[$name]);
     }
 }

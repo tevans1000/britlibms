@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-01 13:38:46
+/* Smarty version 3.1.28, created on 2016-08-06 20:34:23
   from "/var/www/html/britlibms/sync/templates/manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579f42d60daf10_35187920',
+  'unifunc' => 'content_57a63bbf5aa0f9_89564379',
   'file_dependency' => 
   array (
     'e094e01cfbb6ef91eb4eef46df92d1dc46c8928d' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/manuscript.tpl',
-      1 => 1470000069,
+      1 => 1470512059,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579f42d60daf10_35187920 ($_smarty_tpl) {
+function content_57a63bbf5aa0f9_89564379 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.truncate.php';
 ?>
@@ -232,8 +232,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['region']->value) {
 $__foreach_region_4_saved_local_item = $_smarty_tpl->tpl_vars['region'];
 ?>
                                 <li>
-                                    <a href='../results?region=<?php echo $_smarty_tpl->tpl_vars['region']->value[0];?>
-'>
+                                    <a href='../results?region=[<?php echo $_smarty_tpl->tpl_vars['region']->value[0];?>
+]'>
                                         <?php echo $_smarty_tpl->tpl_vars['region']->value[1];?>
 
                                     </a>
@@ -275,8 +275,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['lang']->value) {
 $__foreach_lang_5_saved_local_item = $_smarty_tpl->tpl_vars['lang'];
 ?>
                                 <li>
-                                    <a href='../results?language=<?php echo $_smarty_tpl->tpl_vars['lang']->value[0];?>
-'>
+                                    <a href='../results?language=[<?php echo $_smarty_tpl->tpl_vars['lang']->value[0];?>
+]'>
                                         <?php echo $_smarty_tpl->tpl_vars['lang']->value[1];?>
 
                                     </a>
