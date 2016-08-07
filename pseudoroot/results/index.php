@@ -36,7 +36,11 @@ foreach (unserialize(GETTABLES) as $name){
             break;
         case 'page':
             if (isset($_GET['page'])){
-                $params[$name] = (int)$_GET[$name];
+                if ((int)$_GET[$name]>0){
+                    $params[$name] = (int)$_GET[$name];
+                } else {
+                    $params[$name] = 1;
+                }
             } else {
                 $params[$name] = 1;
             }
