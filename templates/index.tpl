@@ -59,6 +59,11 @@
                                 <input type='hidden' name='{$k}' value='{$v}'>
                                 {/if}
                                 {/foreach}
+                                {foreach $get_arrays as $k => $v}
+                                {if $k != 'yearstart' and $k != 'yearend' and $k != 'page'}
+                                <input type='hidden' name='{$k}' value='{$v}'>
+                                {/if}
+                                {/foreach}
                                 <div class='form-group'>
                                     <button type='submit' class='btn btn-primary'>
                                         <span class='glyphicon glyphicon-refresh'></span>
