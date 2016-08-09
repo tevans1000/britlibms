@@ -70,10 +70,11 @@
                                     </button>
                                 </div>
                             </form>
-                            <ul>
+                            <table>
                                 {foreach $list as $item}
                                 {if $item['start']} {* datable *}
-                                <li>
+                                <tr>
+                                    <td>
                                     {if $item['count'] != 0}
                                     <a href='?yearstart={$item['start']}&amp;yearend={$item['end']}{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearstart' and $arg != 'yearend'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={$val}{/foreach}'>
                                     {/if}
@@ -84,31 +85,31 @@
                                         {else}
                                         {$item['start']}&ndash;{$item['end']} {* nicely formatted range *}
                                         {/if}
-                                        <meter value='{$item['count']}' min='0' max='{$rescount}' style='float: right;'>
-                                            ({$item['count']})
-
                                     {if $item['count'] != 0}
                                     </a>
-                                    {/if}
-                                </li>
+                                    {/if}</td><td>
+                                        <meter value='{$item['count']}' min='0' max='{$rescount}' style='float: right;'>
+                                            ({$item['count']})
+</td>
+                                </tr>
                                 {else}
                                 {* TODO: link for undatable manuscripts *}
                                 {/if}
                                 {/foreach}
-                            </ul> <!-- end of date-list -->
+                            </table> <!-- end of date-list -->
                             {else}
-                            <ul>
+                            <table>
                                 {foreach $list as $item}
-                                <li>
-                                    <a href='?{$name}={$item[0]}{foreach $get as $arg => $val}{if $arg != $name and $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|replace:'[]':'['|replace:']':','}{$item[0]}]{else}{$val}{/if}{/foreach}'>
-                                        {$item[1]}
+                                <tr>
+                                    <td><a href='?{$name}={$item[0]}{foreach $get as $arg => $val}{if $arg != $name and $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|replace:'[]':'['|replace:']':','}{$item[0]}]{else}{$val}{/if}{/foreach}'>
+                                        {$item[1]}</a></td><td>
                                         <meter value='{$item[2]}' min='0' max='{$rescount}' style='float: right;'>
                                             ({$item[2]})
                                         </meter>
-                                    </a>
-                                </li>
+                                    </td>
+                                </tr>
                                 {/foreach}
-                            </ul>
+                            </table>
                             {/if}
                         </div>
                         {/foreach}
