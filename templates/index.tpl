@@ -48,11 +48,11 @@
                             <form class='form-inline' role='form' method='get'>
                                 <div class='form-group'>
                                     <label for='yearstart'>From year:</label>
-                                    <input type='number' min='300' max='1873' name='yearstart'>
+                                    <input type='number' min='300' max='1873' name='yearstart' style='width: 70%;'>
                                 </div>
                                 <div class='form-group'>
                                     <label for='yearend'>to year:</label>
-                                    <input type='number' min='300' max='1873' name='yearend'>
+                                    <input type='number' min='300' max='1873' name='yearend' style='width: 70%;'>
                                 </div>
                                 {foreach $get as $k => $v}
                                 {if $k != 'yearstart' and $k != 'yearend' and $k != 'page'}
@@ -88,7 +88,7 @@
                                     {if $item['count'] != 0}
                                     </a>
                                     {/if}</td><td>
-                                        <meter value='{$item['count']}' min='0' max='{$rescount}' style='float: right;'>
+                                        <meter value='{$item['count']}' min='0' max='{$rescount}' style='float: right; width: 100%;'>
                                             ({$item['count']})
 </td>
                                 </tr>
@@ -103,7 +103,7 @@
                                 <tr>
                                     <td><a href='?{$name}={$item[0]}{foreach $get as $arg => $val}{if $arg != $name and $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|replace:'[]':'['|replace:']':','}{$item[0]}]{else}{$val}{/if}{/foreach}'>
                                         {$item[1]}</a></td><td>
-                                        <meter value='{$item[2]}' min='0' max='{$rescount}' style='float: right;'>
+                                        <meter value='{$item[2]}' min='0' max='{$rescount}' style='float: right; width: 100%;'>
                                             ({$item[2]})
                                         </meter>
                                     </td>
