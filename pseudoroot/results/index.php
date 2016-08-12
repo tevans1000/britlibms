@@ -10,9 +10,9 @@ define('MS_FILTER_LIST', serialize(['region', 'collection', 'language',
 define('GETTABLES', serialize(['grouping', 'page', 'region',
                                'collection', 'language', 'attribution',
                                'scribe', 'yearstart', 'yearend',
-                               'script', 'order']));
-define('ORDERINGS', serialize(['i' => ['rchron', 'chron'],// 'caption',
-                                       //'attrib', 'rcaption', 'rattrib'],
+                               'script', 'sort']));
+define('ORDERINGS', serialize(['i' => ['rchron', 'chron', 'caption',
+                                       'attrib', 'rcaption'],// 'rattrib'],
                                'p' => ['rchron', 'chron'],// 'title', 'author'],
                                'm' => ['rchron', 'chron'] ]));
 // Pagination constant
@@ -38,7 +38,7 @@ foreach (unserialize(GETTABLES) as $name){
                 $params[$name] = 'i';
             }
             break;
-        case 'order':
+        case 'sort':
             // set this later: foreach loop must finish otherwise
             //                 grouping may not be set
             break;
@@ -72,14 +72,14 @@ foreach (unserialize(GETTABLES) as $name){
             }
     }
 }
-if (isset($_GET['order'])){
-    if (in_array(strtolower($_GET['order']), unserialize(ORDERINGS)[$params['grouping']])){
-        $params['order'] = strtolower($_GET['order']);
+if (isset($_GET['sort'])){
+    if (in_array(strtolower($_GET['sort']), unserialize(ORDERINGS)[$params['grouping']])){
+        $params['sort'] = strtolower($_GET['sort']);
     } else {
-        $params['order'] = 'rchron';
+        $params['sort'] = 'rchron';
     }
 } else {
-    $params['order'] = 'rchron';
+    $params['sort'] = 'rchron';
 }
 /*
 foreach ($params as $k => &$v){
@@ -145,7 +145,7 @@ function bind_subq($stmt){
             case 'collection': case 'yearstart': case 'yearend':
                 $stmt->bindParam(":$name", $value, PDO::PARAM_INT);
                 break;
-            case 'order':
+            case 'sort':
                 // TODO: code
                 break;
             default:
@@ -244,7 +244,7 @@ foreach ($params as $name => &$value){
         case 'collection': case 'yearstart': case 'yearend':
             $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/' . $name . '.sql');
             break;
-        case 'order':
+        case 'sort':
             // TODO: write this code
             break;
         default:
@@ -331,25 +331,28 @@ $maxpage = ceil($rescount/RESULTS_PER_PAGE);
 /////////////
 // Create and prepare query string
 $qstr  = file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/select.sql');
+if ($params['sort'] == 'caption' or $params['sort'] == 'rcaption'){
+    $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/caption.sql');
+}
 // TODO: stuff with GET/SESSION/COOKIE to determine extra fields as required
 $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/from.sql');
 if ($params['grouping'] == 'i'){
     $qstr .= file_get_contents(RESULT_SQL_DIR . 'join/part.sql');
 }
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
-switch ($params['order']){
+switch ($params['sort']){
     case 'rchron': case 'chron':
         if ($params['grouping'] == 'm'){
             // potentially several start & end dates
             $qstr .= file_get_contents(RESULT_SQL_DIR . 'group_by/' . $params['grouping'] . '.sql');
-            $qstr .= file_get_contents(RESULT_SQL_DIR . 'order_by/' . $params['order'] . $params['grouping'] . '.sql');
+            $qstr .= file_get_contents(RESULT_SQL_DIR . 'order_by/' . $params['sort'] . $params['grouping'] . '.sql');
         } else {
-            $qstr .= file_get_contents(RESULT_SQL_DIR . 'order_by/' . $params['order'] . '.sql');
+            $qstr .= file_get_contents(RESULT_SQL_DIR . 'order_by/' . $params['sort'] . '.sql');
         }
         break;
     // TODO: other cases
     default:
-        $qstr .= file_get_contents(RESULT_SQL_DIR . 'order_by/' . $params['order'] . '.sql');
+        $qstr .= file_get_contents(RESULT_SQL_DIR . 'order_by/' . $params['sort'] . '.sql');
 }
 //$qstr .= 'ORDER BY StartDate DESC ';
 $qstr .= 'LIMIT ' . RESULTS_PER_PAGE . ' ';

@@ -188,7 +188,7 @@
                                     {$res[3]} {$res[4]} ({$res[5]})
                                 </h4>
                                 <h3>
-                                    {$res[6]}
+                                    {$res[6]|default:'(untitled)'|regex_replace:'/~([^~]*)~/':'<i>\1</i>'}
                                 </h3>
                                 {if $res[8]==1}
                                 <p>
