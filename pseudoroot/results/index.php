@@ -12,7 +12,7 @@ define('GETTABLES', serialize(['grouping', 'page', 'region',
                                'scribe', 'yearstart', 'yearend',
                                'script', 'sort']));
 define('ORDERINGS', serialize(['i' => ['rchron', 'chron', 'caption',
-                                       'attrib', 'rcaption'],// 'rattrib'],
+                                       'attrib', 'rcaption', 'rattrib'],
                                'p' => ['rchron', 'chron', 'title', 'rtitle'],// 'author'],
                                'm' => ['rchron', 'chron'] ]));
 // Pagination constant
@@ -341,6 +341,9 @@ switch ($params['sort']){
     case 'title': case 'rtitle':
         $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/title.sql');
         break;
+    case 'attrib': case 'rattrib':
+        $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/attrib.sql');
+        break;
     default:
         // do nothing
 }
@@ -368,7 +371,7 @@ switch ($params['sort']){
 $qstr .= 'LIMIT ' . RESULTS_PER_PAGE . ' ';
 //$qstr .= file_get_contents('../../../async/limit.sql');
 $qstr .= 'OFFSET :offset ';
-echo($qstr);
+//echo($qstr);
 $resstmt = $db->prepare($qstr);
 // Bind parameters
 bind_subq($resstmt);
@@ -477,6 +480,7 @@ foreach (unserialize(MS_FILTER_LIST) as $filter){
             $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/from.sql");
             $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
             $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/group_by_order_by.sql");
+            //echo("$qstr<br>");
             $stmt = $db->prepare($qstr);
             // bind parameters, execute, fetch
             bind_subq($stmt);
