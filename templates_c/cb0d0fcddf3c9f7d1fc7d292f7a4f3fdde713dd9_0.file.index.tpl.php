@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-07 16:18:38
+/* Smarty version 3.1.28, created on 2016-08-11 22:14:46
   from "c:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57a7514e4c5984_93601091',
+  'unifunc' => 'content_57aceac63d8f87_57955932',
   'file_dependency' => 
   array (
     'cb0d0fcddf3c9f7d1fc7d292f7a4f3fdde713dd9' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1470583109,
+      1 => 1470776264,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57a7514e4c5984_93601091 ($_smarty_tpl) {
+function content_57aceac63d8f87_57955932 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
@@ -124,11 +124,11 @@ $__foreach_list_1_saved_local_item = $_smarty_tpl->tpl_vars['list'];
                             <form class='form-inline' role='form' method='get'>
                                 <div class='form-group'>
                                     <label for='yearstart'>From year:</label>
-                                    <input type='number' min='300' max='1873' name='yearstart'>
+                                    <input type='number' min='300' max='1873' name='yearstart' style='width: 70%;'>
                                 </div>
                                 <div class='form-group'>
                                     <label for='yearend'>to year:</label>
-                                    <input type='number' min='300' max='1873' name='yearend'>
+                                    <input type='number' min='300' max='1873' name='yearend' style='width: 70%;'>
                                 </div>
                                 <?php
 $_from = $_smarty_tpl->tpl_vars['get']->value;
@@ -196,7 +196,7 @@ $_smarty_tpl->tpl_vars['k'] = $__foreach_v_3_saved_key;
                                     </button>
                                 </div>
                             </form>
-                            <ul>
+                            <table>
                                 <?php
 $_from = $_smarty_tpl->tpl_vars['list']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -210,7 +210,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 $__foreach_item_4_saved_local_item = $_smarty_tpl->tpl_vars['item'];
 ?>
                                 <?php if ($_smarty_tpl->tpl_vars['item']->value['start']) {?> 
-                                <li>
+                                <tr>
+                                    <td>
                                     <?php if ($_smarty_tpl->tpl_vars['item']->value['count'] != 0) {?>
                                     <a href='?yearstart=<?php echo $_smarty_tpl->tpl_vars['item']->value['start'];?>
 &amp;yearend=<?php echo $_smarty_tpl->tpl_vars['item']->value['end'];
@@ -274,12 +275,16 @@ s
 &ndash;<?php echo $_smarty_tpl->tpl_vars['item']->value['end'];?>
  
                                         <?php }?>
-                                        (<?php echo $_smarty_tpl->tpl_vars['item']->value['count'];?>
-)
                                     <?php if ($_smarty_tpl->tpl_vars['item']->value['count'] != 0) {?>
                                     </a>
-                                    <?php }?>
-                                </li>
+                                    <?php }?></td><td>
+                                        <meter value='<?php echo $_smarty_tpl->tpl_vars['item']->value['count'];?>
+' min='0' max='<?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
+' style='float: right; width: 100%;'>
+                                            (<?php echo $_smarty_tpl->tpl_vars['item']->value['count'];?>
+)
+</td>
+                                </tr>
                                 <?php } else { ?>
                                 
                                 <?php }?>
@@ -291,9 +296,9 @@ if ($__foreach_item_4_saved_item) {
 $_smarty_tpl->tpl_vars['item'] = $__foreach_item_4_saved_item;
 }
 ?>
-                            </ul> <!-- end of date-list -->
+                            </table> <!-- end of date-list -->
                             <?php } else { ?>
-                            <ul>
+                            <table>
                                 <?php
 $_from = $_smarty_tpl->tpl_vars['list']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -306,8 +311,8 @@ if ($__foreach_item_7_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 $__foreach_item_7_saved_local_item = $_smarty_tpl->tpl_vars['item'];
 ?>
-                                <li>
-                                    <a href='?<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+                                <tr>
+                                    <td><a href='?<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
 =<?php echo $_smarty_tpl->tpl_vars['item']->value[0];
 $_from = $_smarty_tpl->tpl_vars['get']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -363,10 +368,15 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_9_saved_key;
 }
 ?>'>
                                         <?php echo $_smarty_tpl->tpl_vars['item']->value[1];?>
- (<?php echo $_smarty_tpl->tpl_vars['item']->value[2];?>
+</a></td><td>
+                                        <meter value='<?php echo $_smarty_tpl->tpl_vars['item']->value[2];?>
+' min='0' max='<?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
+' style='float: right; width: 100%;'>
+                                            (<?php echo $_smarty_tpl->tpl_vars['item']->value[2];?>
 )
-                                    </a>
-                                </li>
+                                        </meter>
+                                    </td>
+                                </tr>
                                 <?php
 $_smarty_tpl->tpl_vars['item'] = $__foreach_item_7_saved_local_item;
 }
@@ -375,7 +385,7 @@ if ($__foreach_item_7_saved_item) {
 $_smarty_tpl->tpl_vars['item'] = $__foreach_item_7_saved_item;
 }
 ?>
-                            </ul>
+                            </table>
                             <?php }?>
                         </div>
                         <?php

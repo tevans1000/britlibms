@@ -10,7 +10,11 @@ define('MS_FILTER_LIST', serialize(['region', 'collection', 'language',
 define('GETTABLES', serialize(['grouping', 'page', 'region',
                                'collection', 'language', 'attribution',
                                'scribe', 'yearstart', 'yearend',
-                               'script']));
+                               'script', 'order']));
+define('ORDERINGS', serialize(['i' => ['rchron', 'chron'],// 'caption',
+                                       //'attrib', 'rcaption', 'rattrib'],
+                               'p' => ['rchron', 'chron'],// 'title', 'author'],
+                               'm' => ['rchron', 'chron'] ]));
 // Pagination constant
 define('RESULTS_PER_PAGE', 20);
 // Constant limiting number of images
@@ -33,6 +37,10 @@ foreach (unserialize(GETTABLES) as $name){
             } else {
                 $params[$name] = 'i';
             }
+            break;
+        case 'order':
+            // set this later: foreach loop must finish otherwise
+            //                 grouping may not be set
             break;
         case 'page':
             if (isset($_GET['page'])){
@@ -63,6 +71,15 @@ foreach (unserialize(GETTABLES) as $name){
                 $params[$name] = array();
             }
     }
+}
+if (isset($_GET['order'])){
+    if (in_array(strtolower($_GET['order']), unserialize(ORDERINGS)[$params['grouping']])){
+        $params['order'] = strtolower($_GET['order']);
+    } else {
+        $params['order'] = 'rchron';
+    }
+} else {
+    $params['order'] = 'rchron';
 }
 /*
 foreach ($params as $k => &$v){
@@ -127,6 +144,9 @@ function bind_subq($stmt){
                 break;
             case 'collection': case 'yearstart': case 'yearend':
                 $stmt->bindParam(":$name", $value, PDO::PARAM_INT);
+                break;
+            case 'order':
+                // TODO: code
                 break;
             default:
                 foreach ($value as $index => &$component){
@@ -224,6 +244,9 @@ foreach ($params as $name => &$value){
         case 'collection': case 'yearstart': case 'yearend':
             $subqstr .= file_get_contents(RESULT_SQL_DIR . 'where/' . $name . '.sql');
             break;
+        case 'order':
+            // TODO: write this code
+            break;
         default:
             foreach ($value as $index => &$component){
                 $bindstr = ':' . $name . $index;
@@ -310,10 +333,29 @@ $maxpage = ceil($rescount/RESULTS_PER_PAGE);
 $qstr  = file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/select.sql');
 // TODO: stuff with GET/SESSION/COOKIE to determine extra fields as required
 $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/from.sql');
+if ($params['grouping'] == 'i'){
+    $qstr .= file_get_contents(RESULT_SQL_DIR . 'join/part.sql');
+}
 $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+switch ($params['order']){
+    case 'rchron': case 'chron':
+        if ($params['grouping'] == 'm'){
+            // potentially several start & end dates
+            $qstr .= file_get_contents(RESULT_SQL_DIR . 'group_by/' . $params['grouping'] . '.sql');
+            $qstr .= file_get_contents(RESULT_SQL_DIR . 'order_by/' . $params['order'] . $params['grouping'] . '.sql');
+        } else {
+            $qstr .= file_get_contents(RESULT_SQL_DIR . 'order_by/' . $params['order'] . '.sql');
+        }
+        break;
+    // TODO: other cases
+    default:
+        $qstr .= file_get_contents(RESULT_SQL_DIR . 'order_by/' . $params['order'] . '.sql');
+}
+//$qstr .= 'ORDER BY StartDate DESC ';
 $qstr .= 'LIMIT ' . RESULTS_PER_PAGE . ' ';
 //$qstr .= file_get_contents('../../../async/limit.sql');
-$qstr .= file_get_contents('../../../async/offset.sql');
+$qstr .= 'OFFSET :offset ';
+echo($qstr);
 $resstmt = $db->prepare($qstr);
 // Bind parameters
 bind_subq($resstmt);
