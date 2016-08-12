@@ -13,7 +13,7 @@ define('GETTABLES', serialize(['grouping', 'page', 'region',
                                'script', 'sort']));
 define('ORDERINGS', serialize(['i' => ['rchron', 'chron', 'caption',
                                        'attrib', 'rcaption'],// 'rattrib'],
-                               'p' => ['rchron', 'chron'],// 'title', 'author'],
+                               'p' => ['rchron', 'chron', 'title', 'rtitle'],// 'author'],
                                'm' => ['rchron', 'chron'] ]));
 // Pagination constant
 define('RESULTS_PER_PAGE', 20);
@@ -74,11 +74,14 @@ foreach (unserialize(GETTABLES) as $name){
 }
 if (isset($_GET['sort'])){
     if (in_array(strtolower($_GET['sort']), unserialize(ORDERINGS)[$params['grouping']])){
+        //echo(strtolower($_GET['sort']) . ' in ' . ORDERINGS . '<br>');
         $params['sort'] = strtolower($_GET['sort']);
     } else {
+        //echo(strtolower($_GET['sort']) . ' not in ' . ORDERINGS . '<br>');
         $params['sort'] = 'rchron';
     }
 } else {
+    //echo('$_GET["sort"] not set<br>');
     $params['sort'] = 'rchron';
 }
 /*
@@ -331,8 +334,15 @@ $maxpage = ceil($rescount/RESULTS_PER_PAGE);
 /////////////
 // Create and prepare query string
 $qstr  = file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/select.sql');
-if ($params['sort'] == 'caption' or $params['sort'] == 'rcaption'){
-    $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/caption.sql');
+switch ($params['sort']){
+    case 'caption': case 'rcaption':
+        $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/caption.sql');
+        break;
+    case 'title': case 'rtitle':
+        $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/title.sql');
+        break;
+    default:
+        // do nothing
 }
 // TODO: stuff with GET/SESSION/COOKIE to determine extra fields as required
 $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/from.sql');
