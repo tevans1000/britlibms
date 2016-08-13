@@ -179,7 +179,7 @@
                     {if $maxpage > 1} {* pagination not required if only 1 page *}
                     <nav>
                         <ul class='pagination'>
-                            {for $linkno=$pageno-4 to $pageno+4}
+                            {for $linkno=$pageno-7 to $pageno+7}
                             {if ($linkno<=0)}
                             {continue}
                             {/if}
@@ -197,6 +197,29 @@
                             {/if}
                             {/for}
                         </ul>
+                        <form class='form-inline' role='form' method='get'>
+                            <div class='form-group'>
+                                <label for='page'>
+                                    Take me to page
+                                </label>
+                                <input type='number' min='1' max='{$maxpage}' name='page' value='{$pageno}'>
+                                {foreach $get as $k => $v}
+                                {if $k != 'page'}
+                                <input type='hidden' name='{$k}' value='{$v}'>
+                                {/if}
+                                {/foreach}
+                                {foreach $get_arrays as $k => $v}
+                                {if $k != 'yearstart' and $k != 'yearend' and $k != 'page'}
+                                <input type='hidden' name='{$k}' value='{$v}'>
+                                {/if}
+                                {/foreach}
+                                <div class='form-group'>
+                                    <button type='submit' class='btn btn-primary'>
+                                        GO
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </nav>
                     {/if}
                     {foreach $reslist as $res}
