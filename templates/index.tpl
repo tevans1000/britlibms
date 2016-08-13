@@ -119,20 +119,9 @@
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-xs-9'>
                 <section>
-                    <h1>
-                        Results
-                    </h1>
-                    <p>
-                        {if $maxpage > 1}
-                        {$firstret}&ndash;{$lastret} of {$rescount} (page {$pageno} / {$maxpage})
-                        {elseif $rescount>1}
-                        Viewing all {$rescount} results found
-                        {elseif $rescount==1}
-                        Only 1 result found
-                        {else}
-                        None found
-                        {/if}
-                    </p>
+                    <h2>
+                        Group/sort
+                    </h2>
                     <h6>
                         Group by:
                     </h6>
@@ -173,6 +162,20 @@
                         </li>
                         {/foreach}
                     </ul>
+                    <h1>
+                        Results
+                    </h1>
+                    <p>
+                        {if $maxpage > 1}
+                        {$firstret}&ndash;{$lastret} of {$rescount} (page {$pageno} / {$maxpage})
+                        {elseif $rescount>1}
+                        Viewing all {$rescount} results found
+                        {elseif $rescount==1}
+                        Only 1 result found
+                        {else}
+                        None found
+                        {/if}
+                    </p>
                     {if $maxpage > 1} {* pagination not required if only 1 page *}
                     <nav>
                         <ul class='pagination'>

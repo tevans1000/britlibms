@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-13 23:33:47
+/* Smarty version 3.1.28, created on 2016-08-13 23:37:15
   from "c:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57afa04b430412_17968488',
+  'unifunc' => 'content_57afa11b1ce5e0_98977656',
   'file_dependency' => 
   array (
     'cb0d0fcddf3c9f7d1fc7d292f7a4f3fdde713dd9' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1471127551,
+      1 => 1471127830,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57afa04b430412_17968488 ($_smarty_tpl) {
+function content_57afa11b1ce5e0_98977656 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
@@ -405,26 +405,9 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_list_1_saved_key;
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-xs-9'>
                 <section>
-                    <h1>
-                        Results
-                    </h1>
-                    <p>
-                        <?php if ($_smarty_tpl->tpl_vars['maxpage']->value > 1) {?>
-                        <?php echo $_smarty_tpl->tpl_vars['firstret']->value;?>
-&ndash;<?php echo $_smarty_tpl->tpl_vars['lastret']->value;?>
- of <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
- (page <?php echo $_smarty_tpl->tpl_vars['pageno']->value;?>
- / <?php echo $_smarty_tpl->tpl_vars['maxpage']->value;?>
-)
-                        <?php } elseif ($_smarty_tpl->tpl_vars['rescount']->value > 1) {?>
-                        Viewing all <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
- results found
-                        <?php } elseif ($_smarty_tpl->tpl_vars['rescount']->value == 1) {?>
-                        Only 1 result found
-                        <?php } else { ?>
-                        None found
-                        <?php }?>
-                    </p>
+                    <h2>
+                        Group/sort
+                    </h2>
                     <h6>
                         Group by:
                     </h6>
@@ -677,6 +660,26 @@ $_smarty_tpl->tpl_vars['sort'] = $__foreach_sort_16_saved_item;
 }
 ?>
                     </ul>
+                    <h1>
+                        Results
+                    </h1>
+                    <p>
+                        <?php if ($_smarty_tpl->tpl_vars['maxpage']->value > 1) {?>
+                        <?php echo $_smarty_tpl->tpl_vars['firstret']->value;?>
+&ndash;<?php echo $_smarty_tpl->tpl_vars['lastret']->value;?>
+ of <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
+ (page <?php echo $_smarty_tpl->tpl_vars['pageno']->value;?>
+ / <?php echo $_smarty_tpl->tpl_vars['maxpage']->value;?>
+)
+                        <?php } elseif ($_smarty_tpl->tpl_vars['rescount']->value > 1) {?>
+                        Viewing all <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
+ results found
+                        <?php } elseif ($_smarty_tpl->tpl_vars['rescount']->value == 1) {?>
+                        Only 1 result found
+                        <?php } else { ?>
+                        None found
+                        <?php }?>
+                    </p>
                     <?php if ($_smarty_tpl->tpl_vars['maxpage']->value > 1) {?> 
                     <nav>
                         <ul class='pagination'>
