@@ -11,10 +11,12 @@ define('GETTABLES', serialize(['grouping', 'page', 'region',
                                'collection', 'language', 'attribution',
                                'scribe', 'yearstart', 'yearend',
                                'script', 'sort']));
-define('ORDERINGS', serialize(['i' => ['rchron', 'chron', 'caption',
-                                       'attrib', 'rcaption', 'rattrib'],
-                               'p' => ['rchron', 'chron', 'title', 'rtitle'],// 'author'],
-                               'm' => ['rchron', 'chron'] ]));
+define('SORTINGS', serialize(['i' => ['rchron', 'chron', 'caption',
+                                      'attribution', 'rcaption',
+                                      'rattribution'],
+                              'p' => ['rchron', 'chron', 'title',
+                                      'author', 'rtitle', 'rauthor'],
+                              'm' => ['rchron', 'chron'] ]));
 // Pagination constant
 define('RESULTS_PER_PAGE', 20);
 // Constant limiting number of images
@@ -73,11 +75,11 @@ foreach (unserialize(GETTABLES) as $name){
     }
 }
 if (isset($_GET['sort'])){
-    if (in_array(strtolower($_GET['sort']), unserialize(ORDERINGS)[$params['grouping']])){
-        //echo(strtolower($_GET['sort']) . ' in ' . ORDERINGS . '<br>');
+    if (in_array(strtolower($_GET['sort']), unserialize(SORTINGS)[$params['grouping']])){
+        //echo(strtolower($_GET['sort']) . ' in ' . SORTINGS . '<br>');
         $params['sort'] = strtolower($_GET['sort']);
     } else {
-        //echo(strtolower($_GET['sort']) . ' not in ' . ORDERINGS . '<br>');
+        //echo(strtolower($_GET['sort']) . ' not in ' . SORTINGS . '<br>');
         $params['sort'] = 'rchron';
     }
 } else {
@@ -341,8 +343,11 @@ switch ($params['sort']){
     case 'title': case 'rtitle':
         $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/title.sql');
         break;
-    case 'attrib': case 'rattrib':
+    case 'attribution': case 'rattribution':
         $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/attrib.sql');
+        break;
+    case 'author': case 'rauthor':
+        $qstr .= file_get_contents(RESULT_SQL_DIR . $params['grouping'] . '/author.sql');
         break;
     default:
         // do nothing
@@ -673,6 +678,7 @@ foreach ($params as $name => &$value){
 $smarty->assign('get', $params);
 $smarty->assign('get_arrays', $array_params);
 $smarty->assign('filter_lists', $filter_lists);
+$smarty->assign('sortings', unserialize(SORTINGS)[$params['grouping']]);
 
 // Display
 $smarty->display('index.tpl');

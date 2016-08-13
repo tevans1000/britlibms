@@ -153,6 +153,26 @@
                             </a>
                         </li>
                     </ul>
+                    <h6>
+                        Sort:
+                    </h6>
+                    <ul class='nav nav-pills'>
+                        {foreach $sortings as $sort}
+                        <li{if $get['sort']==$sort} class='active'{/if}>
+                            <a href='?sort={$sort}{foreach $get as $name => $value}{if $name != 'page' and $name != 'sort'}&amp;{$name}={$value}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={$val}{/foreach}'>
+                                {if $sort == 'rchron'}
+                                New to old
+                                {elseif $sort == 'chron'}
+                                Old to new
+                                {elseif $sort[0]=='r'}
+                                {substr($sort,1)|capitalize} (Z&ndash;A)
+                                {else}
+                                {$sort|capitalize} (A&ndash;Z)
+                                {/if}
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul>
                     {if $maxpage > 1} {* pagination not required if only 1 page *}
                     <nav>
                         <ul class='pagination'>
