@@ -165,9 +165,9 @@
                                 {elseif $sort == 'chron'}
                                 Old to new
                                 {elseif $sort[0]=='r'}
-                                {substr($sort,1)|capitalize} (Z&ndash;A)
+                                {substr($sort,1)|capitalize} <span class='glyphicon glyphicon-sort-by-alphabet-alt'></span>
                                 {else}
-                                {$sort|capitalize} (A&ndash;Z)
+                                {$sort|capitalize} <span class='glyphicon glyphicon-sort-by-alphabet'></span>
                                 {/if}
                             </a>
                         </li>
