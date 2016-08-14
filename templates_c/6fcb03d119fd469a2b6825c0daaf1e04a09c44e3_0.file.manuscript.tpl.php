@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-14 19:28:07
+/* Smarty version 3.1.28, created on 2016-08-14 19:43:01
   from "c:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57b0b8375c5d70_72624117',
+  'unifunc' => 'content_57b0bbb5e84c68_96840878',
   'file_dependency' => 
   array (
     '6fcb03d119fd469a2b6825c0daaf1e04a09c44e3' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1471199182,
+      1 => 1471200175,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57b0b8375c5d70_72624117 ($_smarty_tpl) {
+function content_57b0bbb5e84c68_96840878 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -373,15 +373,15 @@ if ($__foreach_image_6_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['image']->value) {
 $__foreach_image_6_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 ?>
-                        <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo ceil($_smarty_tpl->tpl_vars['image_widths']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5);
+                        <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_widths']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }
-if ($_smarty_tpl->tpl_vars['image_heights']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo ceil($_smarty_tpl->tpl_vars['image_heights']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5);
+if ($_smarty_tpl->tpl_vars['image_heights']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }?>'>
                             <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
 ' data-toggle='tooltip' title='<?php echo (($tmp = @$_smarty_tpl->tpl_vars['image']->value[5])===null||$tmp==='' ? 'untitled' : $tmp);
 if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )<?php }?>'>
-                                <img src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]];?>
+                                <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]];?>
 '>
                             </a>
                         </div>

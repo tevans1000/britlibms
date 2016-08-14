@@ -197,9 +197,9 @@
                     </h4>
                     <div class='grid'>
                         {foreach $images[$details[11]] as $image}
-                        <div class='grid-item{if $image_widths[$details[11]][$image[0]] > 37} grid-item--width{ceil($image_widths[$details[11]][$image[0]]/37.5)}{/if}{if $image_heights[$details[11]][$image[0]] > 37} grid-item--height{ceil($image_heights[$details[11]][$image[0]]/37.5)}{/if}'>
+                        <div class='grid-item{if $image_widths[$details[11]][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[$details[11]][$image[0]]/37.5))}{/if}{if $image_heights[$details[11]][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[$details[11]][$image[0]]/37.5))}{/if}'>
                             <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
-                                <img src='{$image_urls[$details[11]][$image[0]]}'>
+                                <img class='img-responsive' src='{$image_urls[$details[11]][$image[0]]}'>
                             </a>
                         </div>
                         {/foreach}
