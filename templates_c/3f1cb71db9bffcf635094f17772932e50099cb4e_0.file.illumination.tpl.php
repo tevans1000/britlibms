@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-01 13:44:23
+/* Smarty version 3.1.28, created on 2016-08-14 13:25:00
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579f4427d3e700_11373930',
+  'unifunc' => 'content_57b0631cb97276_47409119',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1469983416,
+      1 => 1471177408,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579f4427d3e700_11373930 ($_smarty_tpl) {
+function content_57b0631cb97276_47409119 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
 <!DOCTYPE html>
@@ -35,6 +35,7 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"><?php echo '</script'; ?>
 >
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' type='text/css' href='../style.css'>
 </head>
 <body>
     <div class='container-fluid'>
