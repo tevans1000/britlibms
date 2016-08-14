@@ -4,3 +4,9 @@ dt {
 dd {
     margin-left: 11em;
 }
+.img-list dt {
+    float: none;
+}
+.img-list dd {
+    margin-left: auto;
+}

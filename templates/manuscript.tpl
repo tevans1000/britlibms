@@ -191,7 +191,7 @@
                     <h4>
                         Images
                     </h4>
-                    <dl>
+                    <dl class='img-list'>
                         {foreach $images[$details[11]] as $image}
                         {if ($image@iteration-1) is div by 8}
                         <div class='row'>
