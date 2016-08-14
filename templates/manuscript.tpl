@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src='../bootstrap-extra.js'></script>
+    <!-- masonry -->
+    <script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+    <script src='../masonry.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' type='text/css' href='../style.css'>
 </head>
@@ -191,58 +195,15 @@
                     <h4>
                         Images
                     </h4>
-                    <dl class='img-list'>
+                    <div class='grid'>
                         {foreach $images[$details[11]] as $image}
-                        {if ($image@iteration-1) is div by 8}
-                        <div class='row'>
-                        {/if}
-                            {if ($image@iteration-1) is div by 4}
-                            <div class='col-lg-6'>
-                                <div class='row'>
-                            {/if}
-                                    {if ($image@iteration-1) is div by 2}
-                                    <div class='col-sm-6'>
-                                        <div class='row'>
-                                    {/if}
-                                            <div class='col-xs-6'>
-                                                <a href='../illumination?id={$image[0]}'>
-                                                    <dt>
-                                                        {$image[5]}{if $image[4]} ({$image[4]}){/if}
-                                                    </dt>
-                                                    <dd>
-                                                            {if $image[1]==1}
-                                                            <p>
-                                                                (image of {$image[3]} from folder {$image[2]})
-                                                            </p>
-                                                            {elseif $image[1]==5 or $image[1]==8 or $image[1]==9}
-                                                            <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[2]}/thm/{$image[3]|truncate:4:"":true}/{$image[3]}.jpg">
-                                                            {else}
-                                                            <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[2]}/thm/{$image[3]}.jpg">
-                                                            {/if}
-                                                    </dd>
-                                                </a>
-                                            </div>
-                                    {if $image@iteration is div by 2}
-                                        </div>
-                                    </div>
-                                    {elseif $image@last}
-                                        </div>
-                                    </div>
-                                    {/if}
-                            {if $image@iteration is div by 4}
-                                </div>
-                            </div>
-                            {elseif $image@last}
-                                </div>
-                            </div>
-                            {/if}
-                        {if $image@iteration is div by 8}
+                        <div class='grid-item{if $image_widths[$details[11]][$image[0]] > 37} grid-item--width{ceil($image_widths[$details[11]][$image[0]]/37.5)}{/if}{if $image_heights[$details[11]][$image[0]] > 37} grid-item--height{ceil($image_heights[$details[11]][$image[0]]/37.5)}{/if}'>
+                            <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
+                                <img src='{$image_urls[$details[11]][$image[0]]}'>
+                            </a>
                         </div>
-                        {elseif $image@last}
-                        </div>
-                        {/if}
                         {/foreach}
-                    </dl>
+                    </div>
                     {/if}
                 </article>
                 {if !($details@last)}

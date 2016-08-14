@@ -29,6 +29,9 @@ $languages = array();
 // image init
 $image_qstr = file_get_contents(MS_SQL_DIR . 'image.sql');
 $images = array();
+$image_urls = array();
+$image_widths = array();
+$image_heights = array();
 foreach ($parts as $part){
     // get regions for this part
     $region_stmt = $db -> prepare($region_qstr);
@@ -44,7 +47,28 @@ foreach ($parts as $part){
     $image_stmt = $db -> prepare($image_qstr);
     $image_stmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
     $image_stmt -> execute();
-    $images[$part[11]] = $image_stmt -> fetchAll(PDO::FETCH_NUM);
+    $image_list = $image_stmt -> fetchAll(PDO::FETCH_NUM);
+    $images[$part[11]] = $image_list;
+    // get image urls & sizes for masonry
+    foreach ($image_list as $image){
+        switch ($image[1]){
+            case 1:
+                $image_url = 'http://www.bl.uk/images/bl_logo_100.gif';
+                break;
+            case 5: case 8: case 9:
+                $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
+                             . '/thm/' . substr($image[3], 0, 4) . '/'
+                             . $image[3] . '.jpg';
+                break;
+            default:
+                $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
+                             . '/thm/' . $image[3] . '.jpg';
+        }
+        $image_size = getimagesize($image_url);
+        $image_urls[$part[11]][$image[0]] = $image_url;
+        $image_widths[$part[11]][$image[0]] = $image_size[0];
+        $image_heights[$part[11]][$image[0]] = $image_size[1];
+    }
 }
 
 // regex-ing
@@ -63,6 +87,9 @@ $smarty->assign('parts',$parts);
 $smarty -> assign('regions', $regions);
 $smarty -> assign('languages', $languages);
 $smarty -> assign('images', $images);
+$smarty -> assign('image_urls', $image_urls);
+$smarty -> assign('image_widths', $image_widths);
+$smarty -> assign('image_heights', $image_heights);
 
 // Display
 $smarty->display('manuscript.tpl');

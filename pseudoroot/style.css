@@ -10,3 +10,22 @@ dd {
 .img-list dd {
     margin-left: auto;
 }
+
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.grid-item {
+    width: 38px;
+    height: 38px;
+    float: left;
+}
+
+.grid-item--width2 { width: 75px; }
+.grid-item--width3 { width: 113px; }
+.grid-item--width4 { width: 150px; }
+
+.grid-item--height2 { height: 75px; }
+.grid-item--height3 { height: 113px; }
+.grid-item--height4 { height: 150px; }

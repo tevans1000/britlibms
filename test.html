@@ -1,12 +1,93 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <meta charset='utf-8'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- masonry -->
+    <script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+    <script src='../masonry.js'></script>
+    <link rel='stylesheet' type='text/css' href='pseudoroot/style.css'>
+    <style>
+        * { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+/* ---- grid ---- */
+
+.grid {
+  background: #EEE;
+}
+
+/* clearfix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- grid-item ---- */
+
+.grid-item {
+  width: 38px;
+  height: 38px;
+  float: left;
+  background: #D26;
+  border: 2px solid #333;
+  border-color: hsla(0, 0%, 0%, 0.5);
+  border-radius: 5px;
+}
+
+.grid-item--width2 { width: 75px; }
+.grid-item--width3 { width: 113px; }
+.grid-item--width4 { width: 150px; }
+
+.grid-item--height2 { height: 75px; }
+.grid-item--height3 { height: 113px; }
+.grid-item--height4 { height: 150px; }
+
+    </style>
 </head>
 <body>
     <p>
         Hello, world!
     </p>
+    <h1>Masonry - columnWidth</h1>
+
+<div class="grid">
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width4 grid-item--height4"></div>
+    <div class="grid-item grid-item--width4 grid-item--height3"></div>
+    <div class="grid-item grid-item--width4 grid-item--height4"></div>
+    <div class="grid-item grid-item--width4 grid-item--height4"></div>
+    <div class="grid-item grid-item--width3 grid-item--height4"></div>
+    <div class="grid-item grid-item--width4 grid-item--height4"></div>
+    <div class="grid-item grid-item--width4 grid-item--height4"></div>
+</div>
+
 </body>
 </html>
 
