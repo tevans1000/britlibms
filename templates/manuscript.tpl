@@ -31,7 +31,11 @@
                 <h1>
                     {$record[0]} {$record[1]}
                 </h1>
-                <dl id='manuscript-details-list'>
+                <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#manuscript-details-list'>
+                    Details
+                </button>
+                <div id='manuscript-details-list' class='collapse'>
+                <dl>
                     <dt>
                         Official foliation
                     </dt>
@@ -90,7 +94,8 @@
                             {/foreach}
                         </ul>
                     </dd>
-                </dl> <!-- end of manuscript-details-list -->
+                </dl>
+                </div> <!-- end of manuscript-details-list -->
                 <h2>
                     Parts
                 </h2>
@@ -105,6 +110,17 @@
                         by {$details[1]}
                     </h4>
                     {/if}
+                    <div class='btn-group'>
+                    <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part{$details[10]}-details-list'>
+                        Details
+                    </button>
+                    {if $images[$details[11]]}
+                    <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part{$details[10]}-images'>
+                        Images
+                    </button>
+                    {/if}
+                    </div>
+                    <div id='part{$details[10]}-details-list' class='collapse'>
                     <dl>
                         <dt>
                             Origin
@@ -191,11 +207,9 @@
                         </dd>
                         {/if}
                     </dl>
+                    </div>
                     {if $images[$details[11]]}
-                    <h4>
-                        Images
-                    </h4>
-                    <div class='grid'>
+                    <div id='part{$details[10]}-images' class='grid collapse in'>
                         {foreach $images[$details[11]] as $image}
                         <div class='grid-item{if $image_widths[$details[11]][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[$details[11]][$image[0]]/37.5))}{/if}{if $image_heights[$details[11]][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[$details[11]][$image[0]]/37.5))}{/if}'>
                             <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>

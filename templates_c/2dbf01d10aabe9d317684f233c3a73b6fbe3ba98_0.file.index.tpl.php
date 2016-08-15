@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-15 16:58:49
+/* Smarty version 3.1.28, created on 2016-08-15 17:03:27
   from "/var/www/html/britlibms/sync/templates/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57b1e6b982f1b8_47020375',
+  'unifunc' => 'content_57b1e7cf294be6_67127240',
   'file_dependency' => 
   array (
     '2dbf01d10aabe9d317684f233c3a73b6fbe3ba98' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/index.tpl',
-      1 => 1471276564,
+      1 => 1471276823,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57b1e6b982f1b8_47020375 ($_smarty_tpl) {
+function content_57b1e7cf294be6_67127240 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
@@ -213,8 +213,8 @@ $__foreach_item_4_saved_local_item = $_smarty_tpl->tpl_vars['item'];
                                 <?php if ($_smarty_tpl->tpl_vars['item']->value['start']) {?> 
                                 <tr>
                                     <td>
-                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['count'] != 0) {?>
-                                    <a href='?yearstart=<?php echo $_smarty_tpl->tpl_vars['item']->value['start'];?>
+                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['count'] != 0) {?>
+                                        <a href='?yearstart=<?php echo $_smarty_tpl->tpl_vars['item']->value['start'];?>
 &amp;yearend=<?php echo $_smarty_tpl->tpl_vars['item']->value['end'];
 $_from = $_smarty_tpl->tpl_vars['get']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -264,27 +264,30 @@ if ($__foreach_val_6_saved_key) {
 $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_6_saved_key;
 }
 ?>'>
-                                    <?php }?>
-                                        <?php if (($_smarty_tpl->tpl_vars['item']->value['start']%10 == 0 && $_smarty_tpl->tpl_vars['item']->value['end'] == $_smarty_tpl->tpl_vars['item']->value['start']+9 && $_smarty_tpl->tpl_vars['item']->value['start']%100 != 0) || ($_smarty_tpl->tpl_vars['item']->value['start']%100 == 0 && $_smarty_tpl->tpl_vars['item']->value['end'] == $_smarty_tpl->tpl_vars['item']->value['start']+99)) {?>
-                                        <?php echo $_smarty_tpl->tpl_vars['item']->value['start'];?>
+                                        <?php }?>
+                                            <?php if (($_smarty_tpl->tpl_vars['item']->value['start']%10 == 0 && $_smarty_tpl->tpl_vars['item']->value['end'] == $_smarty_tpl->tpl_vars['item']->value['start']+9 && $_smarty_tpl->tpl_vars['item']->value['start']%100 != 0) || ($_smarty_tpl->tpl_vars['item']->value['start']%100 == 0 && $_smarty_tpl->tpl_vars['item']->value['end'] == $_smarty_tpl->tpl_vars['item']->value['start']+99)) {?>
+                                            <?php echo $_smarty_tpl->tpl_vars['item']->value['start'];?>
 s 
-                                        <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['start'] == $_smarty_tpl->tpl_vars['item']->value['end']) {?>
-                                        <?php echo $_smarty_tpl->tpl_vars['item']->value['start'];?>
+                                            <?php } elseif ($_smarty_tpl->tpl_vars['item']->value['start'] == $_smarty_tpl->tpl_vars['item']->value['end']) {?>
+                                            <?php echo $_smarty_tpl->tpl_vars['item']->value['start'];?>
  
-                                        <?php } else { ?>
-                                        <?php echo $_smarty_tpl->tpl_vars['item']->value['start'];?>
+                                            <?php } else { ?>
+                                            <?php echo $_smarty_tpl->tpl_vars['item']->value['start'];?>
 &ndash;<?php echo $_smarty_tpl->tpl_vars['item']->value['end'];?>
  
+                                            <?php }?>
+                                        <?php if ($_smarty_tpl->tpl_vars['item']->value['count'] != 0) {?>
+                                        </a>
                                         <?php }?>
-                                    <?php if ($_smarty_tpl->tpl_vars['item']->value['count'] != 0) {?>
-                                    </a>
-                                    <?php }?></td><td>
+                                    </td>
+                                    <td>
                                         <meter value='<?php echo $_smarty_tpl->tpl_vars['item']->value['count'];?>
 ' min='0' max='<?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
 ' style='float: right; width: 100%;'>
                                             (<?php echo $_smarty_tpl->tpl_vars['item']->value['count'];?>
 )
-</td>
+                                        </meter>
+                                    </td>
                                 </tr>
                                 <?php } else { ?>
                                 
