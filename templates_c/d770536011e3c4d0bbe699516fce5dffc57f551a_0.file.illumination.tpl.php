@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-07-31 22:26:16
+/* Smarty version 3.1.28, created on 2016-08-14 19:35:52
   from "/var/www/html/britlibms/sync/templates/illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_579e6cf81ceb68_63474446',
+  'unifunc' => 'content_57b0ba0808fb89_99640026',
   'file_dependency' => 
   array (
     'd770536011e3c4d0bbe699516fce5dffc57f551a' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/illumination.tpl',
-      1 => 1470000069,
+      1 => 1471199677,
       2 => 'file',
     ),
   ),
@@ -19,8 +19,8 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_579e6cf81ceb68_63474446 ($_smarty_tpl) {
-if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/html/britlibms/sync/pseudoroot/illumination/../../includes/Smarty-3.1.28/libs/plugins/modifier.truncate.php';
+function content_57b0ba0808fb89_99640026 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.truncate.php';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -35,6 +35,7 @@ if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/html/britli
  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"><?php echo '</script'; ?>
 >
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' type='text/css' href='../style.css'>
 </head>
 <body>
     <div class='container-fluid'>

@@ -76,22 +76,25 @@
                                 {if $item['start']} {* datable *}
                                 <tr>
                                     <td>
-                                    {if $item['count'] != 0}
-                                    <a href='?yearstart={$item['start']}&amp;yearend={$item['end']}{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearstart' and $arg != 'yearend'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={$val}{/foreach}'>
-                                    {/if}
-                                        {if ($item['start']%10==0 and $item['end']==$item['start']+9 and $item['start']%100!=0) or ($item['start']%100==0 and $item['end']==$item['start']+99)}
-                                        {$item['start']}s {* 1400-1499 -> 1400s, 1490-1499 -> 1490s, 1400-1409 -> 1400-1409 *}
-                                        {elseif $item['start'] == $item['end']}
-                                        {$item['start']} {* 1 year not considered a range *}
-                                        {else}
-                                        {$item['start']}&ndash;{$item['end']} {* nicely formatted range *}
+                                        {if $item['count'] != 0}
+                                        <a href='?yearstart={$item['start']}&amp;yearend={$item['end']}{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearstart' and $arg != 'yearend'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={$val}{/foreach}'>
                                         {/if}
-                                    {if $item['count'] != 0}
-                                    </a>
-                                    {/if}</td><td>
+                                            {if ($item['start']%10==0 and $item['end']==$item['start']+9 and $item['start']%100!=0) or ($item['start']%100==0 and $item['end']==$item['start']+99)}
+                                            {$item['start']}s {* 1400-1499 -> 1400s, 1490-1499 -> 1490s, 1400-1409 -> 1400-1409 *}
+                                            {elseif $item['start'] == $item['end']}
+                                            {$item['start']} {* 1 year not considered a range *}
+                                            {else}
+                                            {$item['start']}&ndash;{$item['end']} {* nicely formatted range *}
+                                            {/if}
+                                        {if $item['count'] != 0}
+                                        </a>
+                                        {/if}
+                                    </td>
+                                    <td>
                                         <meter value='{$item['count']}' min='0' max='{$rescount}' style='float: right; width: 100%;'>
                                             ({$item['count']})
-</td>
+                                        </meter>
+                                    </td>
                                 </tr>
                                 {else}
                                 {* TODO: link for undatable manuscripts *}
@@ -102,8 +105,12 @@
                             <table>
                                 {foreach $list as $item}
                                 <tr>
-                                    <td><a href='?{$name}={$item[0]}{foreach $get as $arg => $val}{if $arg != $name and $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|replace:'[]':'['|replace:']':','}{$item[0]}]{else}{$val}{/if}{/foreach}'>
-                                        {$item[1]}</a></td><td>
+                                    <td>
+                                        <a href='?{$name}={$item[0]}{foreach $get as $arg => $val}{if $arg != $name and $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|replace:'[]':'['|replace:']':','}{$item[0]}]{else}{$val}{/if}{/foreach}'>
+                                            {$item[1]}
+                                        </a>
+                                    </td>
+                                    <td>
                                         <meter value='{$item[2]}' min='0' max='{$rescount}' style='float: right; width: 100%;'>
                                             ({$item[2]})
                                         </meter>
