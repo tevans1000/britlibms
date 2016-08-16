@@ -74,6 +74,7 @@
                             {/foreach}
                         </ul>
                     </dd>
+                    {if $note}
                     <dt>
                         Notes
                     </dt>
@@ -84,6 +85,7 @@
                         </p>
                         {/foreach}
                     </dd>
+                    {/if}
                     <dt>
                         Select bibliography
                     </dt>

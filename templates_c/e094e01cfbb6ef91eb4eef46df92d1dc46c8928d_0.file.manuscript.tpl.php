@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-15 17:24:08
+/* Smarty version 3.1.28, created on 2016-08-16 15:07:00
   from "/var/www/html/britlibms/sync/templates/manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57b1eca8d63528_84186748',
+  'unifunc' => 'content_57b31e04f22829_32425078',
   'file_dependency' => 
   array (
     'e094e01cfbb6ef91eb4eef46df92d1dc46c8928d' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/manuscript.tpl',
-      1 => 1471278244,
+      1 => 1471356418,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57b1eca8d63528_84186748 ($_smarty_tpl) {
+function content_57b31e04f22829_32425078 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -75,28 +75,30 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/b
                     <dt>
                         Official foliation
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         <?php echo $_smarty_tpl->tpl_vars['record']->value[2];?>
 
                     </dd>
+                    <?php if ($_smarty_tpl->tpl_vars['record']->value[5]) {?>
                     <dt>
                         Collation
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         <?php echo $_smarty_tpl->tpl_vars['record']->value[5];?>
 
                     </dd>
+                    <?php }?>
                     <dt>
                         Form
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         <?php echo $_smarty_tpl->tpl_vars['record']->value[3];?>
 
                     </dd>
                     <dt>
                         Binding
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         <?php echo $_smarty_tpl->tpl_vars['record']->value[4];?>
 
                     </dd>
@@ -131,6 +133,7 @@ $_smarty_tpl->tpl_vars['per'] = $__foreach_per_0_saved_item;
 ?>
                         </ul>
                     </dd>
+                    <?php if ($_smarty_tpl->tpl_vars['note']->value) {?>
                     <dt>
                         Notes
                     </dt>
@@ -160,6 +163,7 @@ $_smarty_tpl->tpl_vars['n'] = $__foreach_n_1_saved_item;
 }
 ?>
                     </dd>
+                    <?php }?>
                     <dt>
                         Select bibliography
                     </dt>
@@ -281,7 +285,7 @@ $_smarty_tpl->tpl_vars['region'] = $__foreach_region_4_saved_item;
                         <dt>
                             Language
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[4];?>
 
                         </dd>
@@ -324,7 +328,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Dates
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[3];?>
 
                         </dd>
@@ -333,7 +337,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Dimensions
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[5];?>
 
                         </dd>
@@ -342,7 +346,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Script
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[6];?>
 
                         </dd>
@@ -351,7 +355,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Scribe
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[7];?>
 
                         </dd>
@@ -369,7 +373,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Attribution
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[9];?>
 
                         </dd>
