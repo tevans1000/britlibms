@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-15 17:03:27
+/* Smarty version 3.1.28, created on 2016-08-16 15:11:17
   from "/var/www/html/britlibms/sync/templates/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57b1e7cf294be6_67127240',
+  'unifunc' => 'content_57b31f051a4c67_64147977',
   'file_dependency' => 
   array (
     '2dbf01d10aabe9d317684f233c3a73b6fbe3ba98' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/index.tpl',
-      1 => 1471276823,
+      1 => 1471356238,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57b1e7cf294be6_67127240 ($_smarty_tpl) {
+function content_57b31f051a4c67_64147977 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
@@ -1023,7 +1023,7 @@ if ($_smarty_tpl->tpl_vars['get']->value['grouping'] = 'm') {?>
                         <dt>
                             Official foliation
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['res']->value[3];?>
 
                         </dd>
@@ -1032,7 +1032,7 @@ if ($_smarty_tpl->tpl_vars['get']->value['grouping'] = 'm') {?>
                         <dt>
                             Collation
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['res']->value[4];?>
 
                         </dd>
@@ -1041,7 +1041,7 @@ if ($_smarty_tpl->tpl_vars['get']->value['grouping'] = 'm') {?>
                         <dt>
                             Form
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['res']->value[5];?>
 
                         </dd>
@@ -1050,7 +1050,7 @@ if ($_smarty_tpl->tpl_vars['get']->value['grouping'] = 'm') {?>
                         <dt>
                             Binding
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['res']->value[6];?>
 
                         </dd>
