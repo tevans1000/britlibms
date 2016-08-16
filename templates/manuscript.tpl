@@ -39,25 +39,27 @@
                     <dt>
                         Official foliation
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         {$record[2]}
                     </dd>
+                    {if $record[5]}
                     <dt>
                         Collation
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         {$record[5]}
                     </dd>
+                    {/if}
                     <dt>
                         Form
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         {$record[3]}
                     </dd>
                     <dt>
                         Binding
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         {$record[4]}
                     </dd>
                     <dt>
@@ -140,7 +142,7 @@
                         <dt>
                             Language
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$details[4]}
                         </dd>
                         {/if}
@@ -162,7 +164,7 @@
                         <dt>
                             Dates
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$details[3]}
                         </dd>
                         {/if}
@@ -170,7 +172,7 @@
                         <dt>
                             Dimensions
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$details[5]}
                         </dd>
                         {/if}
@@ -178,7 +180,7 @@
                         <dt>
                             Script
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$details[6]}
                         </dd>
                         {/if}
@@ -186,7 +188,7 @@
                         <dt>
                             Scribe
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$details[7]}
                         </dd>
                         {/if}
@@ -202,7 +204,7 @@
                         <dt>
                             Attribution
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$details[9]}
                         </dd>
                         {/if}

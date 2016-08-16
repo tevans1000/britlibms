@@ -1,8 +1,14 @@
 dt {
     float: left;
 }
-dd {
-    margin-left: 11em;
+dd.oneline {
+    margin-left: 9em;
+}
+dd p {
+    clear: both;
+}
+dd ul {
+    clear: both;
 }
 .img-list dt {
     float: none;

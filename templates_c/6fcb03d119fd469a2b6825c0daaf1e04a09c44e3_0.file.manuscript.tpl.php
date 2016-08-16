@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-14 19:43:01
+/* Smarty version 3.1.28, created on 2016-08-16 12:40:30
   from "c:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57b0bbb5e84c68_96840878',
+  'unifunc' => 'content_57b2fbae260e59_06917091',
   'file_dependency' => 
   array (
     '6fcb03d119fd469a2b6825c0daaf1e04a09c44e3' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1471200175,
+      1 => 1471347626,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57b0bbb5e84c68_96840878 ($_smarty_tpl) {
+function content_57b2fbae260e59_06917091 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -67,32 +67,38 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/bri
  <?php echo $_smarty_tpl->tpl_vars['record']->value[1];?>
 
                 </h1>
-                <dl id='manuscript-details-list'>
+                <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#manuscript-details-list'>
+                    Details
+                </button>
+                <div id='manuscript-details-list' class='collapse'>
+                <dl>
                     <dt>
                         Official foliation
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         <?php echo $_smarty_tpl->tpl_vars['record']->value[2];?>
 
                     </dd>
+                    <?php if ($_smarty_tpl->tpl_vars['record']->value[5]) {?>
                     <dt>
                         Collation
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         <?php echo $_smarty_tpl->tpl_vars['record']->value[5];?>
 
                     </dd>
+                    <?php }?>
                     <dt>
                         Form
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         <?php echo $_smarty_tpl->tpl_vars['record']->value[3];?>
 
                     </dd>
                     <dt>
                         Binding
                     </dt>
-                    <dd>
+                    <dd class='oneline'>
                         <?php echo $_smarty_tpl->tpl_vars['record']->value[4];?>
 
                     </dd>
@@ -187,7 +193,8 @@ $_smarty_tpl->tpl_vars['ref'] = $__foreach_ref_2_saved_item;
 ?>
                         </ul>
                     </dd>
-                </dl> <!-- end of manuscript-details-list -->
+                </dl>
+                </div> <!-- end of manuscript-details-list -->
                 <h2>
                     Parts
                 </h2>
@@ -223,6 +230,20 @@ if ($_smarty_tpl->tpl_vars['details']->value[0]) {?> (<?php echo $_smarty_tpl->t
 
                     </h4>
                     <?php }?>
+                    <div class='btn-group'>
+                    <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part<?php echo $_smarty_tpl->tpl_vars['details']->value[10];?>
+-details-list'>
+                        Details
+                    </button>
+                    <?php if ($_smarty_tpl->tpl_vars['images']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) {?>
+                    <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part<?php echo $_smarty_tpl->tpl_vars['details']->value[10];?>
+-images'>
+                        Images
+                    </button>
+                    <?php }?>
+                    </div>
+                    <div id='part<?php echo $_smarty_tpl->tpl_vars['details']->value[10];?>
+-details-list' class='collapse'>
                     <dl>
                         <dt>
                             Origin
@@ -262,7 +283,7 @@ $_smarty_tpl->tpl_vars['region'] = $__foreach_region_4_saved_item;
                         <dt>
                             Language
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[4];?>
 
                         </dd>
@@ -305,7 +326,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Dates
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[3];?>
 
                         </dd>
@@ -314,7 +335,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Dimensions
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[5];?>
 
                         </dd>
@@ -323,7 +344,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Script
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[6];?>
 
                         </dd>
@@ -332,7 +353,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Scribe
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[7];?>
 
                         </dd>
@@ -350,17 +371,16 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dt>
                             Attribution
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[9];?>
 
                         </dd>
                         <?php }?>
                     </dl>
+                    </div>
                     <?php if ($_smarty_tpl->tpl_vars['images']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) {?>
-                    <h4>
-                        Images
-                    </h4>
-                    <div class='grid'>
+                    <div id='part<?php echo $_smarty_tpl->tpl_vars['details']->value[10];?>
+-images' class='grid collapse in'>
                         <?php
 $_from = $_smarty_tpl->tpl_vars['images']->value[$_smarty_tpl->tpl_vars['details']->value[11]];
 if (!is_array($_from) && !is_object($_from)) {

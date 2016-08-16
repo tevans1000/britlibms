@@ -336,7 +336,7 @@
                         <dt>
                             Official foliation
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$res[3]}
                         </dd>
                         {/if}
@@ -344,7 +344,7 @@
                         <dt>
                             Collation
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$res[4]}
                         </dd>
                         {/if}
@@ -352,7 +352,7 @@
                         <dt>
                             Form
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$res[5]}
                         </dd>
                         {/if}
@@ -360,7 +360,7 @@
                         <dt>
                             Binding
                         </dt>
-                        <dd>
+                        <dd class='oneline'>
                             {$res[6]}
                         </dd>
                         {/if}
