@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-16 12:40:30
+/* Smarty version 3.1.28, created on 2016-08-18 00:45:46
   from "c:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57b2fbae260e59_06917091',
+  'unifunc' => 'content_57b4f72a0474f7_93854629',
   'file_dependency' => 
   array (
     '6fcb03d119fd469a2b6825c0daaf1e04a09c44e3' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1471347626,
+      1 => 1471477542,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57b2fbae260e59_06917091 ($_smarty_tpl) {
+function content_57b4f72a0474f7_93854629 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/bri
 
                 </h1>
                 <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#manuscript-details-list'>
-                    Details
+                    <span class='glyphicon glyphicon-th-list'></span>
                 </button>
                 <div id='manuscript-details-list' class='collapse'>
                 <dl>
@@ -133,6 +133,7 @@ $_smarty_tpl->tpl_vars['per'] = $__foreach_per_0_saved_item;
 ?>
                         </ul>
                     </dd>
+                    <?php if ($_smarty_tpl->tpl_vars['note']->value) {?>
                     <dt>
                         Notes
                     </dt>
@@ -162,6 +163,7 @@ $_smarty_tpl->tpl_vars['n'] = $__foreach_n_1_saved_item;
 }
 ?>
                     </dd>
+                    <?php }?>
                     <dt>
                         Select bibliography
                     </dt>
@@ -195,6 +197,7 @@ $_smarty_tpl->tpl_vars['ref'] = $__foreach_ref_2_saved_item;
                     </dd>
                 </dl>
                 </div> <!-- end of manuscript-details-list -->
+                <hr>
                 <h2>
                     Parts
                 </h2>
@@ -233,12 +236,12 @@ if ($_smarty_tpl->tpl_vars['details']->value[0]) {?> (<?php echo $_smarty_tpl->t
                     <div class='btn-group'>
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part<?php echo $_smarty_tpl->tpl_vars['details']->value[10];?>
 -details-list'>
-                        Details
+                        <span class='glyphicon glyphicon-th-list'></span>
                     </button>
                     <?php if ($_smarty_tpl->tpl_vars['images']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) {?>
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part<?php echo $_smarty_tpl->tpl_vars['details']->value[10];?>
 -images'>
-                        Images
+                        <span class='glyphicon glyphicon-picture'></span>
                     </button>
                     <?php }?>
                     </div>

@@ -32,7 +32,7 @@
                     {$record[0]} {$record[1]}
                 </h1>
                 <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#manuscript-details-list'>
-                    Details
+                    <span class='glyphicon glyphicon-th-list'></span>
                 </button>
                 <div id='manuscript-details-list' class='collapse'>
                 <dl>
@@ -100,6 +100,7 @@
                     </dd>
                 </dl>
                 </div> <!-- end of manuscript-details-list -->
+                <hr>
                 <h2>
                     Parts
                 </h2>
@@ -116,11 +117,11 @@
                     {/if}
                     <div class='btn-group'>
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part{$details[10]}-details-list'>
-                        Details
+                        <span class='glyphicon glyphicon-th-list'></span>
                     </button>
                     {if $images[$details[11]]}
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part{$details[10]}-images'>
-                        Images
+                        <span class='glyphicon glyphicon-picture'></span>
                     </button>
                     {/if}
                     </div>
