@@ -54,12 +54,42 @@
                 <p>
                     {$record[11]}
                 </p>
+                {if $same_page}
                 <h2>
-                    Notes
+                    Other images from the same page{if $is_multipage_image}s{/if}
                 </h2>
-                <p>
-                    {$record[12]}
-                </p>
+                <ul>
+                    {foreach $same_page as $img}
+                    <li>
+                        <a href='?id={$img[0]}'>{$img[3]|default:'(untitled)'}</a>
+                    </li>
+                    {/foreach}
+                </ul>
+                {/if}
+                {if $same_part}
+                <h2>
+                    Other images from the same part
+                </h2>
+                <ul>
+                    {foreach $same_part as $img}
+                    <li>
+                        <a href='?id={$img[0]}'>{$img[3]|default:'(untitled)'}</a>
+                    </li>
+                    {/foreach}
+                </ul>
+                {/if}
+                {if $other_part}
+                <h2>
+                    Other images from this manuscript
+                </h2>
+                <ul>
+                    {foreach $other_part as $img}
+                    <li>
+                        <a href='?id={$img[0]}'>{$img[3]|default:'(untitled)'}</a>
+                    </li>
+                    {/foreach}
+                </ul>
+                {/if}
             </div>
         </div> <!-- end of content-row -->
         
