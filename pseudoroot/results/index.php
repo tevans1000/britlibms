@@ -512,22 +512,31 @@ foreach($filter_lists as $filter => $list){
 }
 
 // Active filters: get names from numbers
-// Initialise arrays to empty
-$regions = array();
-$languages = array();
-$attributions = array();
-$scribes = array();
-$scripts = array();
-// Get names
-if ($params['collection']){
-    $coll_id = $params['collection'];
-    $qstr = file_get_contents(FILTER_SQL_DIR . 'names/collection.sql');
-    $stmt = $db->prepare($qstr);
-    $stmt->bindParam(':id', $coll_id, PDO::PARAM_INT);
-    $stmt->execute();
-    // TODO: fetch
+foreach ($params as $foo => $bar){ // $name => $value doesn't fucking work
+    switch ($foo){
+        case 'grouping': case 'sort': case 'page':
+        case 'yearstart': case 'yearend':
+            // No names to get
+            break;
+        case 'collection':
+            $qstr = file_get_contents(FILTER_SQL_DIR . 'names/' . $foo . '.sql');
+            $stmt = $db->prepare($qstr);
+            $stmt->bindParam(':id', $bar, PDO::PARAM_INT);
+            $stmt->execute();
+            $active_filters[$foo] = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
+            break;
+        default:
+            if (!empty($bar)){
+                $qstr = file_get_contents(FILTER_SQL_DIR . 'names/' . $foo . '.sql');
+                $stmt = $db -> prepare($qstr);
+                foreach ($bar as $id){
+                    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                    $stmt->execute();
+                    $active_filters[$foo][$id] = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
+                }
+            }
+    }
 }
-// TODO: other names
 
 /*//////////////////////////////////////////////////////////////////////
 // Regions //
@@ -700,7 +709,11 @@ foreach ($params as $name => &$value){
 $smarty->assign('get', $params);
 $smarty->assign('get_arrays', $array_params);
 $smarty->assign('filter_lists', $filter_lists);
+$smarty->assign('no_filters', !isset($active_filters));
 $smarty->assign('sortings', unserialize(SORTINGS)[$params['grouping']]);
+if (isset($active_filters)){
+    $smarty->assign('active_filters', $active_filters);
+}
 
 // Display
 $smarty->display('index.tpl');

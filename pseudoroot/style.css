@@ -27,6 +27,9 @@ dd ul {
     height: 38px;
     float: left;
 }
+.hlist li {
+    display: inline;
+}
 
 .grid-item--width2 { width: 75px; }
 .grid-item--width3 { width: 113px; }

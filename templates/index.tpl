@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src='../bootstrap-extra.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' type='text/css' href='../style.css'>
 </head>
@@ -127,9 +128,63 @@
             </div> <!-- end of filter-column -->
             <div id='results-column' class='col-xs-9'>
                 <section>
+                    {if !$no_filters}
+                    <h2>
+                        Active filters
+                    </h2>
+                    <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#active-filters-list'>
+                        Show/Hide
+                    </button>
+                    <div id='active-filters-list' class='collapse'>
+                        <dl>
+                            {foreach $active_filters as $name => $value}
+                            <dt>
+                                <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-danger' data-toggle='tooltip' title='Click to clear all {$name} filters.'>
+                                    {$name|capitalize}
+                                </a>
+                            </dt>
+                            <dd>
+                            {if $name == 'collection'}
+                                <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value} from {$name} filters'>
+                                    {$value}
+                                </a>
+                            {else}
+                            <dd>
+                                <ul class='hlist'>
+                                    {foreach $value as $val_id => $val_name}
+                                    <li>
+                                        <a href='?page=1{foreach $get as $arg=>$val}{if $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|regex_replace:"/,$val_id(?!\d)/":''|regex_replace:"/\[$val_id,?/":'['}{else}{$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$val_name} from {$name} filters'>
+                                            {$val_name}
+                                        </a>
+                                    </li>
+                                    {/foreach}
+                                </ul>
+                            </dd>
+                            {/if}
+                            {/foreach}
+                            </dd>
+                        </dl>
+                    </div>
+                    {*foreach $get_arrays as $name => $values}
+                    <h3>
+                        {$name|capitalize}
+                    </h3>
+                    <ul>
+                        {foreach $values as $value}
+                        <li>
+                            {$value}
+                        </li>
+                        {/foreach}
+                    </ul>
+                    {/foreach*}
+                    {/if}
                     <h2>
                         Group/sort
                     </h2>
+                    <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#group-sort-controls'>
+                        Show/Hide
+                    </button>
+                    <div id='group-sort-controls' class='collapse'>
                     <h6>
                         Group by:
                     </h6>
@@ -150,6 +205,7 @@
                             </a>
                         </li>
                     </ul>
+                    {if $rescount>1}
                     <h6>
                         Sort:
                     </h6>
@@ -170,6 +226,8 @@
                         </li>
                         {/foreach}
                     </ul>
+                    {/if}
+                    </div>
                     <h1>
                         Results
                     </h1>
@@ -205,6 +263,7 @@
                             {/if}
                             {/for}
                         </ul>
+                        {if $pageno > 8 or $pageno+7 < $maxpage}
                         <form class='form-inline' role='form' method='get'>
                             <div class='form-group'>
                                 <label for='page'>
@@ -228,6 +287,7 @@
                                 </div>
                             </div>
                         </form>
+                        {/if}
                     </nav>
                     {/if}
                     {foreach $reslist as $res}
