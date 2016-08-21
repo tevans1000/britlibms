@@ -482,6 +482,9 @@ foreach (unserialize(MS_FILTER_LIST) as $filter){
         default:
             $qstr  = file_get_contents(FILTER_SQL_DIR . "$filter/select.sql");
             $qstr .= ", COUNT(DISTINCT v.$id_type) ";
+            if ($filter == 'scribe' or $filter == 'attribution'){
+                $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/sort.sql");
+            }
             $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/from.sql");
             $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
             $qstr .= file_get_contents(FILTER_SQL_DIR . "$filter/group_by_order_by.sql");
@@ -507,6 +510,25 @@ foreach($filter_lists as $filter => $list){
         unset($filter_lists[$filter]);
     }
 }
+
+// Active filters: get names from numbers
+// Initialise arrays to empty
+$regions = array();
+$languages = array();
+$attributions = array();
+$scribes = array();
+$scripts = array();
+// Get names
+if ($params['collection']){
+    $coll_id = $params['collection'];
+    $qstr = file_get_contents(FILTER_SQL_DIR . 'names/collection.sql');
+    $stmt = $db->prepare($qstr);
+    $stmt->bindParam(':id', $coll_id, PDO::PARAM_INT);
+    $stmt->execute();
+    // TODO: fetch
+}
+// TODO: other names
+
 /*//////////////////////////////////////////////////////////////////////
 // Regions //
 /////////////
