@@ -107,7 +107,7 @@
                                 {foreach $list as $item}
                                 <tr>
                                     <td>
-                                        <a href='?{$name}={$item[0]}{foreach $get as $arg => $val}{if $arg != $name and $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|replace:'[]':'['|replace:']':','}{$item[0]}]{else}{$val}{/if}{/foreach}'>
+                                        <a href='?page=1{foreach $get as $arg => $val}{if $arg == $name}&amp;{$name}={$item[0]}{else if $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|replace:'[]':'['|replace:']':','}{$item[0]}]{else}{$val}{/if}{/foreach}'>
                                             {$item[1]}
                                         </a>
                                     </td>
