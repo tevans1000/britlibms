@@ -70,6 +70,9 @@ foreach ($related as $img){
 }
 
 // get image urls & sizes for masonry
+$image_urls = array();
+$image_widths = array();
+$image_heights = array();
 $n=0;
 foreach ([$same_page,$same_part,$other_part] as $image_list){
     foreach ($image_list as $image){

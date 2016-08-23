@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-23 13:15:07
+/* Smarty version 3.1.28, created on 2016-08-23 13:41:12
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57bc3e4b101553_04528744',
+  'unifunc' => 'content_57bc4468485d37_62587695',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1471954504,
+      1 => 1471955532,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57bc3e4b101553_04528744 ($_smarty_tpl) {
+function content_57bc4468485d37_62587695 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
 <!DOCTYPE html>
@@ -146,7 +146,6 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_0_saved_item;
 }
 ?>
                     </div>
-                
                 <?php }?>
                 <?php if ($_smarty_tpl->tpl_vars['same_part']->value) {?>
                 <h2>
@@ -186,7 +185,6 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_1_saved_item;
 }
 ?>
                     </div>
-                
                 <?php }?>
                 <?php if ($_smarty_tpl->tpl_vars['other_part']->value) {?>
                 <h2>
@@ -226,7 +224,6 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_2_saved_item;
 }
 ?>
                     </div>
-                
                 <?php }?>
             </div>
         </div> <!-- end of content-row -->
