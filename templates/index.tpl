@@ -148,6 +148,23 @@
                                 <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value} from {$name} filters'>
                                     {$value}
                                 </a>
+                            {elseif $name == 'date'}
+                                <ul class='hlist'>
+                                    {if $value['yearstart']}
+                                    <li>
+                                        <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearstart'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value['yearstart']} as start date'>
+                                            start date: {$value['yearstart']}
+                                        </a>
+                                    </li>
+                                    {/if}
+                                    {if $value['yearend']}
+                                    <li>
+                                        <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearend'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value['yearend']} as end date'>
+                                            end date: {$value['yearend']}
+                                        </a>
+                                    </li>
+                                    {/if}
+                                </ul>
                             {else}
                             <dd>
                                 <ul class='hlist'>

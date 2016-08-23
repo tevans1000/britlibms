@@ -515,8 +515,10 @@ foreach($filter_lists as $filter => $list){
 foreach ($params as $foo => $bar){ // $name => $value doesn't fucking work
     switch ($foo){
         case 'grouping': case 'sort': case 'page':
-        case 'yearstart': case 'yearend':
             // No names to get
+            break;
+        case 'yearstart': case 'yearend':
+            $active_filters['date'][$foo] = $bar;
             break;
         case 'collection':
             $qstr = file_get_contents(FILTER_SQL_DIR . 'names/' . $foo . '.sql');
