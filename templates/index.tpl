@@ -107,7 +107,7 @@
                                 {foreach $list as $item}
                                 <tr>
                                     <td>
-                                        <a href='?page=1{foreach $get as $arg => $val}{if $arg == $name}&amp;{$name}={$item[0]}{else if $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|replace:'[]':'['|replace:']':','}{$item[0]}]{else}{$val}{/if}{/foreach}'>
+                                        <a href='?{$name}={$item[0]}{foreach $get as $arg => $val}{if $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|replace:'[]':'['|replace:']':','}{$item[0]}]{else}{$val}{/if}{/foreach}'>
                                             {$item[1]}
                                         </a>
                                     </td>
@@ -356,7 +356,7 @@
                                 <div class='col-sm-4'>
                                     <a href='../illumination?id={$image[0]}'>
                                         <h6>
-                                            {if $image[1]}{$image[1]}:{/if} {$image[2]|default:'(No caption)'}
+                                            {if $image[1]}{$image[1]}:{/if} {$image[2]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|default:'(No caption)'}
                                         </h6>
                                         {if $image[3]==1}
                                         <p>
@@ -397,7 +397,7 @@
                             Official foliation
                         </dt>
                         <dd class='oneline'>
-                            {$res[3]}
+                            {$res[3]|regex_replace:'/\^([^\^]*)\^/':'<sup>\1</sup>'}
                         </dd>
                         {/if}
                         {if $res[4]}
@@ -405,7 +405,7 @@
                             Collation
                         </dt>
                         <dd class='oneline'>
-                            {$res[4]}
+                            {$res[4]|regex_replace:'/\^([^\^]*)\^/':'<sup>\1</sup>'}
                         </dd>
                         {/if}
                         {if $res[5]}
@@ -437,7 +437,7 @@
                                 <div class='col-sm-4'>
                                     <a href='../illumination?id={$image[0]}'>
                                         <h6>
-                                            {if $image[1]}{$image[1]}:{/if} {$image[2]|default:'(No caption)'}
+                                            {if $image[1]}{$image[1]}:{/if} {$image[2]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|default:'(No caption)'}
                                         </h6>
                                         {if $image[3]==1}
                                         <p>

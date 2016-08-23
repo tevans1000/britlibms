@@ -33,7 +33,7 @@
                         {$record[1]} {$record[2]}
                     </a>
                     {if $record[3]}({$record[3]}){/if} &mdash;
-                    {$record[4]|default:'(untitled)'}
+                    {$record[4]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|default:'(untitled)'}
                 </h1>
                 <h2>
                     from {$record[6]|default:'an untitled part'}

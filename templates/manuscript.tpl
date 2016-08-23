@@ -40,7 +40,7 @@
                         Official foliation
                     </dt>
                     <dd class='oneline'>
-                        {$record[2]}
+                        {$record[2]|regex_replace:'/\^([^\^]*)\^/':'<sup>\1</sup>'}
                     </dd>
                     {if $record[5]}
                     <dt>
