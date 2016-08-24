@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-23 13:41:12
+/* Smarty version 3.1.28, created on 2016-08-24 22:40:44
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57bc4468485d37_62587695',
+  'unifunc' => 'content_57be145c302df7_58081465',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1471955532,
+      1 => 1472074051,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,8 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57bc4468485d37_62587695 ($_smarty_tpl) {
+function content_57be145c302df7_58081465 ($_smarty_tpl) {
+if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
 <!DOCTYPE html>
@@ -72,7 +73,7 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
                     </a>
                     <?php if ($_smarty_tpl->tpl_vars['record']->value[3]) {?>(<?php echo $_smarty_tpl->tpl_vars['record']->value[3];?>
 )<?php }?> &mdash;
-                    <?php echo (($tmp = @$_smarty_tpl->tpl_vars['record']->value[4])===null||$tmp==='' ? '(untitled)' : $tmp);?>
+                    <?php echo (($tmp = @smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['record']->value[4],'/~([^~]*)~/','<i>\1</i>'))===null||$tmp==='' ? '(untitled)' : $tmp);?>
 
                 </h1>
                 <h2>

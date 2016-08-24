@@ -132,68 +132,37 @@
                     <h2>
                         Active filters
                     </h2>
-                    <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#active-filters-list'>
-                        Show/Hide
-                    </button>
-                    <div id='active-filters-list' class='collapse'>
-                        <dl>
-                            {foreach $active_filters as $name => $value}
-                            <dt>
-                                <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-danger' data-toggle='tooltip' title='Click to clear all {$name} filters.'>
-                                    {$name|capitalize}
-                                </a>
-                            </dt>
-                            <dd>
-                            {if $name == 'collection'}
-                                <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value} from {$name} filters'>
-                                    {$value}
-                                </a>
-                            {elseif $name == 'date'}
-                                <ul class='hlist'>
-                                    {if $value['yearstart']}
-                                    <li>
-                                        <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearstart'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value['yearstart']} as start date'>
-                                            start date: {$value['yearstart']}
-                                        </a>
-                                    </li>
-                                    {/if}
-                                    {if $value['yearend']}
-                                    <li>
-                                        <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearend'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value['yearend']} as end date'>
-                                            end date: {$value['yearend']}
-                                        </a>
-                                    </li>
-                                    {/if}
-                                </ul>
-                            {else}
-                            <dd>
-                                <ul class='hlist'>
-                                    {foreach $value as $val_id => $val_name}
-                                    <li>
-                                        <a href='?page=1{foreach $get as $arg=>$val}{if $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|regex_replace:"/,$val_id(?!\d)/":''|regex_replace:"/\[$val_id,?/":'['}{else}{$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$val_name} from {$name} filters'>
-                                            {$val_name}
-                                        </a>
-                                    </li>
-                                    {/foreach}
-                                </ul>
-                            </dd>
-                            {/if}
-                            {/foreach}
-                            </dd>
-                        </dl>
-                    </div>
-                    {*foreach $get_arrays as $name => $values}
-                    <h3>
-                        {$name|capitalize}
-                    </h3>
-                    <ul>
-                        {foreach $values as $value}
-                        <li>
+                    {foreach $active_filters as $name => $value}
+                    <div class='btn-group'>
+                        <a href='?page=1{foreach $get as $arg => $val}{if $name != $arg and ($name != 'date' or ($arg != 'yearstart' and $arg != 'yearend'))}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-danger' data-toggle='tooltip' title='Click to clear all {$name} filters.'>
+                            <b>
+                                {$name|capitalize}
+                            </b>
+                        </a>
+                        {if $name == 'collection'}
+                        <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value} from {$name} filters'>
                             {$value}
-                        </li>
+                        </a>
+                        {elseif $name == 'date'}
+                        {if isset($value['yearstart'])}
+                        <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearstart'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value['yearstart']} as start date'>
+                            start date: {$value['yearstart']}
+                        </a>
+                        {/if}
+                        {if isset($value['yearend'])}
+                        <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $arg != 'yearend'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$value['yearend']} as end date'>
+                            end date: {$value['yearend']}
+                        </a>
+                        {/if}
+                        {else}
+                        {foreach $value as $val_id => $val_name}
+                        <a href='?page=1{foreach $get as $arg=>$val}{if $arg != 'page'}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}&amp;{$arg}={if $arg == $name}{$val|regex_replace:"/,$val_id(?!\d)/":''|regex_replace:"/\[$val_id,?/":'['}{else}{$val}{/if}{/foreach}' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove {$val_name} from {$name} filters'>
+                            {$val_name}
+                        </a>
                         {/foreach}
-                    </ul>
-                    {/foreach*}
+                        {/if}
+                    </div>
+                    {/foreach}
                     {/if}
                     <h2>
                         Group/sort
