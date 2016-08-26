@@ -134,7 +134,7 @@
                     </h2>
                     {foreach $active_filters as $name => $value}
                     <div class='btn-group'>
-                        <a href='?page=1{foreach $get as $arg => $val}{if $name != $arg and ($name != 'date' or ($arg != 'yearstart' and $arg != 'yearend'))}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-danger' data-toggle='tooltip' title='Click to clear all {$name} filters.'>
+                        <a href='?page=1{foreach $get as $arg => $val}{if $arg != 'page' and $name != $arg and ($name != 'date' or ($arg != 'yearstart' and $arg != 'yearend'))}&amp;{$arg}={$val}{/if}{/foreach}{foreach $get_arrays as $arg => $val}{if $arg != $name}&amp;{$arg}={$val}{/if}{/foreach}' class='btn btn-xs btn-danger' data-toggle='tooltip' title='Click to clear all {$name} filters.'>
                             <b>
                                 {$name|capitalize}
                             </b>

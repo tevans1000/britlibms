@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-23 16:58:50
+/* Smarty version 3.1.28, created on 2016-08-26 16:34:21
   from "/var/www/html/britlibms/sync/templates/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57bc72bab13c99_33991662',
+  'unifunc' => 'content_57c0617d13ff65_13948952',
   'file_dependency' => 
   array (
     '2dbf01d10aabe9d317684f233c3a73b6fbe3ba98' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/index.tpl',
-      1 => 1471967925,
+      1 => 1472225638,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57bc72bab13c99_33991662 ($_smarty_tpl) {
+function content_57c0617d13ff65_13948952 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
@@ -420,12 +420,7 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_list_1_saved_key;
                     <h2>
                         Active filters
                     </h2>
-                    <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#active-filters-list'>
-                        Show/Hide
-                    </button>
-                    <div id='active-filters-list' class='collapse'>
-                        <dl>
-                            <?php
+                    <?php
 $_from = $_smarty_tpl->tpl_vars['active_filters']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -439,8 +434,8 @@ $_smarty_tpl->tpl_vars['name'] = new Smarty_Variable();
 foreach ($_from as $_smarty_tpl->tpl_vars['name']->value => $_smarty_tpl->tpl_vars['value']->value) {
 $__foreach_value_10_saved_local_item = $_smarty_tpl->tpl_vars['value'];
 ?>
-                            <dt>
-                                <a href='?page=1<?php
+                    <div class='btn-group'>
+                        <a href='?page=1<?php
 $_from = $_smarty_tpl->tpl_vars['get']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -453,7 +448,7 @@ if ($__foreach_val_11_total) {
 $_smarty_tpl->tpl_vars['arg'] = new Smarty_Variable();
 foreach ($_from as $_smarty_tpl->tpl_vars['arg']->value => $_smarty_tpl->tpl_vars['val']->value) {
 $__foreach_val_11_saved_local_item = $_smarty_tpl->tpl_vars['val'];
-if ($_smarty_tpl->tpl_vars['arg']->value != 'page' && $_smarty_tpl->tpl_vars['arg']->value != $_smarty_tpl->tpl_vars['name']->value) {?>&amp;<?php echo $_smarty_tpl->tpl_vars['arg']->value;?>
+if ($_smarty_tpl->tpl_vars['arg']->value != 'page' && $_smarty_tpl->tpl_vars['name']->value != $_smarty_tpl->tpl_vars['arg']->value && ($_smarty_tpl->tpl_vars['name']->value != 'date' || ($_smarty_tpl->tpl_vars['arg']->value != 'yearstart' && $_smarty_tpl->tpl_vars['arg']->value != 'yearend'))) {?>&amp;<?php echo $_smarty_tpl->tpl_vars['arg']->value;?>
 =<?php echo $_smarty_tpl->tpl_vars['val']->value;
 }
 $_smarty_tpl->tpl_vars['val'] = $__foreach_val_11_saved_local_item;
@@ -491,13 +486,13 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_12_saved_key;
 }
 ?>' class='btn btn-xs btn-danger' data-toggle='tooltip' title='Click to clear all <?php echo $_smarty_tpl->tpl_vars['name']->value;?>
  filters.'>
-                                    <?php echo smarty_modifier_capitalize($_smarty_tpl->tpl_vars['name']->value);?>
+                            <b>
+                                <?php echo smarty_modifier_capitalize($_smarty_tpl->tpl_vars['name']->value);?>
 
-                                </a>
-                            </dt>
-                            <dd>
-                            <?php if ($_smarty_tpl->tpl_vars['name']->value == 'collection') {?>
-                                <a href='?page=1<?php
+                            </b>
+                        </a>
+                        <?php if ($_smarty_tpl->tpl_vars['name']->value == 'collection') {?>
+                        <a href='?page=1<?php
 $_from = $_smarty_tpl->tpl_vars['get']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -549,14 +544,12 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_14_saved_key;
 ?>' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove <?php echo $_smarty_tpl->tpl_vars['value']->value;?>
  from <?php echo $_smarty_tpl->tpl_vars['name']->value;?>
  filters'>
-                                    <?php echo $_smarty_tpl->tpl_vars['value']->value;?>
+                            <?php echo $_smarty_tpl->tpl_vars['value']->value;?>
 
-                                </a>
-                            <?php } elseif ($_smarty_tpl->tpl_vars['name']->value == 'date') {?>
-                                <ul class='hlist'>
-                                    <?php if ($_smarty_tpl->tpl_vars['value']->value['yearstart']) {?>
-                                    <li>
-                                        <a href='?page=1<?php
+                        </a>
+                        <?php } elseif ($_smarty_tpl->tpl_vars['name']->value == 'date') {?>
+                        <?php if (isset($_smarty_tpl->tpl_vars['value']->value['yearstart'])) {?>
+                        <a href='?page=1<?php
 $_from = $_smarty_tpl->tpl_vars['get']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -607,14 +600,12 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_16_saved_key;
 }
 ?>' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove <?php echo $_smarty_tpl->tpl_vars['value']->value['yearstart'];?>
  as start date'>
-                                            start date: <?php echo $_smarty_tpl->tpl_vars['value']->value['yearstart'];?>
+                            start date: <?php echo $_smarty_tpl->tpl_vars['value']->value['yearstart'];?>
 
-                                        </a>
-                                    </li>
-                                    <?php }?>
-                                    <?php if ($_smarty_tpl->tpl_vars['value']->value['yearend']) {?>
-                                    <li>
-                                        <a href='?page=1<?php
+                        </a>
+                        <?php }?>
+                        <?php if (isset($_smarty_tpl->tpl_vars['value']->value['yearend'])) {?>
+                        <a href='?page=1<?php
 $_from = $_smarty_tpl->tpl_vars['get']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -665,16 +656,12 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_18_saved_key;
 }
 ?>' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove <?php echo $_smarty_tpl->tpl_vars['value']->value['yearend'];?>
  as end date'>
-                                            end date: <?php echo $_smarty_tpl->tpl_vars['value']->value['yearend'];?>
+                            end date: <?php echo $_smarty_tpl->tpl_vars['value']->value['yearend'];?>
 
-                                        </a>
-                                    </li>
-                                    <?php }?>
-                                </ul>
-                            <?php } else { ?>
-                            <dd>
-                                <ul class='hlist'>
-                                    <?php
+                        </a>
+                        <?php }?>
+                        <?php } else { ?>
+                        <?php
 $_from = $_smarty_tpl->tpl_vars['value']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -688,8 +675,7 @@ $_smarty_tpl->tpl_vars['val_id'] = new Smarty_Variable();
 foreach ($_from as $_smarty_tpl->tpl_vars['val_id']->value => $_smarty_tpl->tpl_vars['val_name']->value) {
 $__foreach_val_name_19_saved_local_item = $_smarty_tpl->tpl_vars['val_name'];
 ?>
-                                    <li>
-                                        <a href='?page=1<?php
+                        <a href='?page=1<?php
 $_from = $_smarty_tpl->tpl_vars['get']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -744,11 +730,10 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_21_saved_key;
 ?>' class='btn btn-xs btn-warning' data-toggle='tooltip' title='Click to remove <?php echo $_smarty_tpl->tpl_vars['val_name']->value;?>
  from <?php echo $_smarty_tpl->tpl_vars['name']->value;?>
  filters'>
-                                            <?php echo $_smarty_tpl->tpl_vars['val_name']->value;?>
+                            <?php echo $_smarty_tpl->tpl_vars['val_name']->value;?>
 
-                                        </a>
-                                    </li>
-                                    <?php
+                        </a>
+                        <?php
 $_smarty_tpl->tpl_vars['val_name'] = $__foreach_val_name_19_saved_local_item;
 }
 }
@@ -759,10 +744,9 @@ if ($__foreach_val_name_19_saved_key) {
 $_smarty_tpl->tpl_vars['val_id'] = $__foreach_val_name_19_saved_key;
 }
 ?>
-                                </ul>
-                            </dd>
-                            <?php }?>
-                            <?php
+                        <?php }?>
+                    </div>
+                    <?php
 $_smarty_tpl->tpl_vars['value'] = $__foreach_value_10_saved_local_item;
 }
 }
@@ -773,10 +757,6 @@ if ($__foreach_value_10_saved_key) {
 $_smarty_tpl->tpl_vars['name'] = $__foreach_value_10_saved_key;
 }
 ?>
-                            </dd>
-                        </dl>
-                    </div>
-                    
                     <?php }?>
                     <h2>
                         Group/sort
