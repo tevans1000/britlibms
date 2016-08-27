@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-18 21:39:30
+/* Smarty version 3.1.28, created on 2016-08-27 21:28:27
   from "c:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57b61d0253b001_72826555',
+  'unifunc' => 'content_57c1f7eb83c1f9_43516160',
   'file_dependency' => 
   array (
     '6fcb03d119fd469a2b6825c0daaf1e04a09c44e3' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1471552751,
+      1 => 1472329699,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57b61d0253b001_72826555 ($_smarty_tpl) {
+function content_57c1f7eb83c1f9_43516160 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -76,7 +76,7 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/bri
                         Official foliation
                     </dt>
                     <dd class='oneline'>
-                        <?php echo $_smarty_tpl->tpl_vars['record']->value[2];?>
+                        <?php echo smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['record']->value[2],'/\^([^\^]*)\^/','<sup>\1</sup>');?>
 
                     </dd>
                     <?php if ($_smarty_tpl->tpl_vars['record']->value[5]) {?>
@@ -401,7 +401,7 @@ $__foreach_image_6_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 if ($_smarty_tpl->tpl_vars['image_heights']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }?>'>
                             <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
-' data-toggle='tooltip' title='<?php echo (($tmp = @$_smarty_tpl->tpl_vars['image']->value[5])===null||$tmp==='' ? 'untitled' : $tmp);
+' data-toggle='tooltip' title='<?php echo (($tmp = @htmlspecialchars($_smarty_tpl->tpl_vars['image']->value[5], ENT_QUOTES, 'UTF-8', true))===null||$tmp==='' ? 'untitled' : $tmp);
 if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )<?php }?>'>
                                 <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]];?>

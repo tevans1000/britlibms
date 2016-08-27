@@ -65,7 +65,7 @@
                     <div class='grid'>
                         {foreach $same_page as $image}
                         <div class='grid-item{if $image_widths[0][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[0][$image[0]]/37.5))}{/if}{if $image_heights[0][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[0][$image[0]]/37.5))}{/if}'>
-                            <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
+                            <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|escape|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
                                 <img class='img-responsive' src='{$image_urls[0][$image[0]]}'>
                             </a>
                         </div>
@@ -79,7 +79,7 @@
                     <div class='grid'>
                         {foreach $same_part as $image}
                         <div class='grid-item{if $image_widths[1][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[1][$image[0]]/37.5))}{/if}{if $image_heights[1][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[1][$image[0]]/37.5))}{/if}'>
-                            <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
+                            <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|escape|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
                                 <img class='img-responsive' src='{$image_urls[1][$image[0]]}'>
                             </a>
                         </div>
@@ -93,7 +93,7 @@
                     <div class='grid'>
                         {foreach $other_part as $image}
                         <div class='grid-item{if $image_widths[2][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[2][$image[0]]/37.5))}{/if}{if $image_heights[2][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[2][$image[0]]/37.5))}{/if}'>
-                            <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
+                            <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|escape|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
                                 <img class='img-responsive' src='{$image_urls[2][$image[0]]}'>
                             </a>
                         </div>
