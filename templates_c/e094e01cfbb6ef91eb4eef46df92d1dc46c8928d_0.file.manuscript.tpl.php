@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-23 15:57:01
+/* Smarty version 3.1.28, created on 2016-08-30 14:51:09
   from "/var/www/html/britlibms/sync/templates/manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57bc643dd8f449_65617342',
+  'unifunc' => 'content_57c58f4d3e0607_74331339',
   'file_dependency' => 
   array (
     'e094e01cfbb6ef91eb4eef46df92d1dc46c8928d' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/manuscript.tpl',
-      1 => 1471964218,
+      1 => 1472565065,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57bc643dd8f449_65617342 ($_smarty_tpl) {
+function content_57c58f4d3e0607_74331339 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -352,6 +352,42 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
 
                         </dd>
                         <?php }?>
+                        <?php if ($_smarty_tpl->tpl_vars['scripts']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) {?>
+                        <dt>
+                            Script list
+                        </dt>
+                        <dd>
+                            <ul>
+                                <?php
+$_from = $_smarty_tpl->tpl_vars['scripts']->value[$_smarty_tpl->tpl_vars['details']->value[11]];
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_spt_6_saved_item = isset($_smarty_tpl->tpl_vars['spt']) ? $_smarty_tpl->tpl_vars['spt'] : false;
+$_smarty_tpl->tpl_vars['spt'] = new Smarty_Variable();
+$__foreach_spt_6_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_spt_6_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['spt']->value) {
+$__foreach_spt_6_saved_local_item = $_smarty_tpl->tpl_vars['spt'];
+?>
+                                <li>
+                                    <a href='../results?script=[<?php echo $_smarty_tpl->tpl_vars['spt']->value[0];?>
+]'>
+                                        <?php echo $_smarty_tpl->tpl_vars['spt']->value[1];?>
+
+                                    </a>
+                                </li>
+                                <?php
+$_smarty_tpl->tpl_vars['spt'] = $__foreach_spt_6_saved_local_item;
+}
+}
+if ($__foreach_spt_6_saved_item) {
+$_smarty_tpl->tpl_vars['spt'] = $__foreach_spt_6_saved_item;
+}
+?>
+                            </ul>
+                        </dd>
+                        <?php }?>
                         <?php if ($_smarty_tpl->tpl_vars['details']->value[7]) {?>
                         <dt>
                             Scribe
@@ -359,6 +395,42 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[7];?>
 
+                        </dd>
+                        <?php }?>
+                        <?php if ($_smarty_tpl->tpl_vars['scribes']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) {?>
+                        <dt>
+                            Scribe list
+                        </dt>
+                        <dd>
+                            <ul>
+                                <?php
+$_from = $_smarty_tpl->tpl_vars['scribes']->value[$_smarty_tpl->tpl_vars['details']->value[11]];
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_sbe_7_saved_item = isset($_smarty_tpl->tpl_vars['sbe']) ? $_smarty_tpl->tpl_vars['sbe'] : false;
+$_smarty_tpl->tpl_vars['sbe'] = new Smarty_Variable();
+$__foreach_sbe_7_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_sbe_7_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sbe']->value) {
+$__foreach_sbe_7_saved_local_item = $_smarty_tpl->tpl_vars['sbe'];
+?>
+                                <li>
+                                    <a href='../results?scribe=[<?php echo $_smarty_tpl->tpl_vars['sbe']->value[0];?>
+]'>
+                                        <?php echo $_smarty_tpl->tpl_vars['sbe']->value[1];?>
+
+                                    </a>
+                                </li>
+                                <?php
+$_smarty_tpl->tpl_vars['sbe'] = $__foreach_sbe_7_saved_local_item;
+}
+}
+if ($__foreach_sbe_7_saved_item) {
+$_smarty_tpl->tpl_vars['sbe'] = $__foreach_sbe_7_saved_item;
+}
+?>
+                            </ul>
                         </dd>
                         <?php }?>
                         <?php if ($_smarty_tpl->tpl_vars['details']->value[8]) {?>
@@ -389,19 +461,19 @@ $_from = $_smarty_tpl->tpl_vars['images']->value[$_smarty_tpl->tpl_vars['details
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_image_6_saved_item = isset($_smarty_tpl->tpl_vars['image']) ? $_smarty_tpl->tpl_vars['image'] : false;
+$__foreach_image_8_saved_item = isset($_smarty_tpl->tpl_vars['image']) ? $_smarty_tpl->tpl_vars['image'] : false;
 $_smarty_tpl->tpl_vars['image'] = new Smarty_Variable();
-$__foreach_image_6_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_image_6_total) {
+$__foreach_image_8_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_image_8_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['image']->value) {
-$__foreach_image_6_saved_local_item = $_smarty_tpl->tpl_vars['image'];
+$__foreach_image_8_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 ?>
                         <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_widths']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }
 if ($_smarty_tpl->tpl_vars['image_heights']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }?>'>
                             <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
-' data-toggle='tooltip' title='<?php echo (($tmp = @$_smarty_tpl->tpl_vars['image']->value[5])===null||$tmp==='' ? 'untitled' : $tmp);
+' data-toggle='tooltip' title='<?php echo (($tmp = @htmlspecialchars($_smarty_tpl->tpl_vars['image']->value[5], ENT_QUOTES, 'UTF-8', true))===null||$tmp==='' ? 'untitled' : $tmp);
 if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )<?php }?>'>
                                 <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]];?>
@@ -409,11 +481,11 @@ if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl
                             </a>
                         </div>
                         <?php
-$_smarty_tpl->tpl_vars['image'] = $__foreach_image_6_saved_local_item;
+$_smarty_tpl->tpl_vars['image'] = $__foreach_image_8_saved_local_item;
 }
 }
-if ($__foreach_image_6_saved_item) {
-$_smarty_tpl->tpl_vars['image'] = $__foreach_image_6_saved_item;
+if ($__foreach_image_8_saved_item) {
+$_smarty_tpl->tpl_vars['image'] = $__foreach_image_8_saved_item;
 }
 ?>
                     </div>

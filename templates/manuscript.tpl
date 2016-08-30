@@ -187,12 +187,44 @@
                             {$details[6]}
                         </dd>
                         {/if}
+                        {if $scripts[$details[11]]}
+                        <dt>
+                            Script list
+                        </dt>
+                        <dd>
+                            <ul>
+                                {foreach $scripts[$details[11]] as $spt}
+                                <li>
+                                    <a href='../results?script=[{$spt[0]}]'>
+                                        {$spt[1]}
+                                    </a>
+                                </li>
+                                {/foreach}
+                            </ul>
+                        </dd>
+                        {/if}
                         {if $details[7]}
                         <dt>
                             Scribe
                         </dt>
                         <dd class='oneline'>
                             {$details[7]}
+                        </dd>
+                        {/if}
+                        {if $scribes[$details[11]]}
+                        <dt>
+                            Scribe list
+                        </dt>
+                        <dd>
+                            <ul>
+                                {foreach $scribes[$details[11]] as $sbe}
+                                <li>
+                                    <a href='../results?scribe=[{$sbe[0]}]'>
+                                        {$sbe[1]}
+                                    </a>
+                                </li>
+                                {/foreach}
+                            </ul>
                         </dd>
                         {/if}
                         {if $details[8]}

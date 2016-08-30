@@ -26,6 +26,12 @@ $regions = array();
 // language init
 $language_qstr = file_get_contents(MS_SQL_DIR . 'language.sql');
 $languages = array();
+// script init
+$script_qstr = file_get_contents(MS_SQL_DIR . 'script.sql');
+$scripts = array();
+// scribe init
+$scribe_qstr = file_get_contents(MS_SQL_DIR . 'scribe.sql');
+$scribes = array();
 // image init
 $image_qstr = file_get_contents(MS_SQL_DIR . 'image.sql');
 $images = array();
@@ -43,6 +49,16 @@ foreach ($parts as $part){
     $language_stmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
     $language_stmt -> execute();
     $languages[$part[11]] = $language_stmt -> fetchAll(PDO::FETCH_NUM);
+    // get scripts for this part
+    $script_stmt = $db -> prepare($script_qstr);
+    $script_stmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
+    $script_stmt -> execute();
+    $scripts[$part[11]] = $script_stmt -> fetchAll(PDO::FETCH_NUM);
+    // get scribes for this part
+    $scribe_stmt = $db -> prepare($scribe_qstr);
+    $scribe_stmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
+    $scribe_stmt -> execute();
+    $scribes[$part[11]] = $scribe_stmt -> fetchAll(PDO::FETCH_NUM);
     // get images for this part
     $image_stmt = $db -> prepare($image_qstr);
     $image_stmt -> bindParam(':id', $part[11], PDO::PARAM_INT);
@@ -86,6 +102,8 @@ $smarty->assign('bib', $bib);
 $smarty->assign('parts',$parts);
 $smarty -> assign('regions', $regions);
 $smarty -> assign('languages', $languages);
+$smarty -> assign('scripts', $scripts);
+$smarty -> assign('scribes', $scribes);
 $smarty -> assign('images', $images);
 $smarty -> assign('image_urls', $image_urls);
 $smarty -> assign('image_widths', $image_widths);

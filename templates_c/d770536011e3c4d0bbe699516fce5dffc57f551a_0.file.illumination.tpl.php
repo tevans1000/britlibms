@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-23 15:29:31
+/* Smarty version 3.1.28, created on 2016-08-30 14:35:27
   from "/var/www/html/britlibms/sync/templates/illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57bc5dcb413289_63803315',
+  'unifunc' => 'content_57c58b9f562202_38410048',
   'file_dependency' => 
   array (
     'd770536011e3c4d0bbe699516fce5dffc57f551a' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/illumination.tpl',
-      1 => 1471962564,
+      1 => 1472562813,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57bc5dcb413289_63803315 ($_smarty_tpl) {
+function content_57c58b9f562202_38410048 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.truncate.php';
 ?>
@@ -131,7 +131,7 @@ $__foreach_image_0_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 if ($_smarty_tpl->tpl_vars['image_heights']->value[0][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value[0][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }?>'>
                             <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
-' data-toggle='tooltip' title='<?php echo (($tmp = @$_smarty_tpl->tpl_vars['image']->value[5])===null||$tmp==='' ? 'untitled' : $tmp);
+' data-toggle='tooltip' title='<?php echo (($tmp = @htmlspecialchars($_smarty_tpl->tpl_vars['image']->value[5], ENT_QUOTES, 'UTF-8', true))===null||$tmp==='' ? 'untitled' : $tmp);
 if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )<?php }?>'>
                                 <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[0][$_smarty_tpl->tpl_vars['image']->value[0]];?>
@@ -170,7 +170,7 @@ $__foreach_image_1_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 if ($_smarty_tpl->tpl_vars['image_heights']->value[1][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value[1][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }?>'>
                             <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
-' data-toggle='tooltip' title='<?php echo (($tmp = @$_smarty_tpl->tpl_vars['image']->value[5])===null||$tmp==='' ? 'untitled' : $tmp);
+' data-toggle='tooltip' title='<?php echo (($tmp = @htmlspecialchars($_smarty_tpl->tpl_vars['image']->value[5], ENT_QUOTES, 'UTF-8', true))===null||$tmp==='' ? 'untitled' : $tmp);
 if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )<?php }?>'>
                                 <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[1][$_smarty_tpl->tpl_vars['image']->value[0]];?>
@@ -209,7 +209,7 @@ $__foreach_image_2_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 if ($_smarty_tpl->tpl_vars['image_heights']->value[2][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value[2][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }?>'>
                             <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
-' data-toggle='tooltip' title='<?php echo (($tmp = @$_smarty_tpl->tpl_vars['image']->value[5])===null||$tmp==='' ? 'untitled' : $tmp);
+' data-toggle='tooltip' title='<?php echo (($tmp = @htmlspecialchars($_smarty_tpl->tpl_vars['image']->value[5], ENT_QUOTES, 'UTF-8', true))===null||$tmp==='' ? 'untitled' : $tmp);
 if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )<?php }?>'>
                                 <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[2][$_smarty_tpl->tpl_vars['image']->value[0]];?>
