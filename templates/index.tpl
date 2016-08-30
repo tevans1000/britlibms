@@ -219,11 +219,12 @@
                     </h1>
                     <p>
                         {if $maxpage > 1}
+                        {if $get['grouping']=='p'}Part{elseif $get['grouping']=='m'}Manuscript{else}Image{/if}s
                         {$firstret}&ndash;{$lastret} of {$rescount} (page {$pageno} / {$maxpage})
                         {elseif $rescount>1}
-                        Viewing all {$rescount} results found
+                        Viewing all {$rescount} {if $get['grouping']=='p'}part{elseif $get['grouping']=='m'}manuscript{else}image{/if}s found
                         {elseif $rescount==1}
-                        Only 1 result found
+                        Only 1 {if $get['grouping']=='p'}part{elseif $get['grouping']=='m'}manuscript{else}image{/if} found
                         {else}
                         None found
                         {/if}

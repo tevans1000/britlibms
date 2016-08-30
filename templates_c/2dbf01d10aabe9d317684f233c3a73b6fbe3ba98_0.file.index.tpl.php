@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-26 16:34:21
+/* Smarty version 3.1.28, created on 2016-08-30 15:04:26
   from "/var/www/html/britlibms/sync/templates/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c0617d13ff65_13948952',
+  'unifunc' => 'content_57c5926a54f3a6_16498569',
   'file_dependency' => 
   array (
     '2dbf01d10aabe9d317684f233c3a73b6fbe3ba98' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/index.tpl',
-      1 => 1472225638,
+      1 => 1472565864,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c0617d13ff65_13948952 ($_smarty_tpl) {
+function content_57c5926a54f3a6_16498569 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
@@ -1025,6 +1025,7 @@ $_smarty_tpl->tpl_vars['sort'] = $__foreach_sort_28_saved_item;
                     </h1>
                     <p>
                         <?php if ($_smarty_tpl->tpl_vars['maxpage']->value > 1) {?>
+                        <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>Part<?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'm') {?>Manuscript<?php } else { ?>Image<?php }?>s
                         <?php echo $_smarty_tpl->tpl_vars['firstret']->value;?>
 &ndash;<?php echo $_smarty_tpl->tpl_vars['lastret']->value;?>
  of <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
@@ -1033,9 +1034,9 @@ $_smarty_tpl->tpl_vars['sort'] = $__foreach_sort_28_saved_item;
 )
                         <?php } elseif ($_smarty_tpl->tpl_vars['rescount']->value > 1) {?>
                         Viewing all <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
- results found
+ <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>part<?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'm') {?>manuscript<?php } else { ?>image<?php }?>s found
                         <?php } elseif ($_smarty_tpl->tpl_vars['rescount']->value == 1) {?>
-                        Only 1 result found
+                        Only 1 <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>part<?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'm') {?>manuscript<?php } else { ?>image<?php }?> found
                         <?php } else { ?>
                         None found
                         <?php }?>
