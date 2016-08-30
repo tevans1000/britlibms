@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-30 15:10:44
+/* Smarty version 3.1.28, created on 2016-08-30 16:43:49
   from "/var/www/html/britlibms/sync/templates/manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c593e4c66f73_65776026',
+  'unifunc' => 'content_57c5a9b502e6b8_65455949',
   'file_dependency' => 
   array (
     'e094e01cfbb6ef91eb4eef46df92d1dc46c8928d' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/manuscript.tpl',
-      1 => 1472566241,
+      1 => 1472571812,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c593e4c66f73_65776026 ($_smarty_tpl) {
+function content_57c5a9b502e6b8_65455949 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -528,6 +528,28 @@ $_smarty_tpl->tpl_vars['no'] = $__foreach_details_3_saved_key;
         </div>
         
     </div>
+
+<!--BeginBLNedstat-->
+<?php echo '<script'; ?>
+ src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript">
+var bl_pu = bl_ned_url();
+<?php echo '</script'; ?>
+>
+<!-- Begin CMC v.1.0.1 -->
+<?php echo '<script'; ?>
+ type="text/javascript">
+// <![CDATA[
+function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+sitestat(bl_pu);
+// ]]>
+<?php echo '</script'; ?>
+>
+<noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+<!-- End CMC -->
+<!--EndBLNedstat-->
 </body>
 </html>
 <?php }

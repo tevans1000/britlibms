@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-30 14:35:27
+/* Smarty version 3.1.28, created on 2016-08-30 16:43:46
   from "/var/www/html/britlibms/sync/templates/illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c58b9f562202_38410048',
+  'unifunc' => 'content_57c5a9b267fef2_19278236',
   'file_dependency' => 
   array (
     'd770536011e3c4d0bbe699516fce5dffc57f551a' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/illumination.tpl',
-      1 => 1472562813,
+      1 => 1472571822,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c58b9f562202_38410048 ($_smarty_tpl) {
+function content_57c5a9b267fef2_19278236 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.truncate.php';
 ?>
@@ -240,6 +240,28 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_2_saved_item;
         </div>
         
     </div>
+
+<!--BeginBLNedstat-->
+<?php echo '<script'; ?>
+ src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript">
+var bl_pu = bl_ned_url();
+<?php echo '</script'; ?>
+>
+<!-- Begin CMC v.1.0.1 -->
+<?php echo '<script'; ?>
+ type="text/javascript">
+// <![CDATA[
+function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+sitestat(bl_pu);
+// ]]>
+<?php echo '</script'; ?>
+>
+<noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+<!-- End CMC -->
+<!--EndBLNedstat-->
 </body>
 </html>
 <?php }

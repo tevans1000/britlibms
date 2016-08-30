@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-30 15:04:26
+/* Smarty version 3.1.28, created on 2016-08-30 16:43:13
   from "/var/www/html/britlibms/sync/templates/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c5926a54f3a6_16498569',
+  'unifunc' => 'content_57c5a991dbe261_82941612',
   'file_dependency' => 
   array (
     '2dbf01d10aabe9d317684f233c3a73b6fbe3ba98' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/index.tpl',
-      1 => 1472565864,
+      1 => 1472571789,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c5926a54f3a6_16498569 ($_smarty_tpl) {
+function content_57c5a991dbe261_82941612 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
@@ -1594,6 +1594,28 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_39_saved_key;
         </div>
         
     </div>
+
+<!--BeginBLNedstat-->
+<?php echo '<script'; ?>
+ src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript">
+var bl_pu = bl_ned_url();
+<?php echo '</script'; ?>
+>
+<!-- Begin CMC v.1.0.1 -->
+<?php echo '<script'; ?>
+ type="text/javascript">
+// <![CDATA[
+function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+sitestat(bl_pu);
+// ]]>
+<?php echo '</script'; ?>
+>
+<noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+<!-- End CMC -->
+<!--EndBLNedstat-->
 </body>
 </html>
 <?php }
