@@ -168,7 +168,13 @@
                             Dates
                         </dt>
                         <dd class='oneline'>
+                            {if $details[12] and $details[13]}
+                            <a href='../results?yearstart={$details[12]}&amp;yearend={$details[13]}'>
+                            {/if}
                             {$details[3]}
+                            {if $details[12] and $details[13]}
+                            </a>
+                            {/if}
                         </dd>
                         {/if}
                         {if $details[5]}

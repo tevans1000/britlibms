@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-30 14:51:09
+/* Smarty version 3.1.28, created on 2016-08-30 15:10:44
   from "/var/www/html/britlibms/sync/templates/manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c58f4d3e0607_74331339',
+  'unifunc' => 'content_57c593e4c66f73_65776026',
   'file_dependency' => 
   array (
     'e094e01cfbb6ef91eb4eef46df92d1dc46c8928d' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/manuscript.tpl',
-      1 => 1472565065,
+      1 => 1472566241,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c58f4d3e0607_74331339 ($_smarty_tpl) {
+function content_57c593e4c66f73_65776026 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -330,8 +330,16 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                             Dates
                         </dt>
                         <dd class='oneline'>
+                            <?php if ($_smarty_tpl->tpl_vars['details']->value[12] && $_smarty_tpl->tpl_vars['details']->value[13]) {?>
+                            <a href='../results?yearstart=<?php echo $_smarty_tpl->tpl_vars['details']->value[12];?>
+&amp;yearend=<?php echo $_smarty_tpl->tpl_vars['details']->value[13];?>
+'>
+                            <?php }?>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[3];?>
 
+                            <?php if ($_smarty_tpl->tpl_vars['details']->value[12] && $_smarty_tpl->tpl_vars['details']->value[13]) {?>
+                            </a>
+                            <?php }?>
                         </dd>
                         <?php }?>
                         <?php if ($_smarty_tpl->tpl_vars['details']->value[5]) {?>
