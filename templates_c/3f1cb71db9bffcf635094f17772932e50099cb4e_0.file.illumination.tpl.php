@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-27 21:30:05
+/* Smarty version 3.1.28, created on 2016-08-31 17:49:01
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c1f84dab7564_77770527',
+  'unifunc' => 'content_57c70a7d26fe43_27353607',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1472329799,
+      1 => 1472662138,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c1f84dab7564_77770527 ($_smarty_tpl) {
+function content_57c70a7d26fe43_27353607 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
@@ -150,8 +150,15 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_0_saved_item;
                 <?php }?>
                 <?php if ($_smarty_tpl->tpl_vars['same_part']->value) {?>
                 <h2>
-                    Other images from the same part
+                    Other images from <?php echo (($tmp = @$_smarty_tpl->tpl_vars['record']->value[6])===null||$tmp==='' ? 'this part' : $tmp);?>
+
                 </h2>
+                <?php if (!$_smarty_tpl->tpl_vars['record']->value[6]) {?>
+                <aside>
+                    (Some manuscripts are made up of several documents which were originally separate.
+                     Each of these is called a &quot;part&quot; on this site.)
+                </aside>
+                <?php }?>
                     <div class='grid'>
                         <?php
 $_from = $_smarty_tpl->tpl_vars['same_part']->value;
@@ -189,7 +196,9 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_1_saved_item;
                 <?php }?>
                 <?php if ($_smarty_tpl->tpl_vars['other_part']->value) {?>
                 <h2>
-                    Other images from this manuscript
+                    Other images from <?php echo $_smarty_tpl->tpl_vars['record']->value[1];?>
+ <?php echo $_smarty_tpl->tpl_vars['record']->value[2];?>
+
                 </h2>
                     <div class='grid'>
                         <?php
@@ -240,6 +249,28 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_2_saved_item;
         </div>
         
     </div>
+
+<!--BeginBLNedstat-->
+<?php echo '<script'; ?>
+ src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript">
+var bl_pu = bl_ned_url();
+<?php echo '</script'; ?>
+>
+<!-- Begin CMC v.1.0.1 -->
+<?php echo '<script'; ?>
+ type="text/javascript">
+// <![CDATA[
+function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+sitestat(bl_pu);
+// ]]>
+<?php echo '</script'; ?>
+>
+<noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+<!-- End CMC -->
+<!--EndBLNedstat-->
 </body>
 </html>
 <?php }

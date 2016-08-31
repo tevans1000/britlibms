@@ -130,7 +130,7 @@
                 <section>
                     {if !$no_filters}
                     <h2>
-                        Active filters
+                        Showing {if $get['grouping']=='p'}part{elseif $get['grouping']=='m'}manuscript{else}image{/if}s matching th{if count($active_filters)==1}is{else}ese{/if} filter{if count($active_filters)!=1}s{/if}
                     </h2>
                     {foreach $active_filters as $name => $value}
                     <div class='btn-group'>
@@ -165,7 +165,7 @@
                     {/foreach}
                     {/if}
                     <h2>
-                        Group/sort
+                        Grouping and sorting options
                     </h2>
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#group-sort-controls'>
                         Show/Hide
@@ -231,7 +231,7 @@
                     </p>
                     {if $maxpage > 1} {* pagination not required if only 1 page *}
                     <nav>
-                        <ul class='pagination'>
+                        <ul class='pagination' {if $pageno > 8 or $pageno+7 < $maxpage}style='float: left;'{/if}>
                             {for $linkno=$pageno-7 to $pageno+7}
                             {if ($linkno<=0)}
                             {continue}
@@ -251,7 +251,7 @@
                             {/for}
                         </ul>
                         {if $pageno > 8 or $pageno+7 < $maxpage}
-                        <form class='form-inline' role='form' method='get'>
+                        <form id='page-form' class='form-inline' role='form' method='get'>
                             <div class='form-group'>
                                 <label for='page'>
                                     Take me to page

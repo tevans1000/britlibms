@@ -74,8 +74,14 @@
                 {/if}
                 {if $same_part}
                 <h2>
-                    Other images from the same part
+                    Other images from {$record[6]|default:'this part'}
                 </h2>
+                {if !$record[6]}
+                <aside>
+                    (Some manuscripts are made up of several documents which were originally separate.
+                     Each of these is called a &quot;part&quot; on this site.)
+                </aside>
+                {/if}
                     <div class='grid'>
                         {foreach $same_part as $image}
                         <div class='grid-item{if $image_widths[1][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[1][$image[0]]/37.5))}{/if}{if $image_heights[1][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[1][$image[0]]/37.5))}{/if}'>
@@ -88,7 +94,7 @@
                 {/if}
                 {if $other_part}
                 <h2>
-                    Other images from this manuscript
+                    Other images from {$record[1]} {$record[2]}
                 </h2>
                     <div class='grid'>
                         {foreach $other_part as $image}

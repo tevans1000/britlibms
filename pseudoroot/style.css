@@ -30,6 +30,15 @@ dd ul {
 .hlist li {
     display: inline;
 }
+li.active a {
+    font-weight: bolder;
+}
+.pagination {
+    margin: 0 1em 0;
+}
+#page-form input {
+    width: 4em;
+}
 
 .grid-item--width2 { width: 75px; }
 .grid-item--width3 { width: 113px; }

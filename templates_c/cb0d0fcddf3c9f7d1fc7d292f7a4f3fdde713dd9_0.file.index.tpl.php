@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-24 23:13:19
+/* Smarty version 3.1.28, created on 2016-08-31 18:04:51
   from "c:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57be1bffdbc6b8_93699267',
+  'unifunc' => 'content_57c70e33deae08_09692323',
   'file_dependency' => 
   array (
     'cb0d0fcddf3c9f7d1fc7d292f7a4f3fdde713dd9' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1472076797,
+      1 => 1472663087,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57be1bffdbc6b8_93699267 ($_smarty_tpl) {
+function content_57c70e33deae08_09692323 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
@@ -418,7 +418,7 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_list_1_saved_key;
                 <section>
                     <?php if (!$_smarty_tpl->tpl_vars['no_filters']->value) {?>
                     <h2>
-                        Active filters
+                        Showing <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>part<?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'm') {?>manuscript<?php } else { ?>image<?php }?>s matching th<?php if (count($_smarty_tpl->tpl_vars['active_filters']->value) == 1) {?>is<?php } else { ?>ese<?php }?> filter<?php if (count($_smarty_tpl->tpl_vars['active_filters']->value) != 1) {?>s<?php }?>
                     </h2>
                     <?php
 $_from = $_smarty_tpl->tpl_vars['active_filters']->value;
@@ -448,7 +448,7 @@ if ($__foreach_val_11_total) {
 $_smarty_tpl->tpl_vars['arg'] = new Smarty_Variable();
 foreach ($_from as $_smarty_tpl->tpl_vars['arg']->value => $_smarty_tpl->tpl_vars['val']->value) {
 $__foreach_val_11_saved_local_item = $_smarty_tpl->tpl_vars['val'];
-if ($_smarty_tpl->tpl_vars['name']->value != $_smarty_tpl->tpl_vars['arg']->value && ($_smarty_tpl->tpl_vars['name']->value != 'date' || ($_smarty_tpl->tpl_vars['arg']->value != 'yearstart' && $_smarty_tpl->tpl_vars['arg']->value != 'yearend'))) {?>&amp;<?php echo $_smarty_tpl->tpl_vars['arg']->value;?>
+if ($_smarty_tpl->tpl_vars['arg']->value != 'page' && $_smarty_tpl->tpl_vars['name']->value != $_smarty_tpl->tpl_vars['arg']->value && ($_smarty_tpl->tpl_vars['name']->value != 'date' || ($_smarty_tpl->tpl_vars['arg']->value != 'yearstart' && $_smarty_tpl->tpl_vars['arg']->value != 'yearend'))) {?>&amp;<?php echo $_smarty_tpl->tpl_vars['arg']->value;?>
 =<?php echo $_smarty_tpl->tpl_vars['val']->value;
 }
 $_smarty_tpl->tpl_vars['val'] = $__foreach_val_11_saved_local_item;
@@ -759,7 +759,7 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_value_10_saved_key;
 ?>
                     <?php }?>
                     <h2>
-                        Group/sort
+                        Grouping and sorting options
                     </h2>
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#group-sort-controls'>
                         Show/Hide
@@ -1025,6 +1025,7 @@ $_smarty_tpl->tpl_vars['sort'] = $__foreach_sort_28_saved_item;
                     </h1>
                     <p>
                         <?php if ($_smarty_tpl->tpl_vars['maxpage']->value > 1) {?>
+                        <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>Part<?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'm') {?>Manuscript<?php } else { ?>Image<?php }?>s
                         <?php echo $_smarty_tpl->tpl_vars['firstret']->value;?>
 &ndash;<?php echo $_smarty_tpl->tpl_vars['lastret']->value;?>
  of <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
@@ -1033,16 +1034,16 @@ $_smarty_tpl->tpl_vars['sort'] = $__foreach_sort_28_saved_item;
 )
                         <?php } elseif ($_smarty_tpl->tpl_vars['rescount']->value > 1) {?>
                         Viewing all <?php echo $_smarty_tpl->tpl_vars['rescount']->value;?>
- results found
+ <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>part<?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'm') {?>manuscript<?php } else { ?>image<?php }?>s found
                         <?php } elseif ($_smarty_tpl->tpl_vars['rescount']->value == 1) {?>
-                        Only 1 result found
+                        Only 1 <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>part<?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'm') {?>manuscript<?php } else { ?>image<?php }?> found
                         <?php } else { ?>
                         None found
                         <?php }?>
                     </p>
                     <?php if ($_smarty_tpl->tpl_vars['maxpage']->value > 1) {?> 
                     <nav>
-                        <ul class='pagination'>
+                        <ul class='pagination' <?php if ($_smarty_tpl->tpl_vars['pageno']->value > 8 || $_smarty_tpl->tpl_vars['pageno']->value+7 < $_smarty_tpl->tpl_vars['maxpage']->value) {?>style='float: left;'<?php }?>>
                             <?php
 $_smarty_tpl->tpl_vars['linkno'] = new Smarty_Variable;$_smarty_tpl->tpl_vars['linkno']->step = 1;$_smarty_tpl->tpl_vars['linkno']->total = (int) ceil(($_smarty_tpl->tpl_vars['linkno']->step > 0 ? $_smarty_tpl->tpl_vars['pageno']->value+7+1 - ($_smarty_tpl->tpl_vars['pageno']->value-7) : $_smarty_tpl->tpl_vars['pageno']->value-7-($_smarty_tpl->tpl_vars['pageno']->value+7)+1)/abs($_smarty_tpl->tpl_vars['linkno']->step));
 if ($_smarty_tpl->tpl_vars['linkno']->total > 0) {
@@ -1118,7 +1119,7 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_32_saved_key;
 
                         </ul>
                         <?php if ($_smarty_tpl->tpl_vars['pageno']->value > 8 || $_smarty_tpl->tpl_vars['pageno']->value+7 < $_smarty_tpl->tpl_vars['maxpage']->value) {?>
-                        <form class='form-inline' role='form' method='get'>
+                        <form id='page-form' class='form-inline' role='form' method='get'>
                             <div class='form-group'>
                                 <label for='page'>
                                     Take me to page
@@ -1593,6 +1594,28 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_39_saved_key;
         </div>
         
     </div>
+
+<!--BeginBLNedstat-->
+<?php echo '<script'; ?>
+ src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript">
+var bl_pu = bl_ned_url();
+<?php echo '</script'; ?>
+>
+<!-- Begin CMC v.1.0.1 -->
+<?php echo '<script'; ?>
+ type="text/javascript">
+// <![CDATA[
+function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+sitestat(bl_pu);
+// ]]>
+<?php echo '</script'; ?>
+>
+<noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+<!-- End CMC -->
+<!--EndBLNedstat-->
 </body>
 </html>
 <?php }

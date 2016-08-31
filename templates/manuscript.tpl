@@ -32,7 +32,7 @@
                     {$record[0]} {$record[1]}
                 </h1>
                 <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#manuscript-details-list'>
-                    <span class='glyphicon glyphicon-th-list'></span>
+                    <span class='glyphicon glyphicon-th-list'></span> Show/hide details
                 </button>
                 <div id='manuscript-details-list' class='collapse'>
                 <dl>
@@ -117,11 +117,11 @@
                     {/if}
                     <div class='btn-group'>
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part{$details[10]}-details-list'>
-                        <span class='glyphicon glyphicon-th-list'></span>
+                        <span class='glyphicon glyphicon-th-list'></span> Show/hide details
                     </button>
                     {if $images[$details[11]]}
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part{$details[10]}-images'>
-                        <span class='glyphicon glyphicon-picture'></span>
+                        <span class='glyphicon glyphicon-picture'></span> Show/hide images
                     </button>
                     {/if}
                     </div>

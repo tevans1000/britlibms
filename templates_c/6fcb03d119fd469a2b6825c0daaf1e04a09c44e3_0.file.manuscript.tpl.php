@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-27 21:28:27
+/* Smarty version 3.1.28, created on 2016-08-31 17:54:35
   from "c:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c1f7eb83c1f9_43516160',
+  'unifunc' => 'content_57c70bcb8cd4b6_89054001',
   'file_dependency' => 
   array (
     '6fcb03d119fd469a2b6825c0daaf1e04a09c44e3' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1472329699,
+      1 => 1472662471,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c1f7eb83c1f9_43516160 ($_smarty_tpl) {
+function content_57c70bcb8cd4b6_89054001 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -68,7 +68,7 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/bri
 
                 </h1>
                 <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#manuscript-details-list'>
-                    <span class='glyphicon glyphicon-th-list'></span>
+                    <span class='glyphicon glyphicon-th-list'></span> Show/hide details
                 </button>
                 <div id='manuscript-details-list' class='collapse'>
                 <dl>
@@ -236,12 +236,12 @@ if ($_smarty_tpl->tpl_vars['details']->value[0]) {?> (<?php echo $_smarty_tpl->t
                     <div class='btn-group'>
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part<?php echo $_smarty_tpl->tpl_vars['details']->value[10];?>
 -details-list'>
-                        <span class='glyphicon glyphicon-th-list'></span>
+                        <span class='glyphicon glyphicon-th-list'></span> Show/hide details
                     </button>
                     <?php if ($_smarty_tpl->tpl_vars['images']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) {?>
                     <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#part<?php echo $_smarty_tpl->tpl_vars['details']->value[10];?>
 -images'>
-                        <span class='glyphicon glyphicon-picture'></span>
+                        <span class='glyphicon glyphicon-picture'></span> Show/hide images
                     </button>
                     <?php }?>
                     </div>
@@ -330,8 +330,16 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                             Dates
                         </dt>
                         <dd class='oneline'>
+                            <?php if ($_smarty_tpl->tpl_vars['details']->value[12] && $_smarty_tpl->tpl_vars['details']->value[13]) {?>
+                            <a href='../results?yearstart=<?php echo $_smarty_tpl->tpl_vars['details']->value[12];?>
+&amp;yearend=<?php echo $_smarty_tpl->tpl_vars['details']->value[13];?>
+'>
+                            <?php }?>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[3];?>
 
+                            <?php if ($_smarty_tpl->tpl_vars['details']->value[12] && $_smarty_tpl->tpl_vars['details']->value[13]) {?>
+                            </a>
+                            <?php }?>
                         </dd>
                         <?php }?>
                         <?php if ($_smarty_tpl->tpl_vars['details']->value[5]) {?>
@@ -352,6 +360,42 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
 
                         </dd>
                         <?php }?>
+                        <?php if ($_smarty_tpl->tpl_vars['scripts']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) {?>
+                        <dt>
+                            Script list
+                        </dt>
+                        <dd>
+                            <ul>
+                                <?php
+$_from = $_smarty_tpl->tpl_vars['scripts']->value[$_smarty_tpl->tpl_vars['details']->value[11]];
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_spt_6_saved_item = isset($_smarty_tpl->tpl_vars['spt']) ? $_smarty_tpl->tpl_vars['spt'] : false;
+$_smarty_tpl->tpl_vars['spt'] = new Smarty_Variable();
+$__foreach_spt_6_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_spt_6_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['spt']->value) {
+$__foreach_spt_6_saved_local_item = $_smarty_tpl->tpl_vars['spt'];
+?>
+                                <li>
+                                    <a href='../results?script=[<?php echo $_smarty_tpl->tpl_vars['spt']->value[0];?>
+]'>
+                                        <?php echo $_smarty_tpl->tpl_vars['spt']->value[1];?>
+
+                                    </a>
+                                </li>
+                                <?php
+$_smarty_tpl->tpl_vars['spt'] = $__foreach_spt_6_saved_local_item;
+}
+}
+if ($__foreach_spt_6_saved_item) {
+$_smarty_tpl->tpl_vars['spt'] = $__foreach_spt_6_saved_item;
+}
+?>
+                            </ul>
+                        </dd>
+                        <?php }?>
                         <?php if ($_smarty_tpl->tpl_vars['details']->value[7]) {?>
                         <dt>
                             Scribe
@@ -359,6 +403,42 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         <dd class='oneline'>
                             <?php echo $_smarty_tpl->tpl_vars['details']->value[7];?>
 
+                        </dd>
+                        <?php }?>
+                        <?php if ($_smarty_tpl->tpl_vars['scribes']->value[$_smarty_tpl->tpl_vars['details']->value[11]]) {?>
+                        <dt>
+                            Scribe list
+                        </dt>
+                        <dd>
+                            <ul>
+                                <?php
+$_from = $_smarty_tpl->tpl_vars['scribes']->value[$_smarty_tpl->tpl_vars['details']->value[11]];
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_sbe_7_saved_item = isset($_smarty_tpl->tpl_vars['sbe']) ? $_smarty_tpl->tpl_vars['sbe'] : false;
+$_smarty_tpl->tpl_vars['sbe'] = new Smarty_Variable();
+$__foreach_sbe_7_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_sbe_7_total) {
+foreach ($_from as $_smarty_tpl->tpl_vars['sbe']->value) {
+$__foreach_sbe_7_saved_local_item = $_smarty_tpl->tpl_vars['sbe'];
+?>
+                                <li>
+                                    <a href='../results?scribe=[<?php echo $_smarty_tpl->tpl_vars['sbe']->value[0];?>
+]'>
+                                        <?php echo $_smarty_tpl->tpl_vars['sbe']->value[1];?>
+
+                                    </a>
+                                </li>
+                                <?php
+$_smarty_tpl->tpl_vars['sbe'] = $__foreach_sbe_7_saved_local_item;
+}
+}
+if ($__foreach_sbe_7_saved_item) {
+$_smarty_tpl->tpl_vars['sbe'] = $__foreach_sbe_7_saved_item;
+}
+?>
+                            </ul>
                         </dd>
                         <?php }?>
                         <?php if ($_smarty_tpl->tpl_vars['details']->value[8]) {?>
@@ -389,12 +469,12 @@ $_from = $_smarty_tpl->tpl_vars['images']->value[$_smarty_tpl->tpl_vars['details
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_image_6_saved_item = isset($_smarty_tpl->tpl_vars['image']) ? $_smarty_tpl->tpl_vars['image'] : false;
+$__foreach_image_8_saved_item = isset($_smarty_tpl->tpl_vars['image']) ? $_smarty_tpl->tpl_vars['image'] : false;
 $_smarty_tpl->tpl_vars['image'] = new Smarty_Variable();
-$__foreach_image_6_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
-if ($__foreach_image_6_total) {
+$__foreach_image_8_total = $_smarty_tpl->smarty->ext->_foreach->count($_from);
+if ($__foreach_image_8_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['image']->value) {
-$__foreach_image_6_saved_local_item = $_smarty_tpl->tpl_vars['image'];
+$__foreach_image_8_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 ?>
                         <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_widths']->value[$_smarty_tpl->tpl_vars['details']->value[11]][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }
@@ -409,11 +489,11 @@ if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl
                             </a>
                         </div>
                         <?php
-$_smarty_tpl->tpl_vars['image'] = $__foreach_image_6_saved_local_item;
+$_smarty_tpl->tpl_vars['image'] = $__foreach_image_8_saved_local_item;
 }
 }
-if ($__foreach_image_6_saved_item) {
-$_smarty_tpl->tpl_vars['image'] = $__foreach_image_6_saved_item;
+if ($__foreach_image_8_saved_item) {
+$_smarty_tpl->tpl_vars['image'] = $__foreach_image_8_saved_item;
 }
 ?>
                     </div>
@@ -448,6 +528,28 @@ $_smarty_tpl->tpl_vars['no'] = $__foreach_details_3_saved_key;
         </div>
         
     </div>
+
+<!--BeginBLNedstat-->
+<?php echo '<script'; ?>
+ src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript">
+var bl_pu = bl_ned_url();
+<?php echo '</script'; ?>
+>
+<!-- Begin CMC v.1.0.1 -->
+<?php echo '<script'; ?>
+ type="text/javascript">
+// <![CDATA[
+function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+sitestat(bl_pu);
+// ]]>
+<?php echo '</script'; ?>
+>
+<noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+<!-- End CMC -->
+<!--EndBLNedstat-->
 </body>
 </html>
 <?php }
