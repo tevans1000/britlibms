@@ -50,11 +50,11 @@
                             <form class='form-inline' role='form' method='get'>
                                 <div class='form-group'>
                                     <label for='yearstart'>From year:</label>
-                                    <input type='number' min='300' max='1873' name='yearstart' style='width: 70%;'>
+                                    <input type='number' min='300' max='1873' name='yearstart'>
                                 </div>
                                 <div class='form-group'>
                                     <label for='yearend'>to year:</label>
-                                    <input type='number' min='300' max='1873' name='yearend' style='width: 70%;'>
+                                    <input type='number' min='300' max='1873' name='yearend'>
                                 </div>
                                 {foreach $get as $k => $v}
                                 {if $k != 'yearstart' and $k != 'yearend' and $k != 'page'}
@@ -130,7 +130,7 @@
                 <section>
                     {if !$no_filters}
                     <h2>
-                        Showing {if $get['grouping']=='p'}part{elseif $get['grouping']=='m'}manuscript{else}image{/if}s matching th{if count($active_filters)==1}is{else}ese{/if} filter{if count($active_filters)!=1}s{/if}
+                        Showing {if $get['grouping']=='p'}part{elseif $get['grouping']=='m'}manuscript{else}image{/if}s matching th{if count($active_filters)==1}is filter{else}ese filters{/if}
                     </h2>
                     {foreach $active_filters as $name => $value}
                     <div class='btn-group'>
@@ -286,7 +286,7 @@
                         <div class='col-lg-6'>
                             <a href='../illumination?id={$res[0]}'>
                                 <h4>
-                                    {$res[3]} {$res[4]} ({$res[5]})
+                                    {$res[3]} {$res[4]}{if $res[5]} ({$res[5]}){/if}
                                 </h4>
                                 <h3>
                                     {$res[6]|default:'(untitled)'|regex_replace:'/~([^~]*)~/':'<i>\1</i>'}

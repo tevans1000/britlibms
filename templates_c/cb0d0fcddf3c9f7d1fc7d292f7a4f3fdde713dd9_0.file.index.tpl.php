@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-31 18:04:51
+/* Smarty version 3.1.28, created on 2016-08-31 18:45:45
   from "c:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c70e33deae08_09692323',
+  'unifunc' => 'content_57c717c942c0c8_48858103',
   'file_dependency' => 
   array (
     'cb0d0fcddf3c9f7d1fc7d292f7a4f3fdde713dd9' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1472663087,
+      1 => 1472665540,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c70e33deae08_09692323 ($_smarty_tpl) {
+function content_57c717c942c0c8_48858103 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
@@ -128,11 +128,11 @@ $__foreach_list_1_saved_local_item = $_smarty_tpl->tpl_vars['list'];
                             <form class='form-inline' role='form' method='get'>
                                 <div class='form-group'>
                                     <label for='yearstart'>From year:</label>
-                                    <input type='number' min='300' max='1873' name='yearstart' style='width: 70%;'>
+                                    <input type='number' min='300' max='1873' name='yearstart'>
                                 </div>
                                 <div class='form-group'>
                                     <label for='yearend'>to year:</label>
-                                    <input type='number' min='300' max='1873' name='yearend' style='width: 70%;'>
+                                    <input type='number' min='300' max='1873' name='yearend'>
                                 </div>
                                 <?php
 $_from = $_smarty_tpl->tpl_vars['get']->value;
@@ -418,7 +418,7 @@ $_smarty_tpl->tpl_vars['name'] = $__foreach_list_1_saved_key;
                 <section>
                     <?php if (!$_smarty_tpl->tpl_vars['no_filters']->value) {?>
                     <h2>
-                        Showing <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>part<?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'm') {?>manuscript<?php } else { ?>image<?php }?>s matching th<?php if (count($_smarty_tpl->tpl_vars['active_filters']->value) == 1) {?>is<?php } else { ?>ese<?php }?> filter<?php if (count($_smarty_tpl->tpl_vars['active_filters']->value) != 1) {?>s<?php }?>
+                        Showing <?php if ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'p') {?>part<?php } elseif ($_smarty_tpl->tpl_vars['get']->value['grouping'] == 'm') {?>manuscript<?php } else { ?>image<?php }?>s matching th<?php if (count($_smarty_tpl->tpl_vars['active_filters']->value) == 1) {?>is filter<?php } else { ?>ese filters<?php }?>
                     </h2>
                     <?php
 $_from = $_smarty_tpl->tpl_vars['active_filters']->value;
@@ -1224,9 +1224,9 @@ $__foreach_res_35_saved_local_item = $_smarty_tpl->tpl_vars['res'];
 '>
                                 <h4>
                                     <?php echo $_smarty_tpl->tpl_vars['res']->value[3];?>
- <?php echo $_smarty_tpl->tpl_vars['res']->value[4];?>
- (<?php echo $_smarty_tpl->tpl_vars['res']->value[5];?>
-)
+ <?php echo $_smarty_tpl->tpl_vars['res']->value[4];
+if ($_smarty_tpl->tpl_vars['res']->value[5]) {?> (<?php echo $_smarty_tpl->tpl_vars['res']->value[5];?>
+)<?php }?>
                                 </h4>
                                 <h3>
                                     <?php echo smarty_modifier_regex_replace((($tmp = @$_smarty_tpl->tpl_vars['res']->value[6])===null||$tmp==='' ? '(untitled)' : $tmp),'/~([^~]*)~/','<i>\1</i>');?>

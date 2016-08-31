@@ -36,7 +36,7 @@ li.active a {
 .pagination {
     margin: 0 1em 0;
 }
-#page-form input {
+input {
     width: 4em;
 }
 
