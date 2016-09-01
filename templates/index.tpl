@@ -292,9 +292,7 @@
                                     {$res[6]|default:'(untitled)'|regex_replace:'/~([^~]*)~/':'<i>\1</i>'}
                                 </h3>
                                 {if $res[8]==1}
-                                <p>
-                                    (image of {$res[2]} from folder {$res[1]})
-                                </p>
+                                {* image URL uncookable *}
                                 {elseif $res[8]==5 or $res[8]==8 or $res[8]==9}
                                 <img class='img-responsive' src="http://www.bl.uk/IllImages/{$res[1]}/mid/{$res[2]|truncate:4:"":true}/{$res[2]}.jpg">
                                 {else}
