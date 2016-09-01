@@ -344,9 +344,7 @@
                                             {if $image[1]}{$image[1]}:{/if} {$image[2]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|default:'(No caption)'}
                                         </h6>
                                         {if $image[3]==1}
-                                        <p>
-                                            (image of {$image[5]} from folder {$image[4]})
-                                        </p>
+                                        <img class='img-responsive' src='{$placeholder_image_url}'>
                                         {elseif $image[3]==5 or $image[3]==8 or $image[3]==9}
                                         <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]|truncate:4:"":true}/{$image[5]}.jpg">
                                         {else}
@@ -425,9 +423,7 @@
                                             {if $image[1]}{$image[1]}:{/if} {$image[2]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|default:'(No caption)'}
                                         </h6>
                                         {if $image[3]==1}
-                                        <p>
-                                            <img class='img-responsive' src='{$placeholder_image_url}'>
-                                        </p>
+                                        <img class='img-responsive' src='{$placeholder_image_url}'>
                                         {elseif $image[3]==5 or $image[3]==8 or $image[3]==9}
                                         <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]|truncate:4:"":true}/{$image[5]}.jpg">
                                         {else}
