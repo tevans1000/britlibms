@@ -106,6 +106,10 @@ $smarty -> assign('image_urls', $image_urls);
 $smarty -> assign('image_widths', $image_widths);
 $smarty -> assign('image_heights', $image_heights);
 $smarty -> assign('is_multipage_image', (count($pages)>1));
+$smarty -> assign('id', htmlspecialchars($id));  // required to link to old site
+                                                 // for images from iBase,
+                                                 // as I don't know how to
+                                                 // cook their URLs
 
 // Display
 $smarty->display('illumination.tpl');

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-31 18:45:45
+/* Smarty version 3.1.28, created on 2016-09-01 14:25:13
   from "c:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c717c942c0c8_48858103',
+  'unifunc' => 'content_57c82c39c50f09_21290430',
   'file_dependency' => 
   array (
     'cb0d0fcddf3c9f7d1fc7d292f7a4f3fdde713dd9' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1472665540,
+      1 => 1472736246,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c717c942c0c8_48858103 ($_smarty_tpl) {
+function content_57c82c39c50f09_21290430 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
@@ -1447,9 +1447,8 @@ echo $_smarty_tpl->tpl_vars['image']->value[1];?>
                                         </h6>
                                         <?php if ($_smarty_tpl->tpl_vars['image']->value[3] == 1) {?>
                                         <p>
-                                            (image of <?php echo $_smarty_tpl->tpl_vars['image']->value[5];?>
- from folder <?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
-)
+                                            <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['placeholder_image_url']->value;?>
+'>
                                         </p>
                                         <?php } elseif ($_smarty_tpl->tpl_vars['image']->value[3] == 5 || $_smarty_tpl->tpl_vars['image']->value[3] == 8 || $_smarty_tpl->tpl_vars['image']->value[3] == 9) {?>
                                         <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>

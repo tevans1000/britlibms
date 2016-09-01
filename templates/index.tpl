@@ -428,7 +428,7 @@
                                         </h6>
                                         {if $image[3]==1}
                                         <p>
-                                            (image of {$image[5]} from folder {$image[4]})
+                                            <img class='img-responsive' src='{$placeholder_image_url}'>
                                         </p>
                                         {elseif $image[3]==5 or $image[3]==8 or $image[3]==9}
                                         <img class='img-responsive' src="http://www.bl.uk/IllImages/{$image[4]}/thm/{$image[5]|truncate:4:"":true}/{$image[5]}.jpg">

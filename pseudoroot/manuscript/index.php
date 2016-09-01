@@ -69,7 +69,7 @@ foreach ($parts as $part){
     foreach ($image_list as $image){
         switch ($image[1]){
             case 1:
-                $image_url = 'http://www.bl.uk/images/bl_logo_100.gif';
+                $image_url = PLACEHOLDER_IMAGE_URL;
                 break;
             case 5: case 8: case 9:
                 $image_url = 'http://www.bl.uk/IllImages/' . $image[2]

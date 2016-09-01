@@ -44,9 +44,11 @@
                 </h3>
                 {/if}
                 {if $record[8]==1}
-                <p>
-                    (image of {$record[10]} from folder {$record[9]})
-                </p>
+                <div class='alert alert-danger'>
+                    <span class='glyphicon glyphicon-eye-close'></span>
+                    This image is not available here.
+                    You may <a href='http://www.bl.uk/catalogues/illuminatedmanuscripts/ILLUMIN.ASP?Size=mid&IllID={$id}'>view it on the old site</a> instead.
+                </div>
                 {elseif $record[8]==5 or $record[8]==8 or $record[8]==9}
                 <img class='img-responsive' src="http://www.bl.uk/IllImages/{$record[9]}/big/{$record[10]|truncate:4:"":true}/{$record[10]}.jpg">
                 {else}

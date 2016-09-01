@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-08-31 17:49:01
+/* Smarty version 3.1.28, created on 2016-09-01 14:50:57
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c70a7d26fe43_27353607',
+  'unifunc' => 'content_57c832410acb84_27092648',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1472662138,
+      1 => 1472737850,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c70a7d26fe43_27353607 ($_smarty_tpl) {
+function content_57c832410acb84_27092648 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
@@ -87,11 +87,12 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
                 </h3>
                 <?php }?>
                 <?php if ($_smarty_tpl->tpl_vars['record']->value[8] == 1) {?>
-                <p>
-                    (image of <?php echo $_smarty_tpl->tpl_vars['record']->value[10];?>
- from folder <?php echo $_smarty_tpl->tpl_vars['record']->value[9];?>
-)
-                </p>
+                <div class='alert alert-danger'>
+                    <span class='glyphicon glyphicon-eye-close'></span>
+                    This image is not available here.
+                    You may <a href='http://www.bl.uk/catalogues/illuminatedmanuscripts/ILLUMIN.ASP?Size=mid&IllID=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+'>view it on the old site</a> instead.
+                </div>
                 <?php } elseif ($_smarty_tpl->tpl_vars['record']->value[8] == 5 || $_smarty_tpl->tpl_vars['record']->value[8] == 8 || $_smarty_tpl->tpl_vars['record']->value[8] == 9) {?>
                 <img class='img-responsive' src="http://www.bl.uk/IllImages/<?php echo $_smarty_tpl->tpl_vars['record']->value[9];?>
 /big/<?php echo smarty_modifier_truncate($_smarty_tpl->tpl_vars['record']->value[10],4,'',true);?>
