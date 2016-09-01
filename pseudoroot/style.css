@@ -22,11 +22,6 @@ dd ul {
     display: block;
     clear: both;
 }
-.grid-item {
-    width: 38px;
-    height: 38px;
-    float: left;
-}
 .hlist li {
     display: inline;
 }
@@ -38,6 +33,11 @@ li.active a {
 }
 input {
     width: 4em;
+}
+.grid-item {
+    width: 38px;
+    height: 38px;
+    float: left;
 }
 
 .grid-item--width2 { width: 75px; }

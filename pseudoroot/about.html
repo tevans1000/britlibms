@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src='../bootstrap-extra.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' type='text/css' href='../style.css'>
+</head>
+<body>
+    <div class='container-fluid'>
+        
+        <div id='header-row' class='row'>
+            <header>
+                <div class='col-xs-2'>
+                    <nav>
+                        <a href='http://www.bl.uk' title='British Library home page' style='float: left;'>
+                            <img src='http://www.bl.uk/catalogues/illuminatedmanuscripts/images/logo.gif' alt='Home'>
+                        </a>
+                        <ul style='position: relative; left: 1em; list-style-type: none;'>
+                            <li>
+                                <a href='results'>
+                                    Browse
+                                </a>
+                            </li>
+                            <li>
+                                <a href='http://www.bl.uk/catalogues/illuminatedmanuscripts/welcome.htm'>
+                                    Search
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class='col-xs-10'>
+                    <h3>
+                        About Browsing the Catalogue of Illuminated Manuscripts
+                    </h3>
+                </div>
+            </header>
+        </div> <!-- end of header-row -->
+        
+        <div id='content-row' class='row'>
+            <div class='col-xs-12'>
+                <p>
+                    This interface to the British Library's collection
+                    of illuminated manuscripts was created by Thomas
+                    Evans as a final project for MSc Computer Science
+                    at University College London.
+                </p>
+                <p>
+                    It aims to be more &quot;generous&quot; than
+                    <a href='http://www.bl.uk/catalogues/illuminatedmanuscripts/welcome.htm'>
+                        the old interface
+                    </a>
+                    so that you can discover logical groupings of manuscripts.
+                </p>
+                <h2>
+                    Acknowledgements
+                </h2>
+                <dl>
+                    <dt>
+                        Inspiration
+                    </dt>
+                    <dd>
+                        <a href='http://http://www.printsandprintmaking.gov.au/explore/'>
+                            Australian Prints + Printmaking
+                        </a>
+                        (mostly)
+                    </dd>
+                    <dt>
+                        British Library
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                Mia Ridge &mdash; supervisor
+                            </li>
+                            <li>
+                                Chloe Crowder &mdash; provided database
+                            </li>
+                        </ul>
+                    </dd>
+                    <dt>
+                        University College London
+                    </dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                Dr Graham Roberts &mdash; supervisor
+                            </li>
+                            <li>
+                                Neil Daeche &mdash; virtual development machine set-up &amp; support
+                            </li>
+                            <li>
+                                Bridget Kenyon &amp; John Andrews &mdash; preliminary vulnerability scanning
+                            </li>
+                        </ul>
+                    </dd>
+                    <dt>
+                        Styling
+                    </dt>
+                    <dd>
+                        Mainly
+                        <a href='http://getbootstrap.com/'>
+                            BootStrap
+                        </a>
+                        (with a few alterations) and
+                        <a href='http://masonry.desandro.com/'>
+                            Masonry
+                        </a>
+                        for image grids
+                    </dd>
+                </dl>
+            </div>
+        </div> <!-- end of content-row -->
+    </div>
+    <!--BeginBLNedstat-->
+    <script src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    var bl_pu = bl_ned_url();
+    </script>
+    <!-- Begin CMC v.1.0.1 -->
+    <script type="text/javascript">
+    // <![CDATA[
+    function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+    sitestat(bl_pu);
+    // ]]>
+    </script>
+    <noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+    <!-- End CMC -->
+    <!--EndBLNedstat-->
+</body>
+</html>

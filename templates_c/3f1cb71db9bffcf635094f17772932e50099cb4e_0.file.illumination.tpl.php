@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-01 14:50:57
+/* Smarty version 3.1.28, created on 2016-09-01 20:26:30
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c832410acb84_27092648',
+  'unifunc' => 'content_57c880e6c41582_84561399',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1472737850,
+      1 => 1472757977,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c832410acb84_27092648 ($_smarty_tpl) {
+function content_57c880e6c41582_84561399 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
@@ -52,13 +52,37 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
     <div class='container-fluid'>
         
         <div id='header-row' class='row'>
-            <div class='col-sm-12'>
-                <header>
-                    <h2>
-                        Header
-                    </h2>
-                </header>
-            </div>
+            <header>
+                <div class='col-xs-2'>
+                    <nav>
+                        <a href='http://www.bl.uk' title='British Library home page' style='float: left;'>
+                            <img src='http://www.bl.uk/catalogues/illuminatedmanuscripts/images/logo.gif' alt='Home'>
+                        </a>
+                        <ul style='position: relative; left: 1em; list-style-type: none;'>
+                            <li>
+                                <a href='../results'>
+                                    Browse
+                                </a>
+                            </li>
+                            <li>
+                                <a href='http://www.bl.uk/catalogues/illuminatedmanuscripts/welcome.htm'>
+                                    Search
+                                </a>
+                            </li>
+                            <li>
+                                <a href='../about.html'>
+                                    About
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class='col-xs-10'>
+                    <h3>
+                        Browsing the Catalogue of Illuminated Manuscripts
+                    </h3>
+                </div>
+            </header>
         </div> <!-- end of header-row -->
         
         <div id='content-row' class='row'>
@@ -239,39 +263,29 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_2_saved_item;
             </div>
         </div> <!-- end of content-row -->
         
-        <div class='row'>
-            <div class='col-sm-12'>
-                <footer>
-                    <h2>
-                        Footer
-                    </h2>
-                </footer>
-            </div>
-        </div>
-        
     </div>
 
-<!--BeginBLNedstat-->
-<?php echo '<script'; ?>
+    <!--BeginBLNedstat-->
+    <?php echo '<script'; ?>
  src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
+    <?php echo '<script'; ?>
  type="text/javascript">
-var bl_pu = bl_ned_url();
-<?php echo '</script'; ?>
+    var bl_pu = bl_ned_url();
+    <?php echo '</script'; ?>
 >
-<!-- Begin CMC v.1.0.1 -->
-<?php echo '<script'; ?>
+    <!-- Begin CMC v.1.0.1 -->
+    <?php echo '<script'; ?>
  type="text/javascript">
-// <![CDATA[
-function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
-sitestat(bl_pu);
-// ]]>
-<?php echo '</script'; ?>
+    // <![CDATA[
+    function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+    sitestat(bl_pu);
+    // ]]>
+    <?php echo '</script'; ?>
 >
-<noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
-<!-- End CMC -->
-<!--EndBLNedstat-->
+    <noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+    <!-- End CMC -->
+    <!--EndBLNedstat-->
 </body>
 </html>
 <?php }

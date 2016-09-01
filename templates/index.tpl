@@ -14,13 +14,32 @@
     <div class='container-fluid'>
         
         <div id='header-row' class='row'>
-            <div class='col-sm-12'>
-                <header>
-                    <h2>
-                        Header
-                    </h2>
-                </header>
-            </div>
+            <header>
+                <div class='col-xs-2'>
+                    <nav>
+                        <a href='http://www.bl.uk' title='British Library home page' style='float: left;'>
+                            <img src='http://www.bl.uk/catalogues/illuminatedmanuscripts/images/logo.gif' alt='Home'>
+                        </a>
+                        <ul style='position: relative; left: 1em; list-style-type: none;'>
+                            <li>
+                                <a href='http://www.bl.uk/catalogues/illuminatedmanuscripts/welcome.htm'>
+                                    Search
+                                </a>
+                            </li>
+                            <li>
+                                <a href='../about.html'>
+                                    About
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class='col-xs-10'>
+                    <h3>
+                        Browsing the Catalogue of Illuminated Manuscripts
+                    </h3>
+                </div>
+            </header>
         </div> <!-- end of header-row -->
         
         <div id='content-row' class='row'>
@@ -483,32 +502,22 @@
         </div> <!-- end of pagination-row -->
         {/if}
         
-        <div class='row'>
-            <div class='col-sm-12'>
-                <footer>
-                    <h2>
-                        Footer
-                    </h2>
-                </footer>
-            </div>
-        </div>
-        
     </div>
-
-<!--BeginBLNedstat-->
-<script src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"></script>
-<script type="text/javascript">
-var bl_pu = bl_ned_url();
-</script>
-<!-- Begin CMC v.1.0.1 -->
-<script type="text/javascript">
-// <![CDATA[
-function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
-sitestat(bl_pu);
-// ]]>
-</script>
-<noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
-<!-- End CMC -->
-<!--EndBLNedstat-->
+    
+    <!--BeginBLNedstat-->
+    <script src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    var bl_pu = bl_ned_url();
+    </script>
+    <!-- Begin CMC v.1.0.1 -->
+    <script type="text/javascript">
+    // <![CDATA[
+    function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+    sitestat(bl_pu);
+    // ]]>
+    </script>
+    <noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+    <!-- End CMC -->
+    <!--EndBLNedstat-->
 </body>
 </html>

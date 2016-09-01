@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-01 15:00:27
+/* Smarty version 3.1.28, created on 2016-09-01 20:23:02
   from "c:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c8347ba6b676_84154591',
+  'unifunc' => 'content_57c88016ce9ba5_91230591',
   'file_dependency' => 
   array (
     'cb0d0fcddf3c9f7d1fc7d292f7a4f3fdde713dd9' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1472738392,
+      1 => 1472757774,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c8347ba6b676_84154591 ($_smarty_tpl) {
+function content_57c88016ce9ba5_91230591 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
@@ -47,13 +47,32 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
     <div class='container-fluid'>
         
         <div id='header-row' class='row'>
-            <div class='col-sm-12'>
-                <header>
-                    <h2>
-                        Header
-                    </h2>
-                </header>
-            </div>
+            <header>
+                <div class='col-xs-2'>
+                    <nav>
+                        <a href='http://www.bl.uk' title='British Library home page' style='float: left;'>
+                            <img src='http://www.bl.uk/catalogues/illuminatedmanuscripts/images/logo.gif' alt='Home'>
+                        </a>
+                        <ul style='position: relative; left: 1em; list-style-type: none;'>
+                            <li>
+                                <a href='http://www.bl.uk/catalogues/illuminatedmanuscripts/welcome.htm'>
+                                    Search
+                                </a>
+                            </li>
+                            <li>
+                                <a href='../about.html'>
+                                    About
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class='col-xs-10'>
+                    <h3>
+                        Browsing the Catalogue of Illuminated Manuscripts
+                    </h3>
+                </div>
+            </header>
         </div> <!-- end of header-row -->
         
         <div id='content-row' class='row'>
@@ -1573,40 +1592,29 @@ $_smarty_tpl->tpl_vars['arg'] = $__foreach_val_39_saved_key;
         </div> <!-- end of pagination-row -->
         <?php }?>
         
-        <div class='row'>
-            <div class='col-sm-12'>
-                <footer>
-                    <h2>
-                        Footer
-                    </h2>
-                </footer>
-            </div>
-        </div>
-        
     </div>
-
-<!--BeginBLNedstat-->
-<?php echo '<script'; ?>
+    
+    <!--BeginBLNedstat-->
+    <?php echo '<script'; ?>
  src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
+    <?php echo '<script'; ?>
  type="text/javascript">
-var bl_pu = bl_ned_url();
-<?php echo '</script'; ?>
+    var bl_pu = bl_ned_url();
+    <?php echo '</script'; ?>
 >
-<!-- Begin CMC v.1.0.1 -->
-<?php echo '<script'; ?>
+    <!-- Begin CMC v.1.0.1 -->
+    <?php echo '<script'; ?>
  type="text/javascript">
-// <![CDATA[
-function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
-sitestat(bl_pu);
-// ]]>
-<?php echo '</script'; ?>
+    // <![CDATA[
+    function sitestat(u) { var d=document,l=d.location;ns_pixelUrl=u+"&ns__t="+(new Date().getTime());u=ns_pixelUrl+"&ns_c="+((d.characterSet)?d.characterSet:d.defaultCharset)+"&ns_ti="+escape(d.title)+"&ns_jspageurl="+escape(l&&l.href?l.href:d.URL)+"&ns_referrer="+escape(d.referrer);(d.images)?new Image().src=u:d.write('<'+'p><img src="'+u+'" height="1" width="1" alt="*"><'+'/p>'); } ;
+    sitestat(bl_pu);
+    // ]]>
+    <?php echo '</script'; ?>
 >
-<noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
-<!-- End CMC -->
-<!--EndBLNedstat-->
+    <noscript><p><img src="//uk.sitestat.com/bl/test/s?no_script_pages" height="1" width="1" alt="*"/></p></noscript>
+    <!-- End CMC -->
+    <!--EndBLNedstat-->
 </body>
-</html>
-<?php }
+</html><?php }
 }
