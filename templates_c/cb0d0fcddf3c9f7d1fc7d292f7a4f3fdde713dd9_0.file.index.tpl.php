@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-01 20:23:02
+/* Smarty version 3.1.28, created on 2016-09-02 23:54:34
   from "c:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c88016ce9ba5_91230591',
+  'unifunc' => 'content_57ca032aa69c55_41697743',
   'file_dependency' => 
   array (
     'cb0d0fcddf3c9f7d1fc7d292f7a4f3fdde713dd9' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1472757774,
+      1 => 1472856865,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c88016ce9ba5_91230591 ($_smarty_tpl) {
+function content_57ca032aa69c55_41697743 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
@@ -39,6 +39,19 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
 >
     <?php echo '<script'; ?>
  src='../bootstrap-extra.js'><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+>
+        function validateDateForm() {
+            var x = document.forms['date-form']
+            var start = x['yearstart'];
+            var end = x['yearend'];
+            if (start != '' && end != '' && start.value>end.value) {
+                alert('Start date must precede end date.');
+                return false;
+            }
+        }
+    <?php echo '</script'; ?>
 >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' type='text/css' href='../style.css'>
@@ -144,7 +157,7 @@ $__foreach_list_1_saved_local_item = $_smarty_tpl->tpl_vars['list'];
                         <div id='<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
 ' class='tab-pane <?php if ($_smarty_tpl->tpl_vars['list']->first) {?>active<?php }?>'>
                             <?php if ($_smarty_tpl->tpl_vars['name']->value == 'date') {?>
-                            <form class='form-inline' role='form' method='get'>
+                            <form id='date-form' class='form-inline' role='form' method='get' onsubmit='return validateDateForm()'>
                                 <div class='form-group'>
                                     <label for='yearstart'>From year:</label>
                                     <input type='number' min='300' max='1873' name='yearstart'>

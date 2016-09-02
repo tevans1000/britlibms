@@ -57,6 +57,10 @@ foreach (unserialize(GETTABLES) as $name){
         case 'collection': case 'yearstart': case 'yearend':
             if (isset($_GET[$name])){
                 $params[$name] = (int)$_GET[$name];
+                if (($name == 'yearstart' or $name == 'yearend')
+                    and $params[$name] == 0){
+                    unset($params[$name]);
+                }
             }
             break;
         default:
@@ -73,6 +77,7 @@ foreach (unserialize(GETTABLES) as $name){
             }
     }
 }
+// get sorting order
 if (isset($_GET['sort'])){
     if (in_array(strtolower($_GET['sort']), unserialize(SORTINGS)[$params['grouping']])){
         //echo(strtolower($_GET['sort']) . ' in ' . SORTINGS . '<br>');

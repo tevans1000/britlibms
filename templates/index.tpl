@@ -7,6 +7,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src='../bootstrap-extra.js'></script>
+    <script>
+        function validateDateForm() {
+            var x = document.forms['date-form']
+            var start = x['yearstart'];
+            var end = x['yearend'];
+            if (start != '' && end != '' && start.value>end.value) {
+                alert('Start date must precede end date.');
+                return false;
+            }
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' type='text/css' href='../style.css'>
 </head>
@@ -66,7 +77,7 @@
                         {foreach $filter_lists as $name => $list}
                         <div id='{$name}' class='tab-pane {if $list@first}active{/if}'>
                             {if $name == 'date'}
-                            <form class='form-inline' role='form' method='get'>
+                            <form id='date-form' class='form-inline' role='form' method='get' onsubmit='return validateDateForm()'>
                                 <div class='form-group'>
                                     <label for='yearstart'>From year:</label>
                                     <input type='number' min='300' max='1873' name='yearstart'>
