@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-02 18:31:08
+/* Smarty version 3.1.28, created on 2016-09-03 15:09:30
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57c9b75c75ddf6_24763411',
+  'unifunc' => 'content_57cad99a043918_46525511',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1472837465,
+      1 => 1472911764,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57c9b75c75ddf6_24763411 ($_smarty_tpl) {
+function content_57cad99a043918_46525511 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
@@ -101,7 +101,7 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
 
                 </h1>
                 <h2>
-                    from <?php echo (($tmp = @smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['record']->value[6],'/~([^~]*)~/','<i>\1</i>'))===null||$tmp==='' ? 'an untitled part' : $tmp);?>
+                    from <?php echo (($tmp = @smarty_modifier_regex_replace(smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['record']->value[6],'/~([^~]*)~/','<i>\1</i>'),'/\(index [^\)]*\)/',''))===null||$tmp==='' ? 'an untitled part' : $tmp);?>
 
                 </h2>
                 <?php if ($_smarty_tpl->tpl_vars['record']->value[5]) {?>
@@ -175,7 +175,7 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_0_saved_item;
                 <?php }?>
                 <?php if ($_smarty_tpl->tpl_vars['same_part']->value) {?>
                 <h2>
-                    Other images from <?php echo (($tmp = @smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['record']->value[6],'/~([^~]*)~/','<i>\1</i>'))===null||$tmp==='' ? 'this part' : $tmp);?>
+                    Other images from <?php echo (($tmp = @smarty_modifier_regex_replace(smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['record']->value[6],'/~([^~]*)~/','<i>\1</i>'),'/\(index [^\)]*\)/',''))===null||$tmp==='' ? 'this part' : $tmp);?>
 
                 </h2>
                 <?php if (!$_smarty_tpl->tpl_vars['record']->value[6]) {?>

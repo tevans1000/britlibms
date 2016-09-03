@@ -60,7 +60,7 @@
                     {$record[4]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|default:'(untitled)'}
                 </h1>
                 <h2>
-                    from {$record[6]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|default:'an untitled part'}
+                    from {$record[6]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|regex_replace:'/\(index [^\)]*\)/':''|default:'an untitled part'}
                 </h2>
                 {if $record[5]}
                 <h3>
@@ -100,7 +100,7 @@
                 {/if}
                 {if $same_part}
                 <h2>
-                    Other images from {$record[6]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|default:'this part'}
+                    Other images from {$record[6]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|regex_replace:'/\(index [^\)]*\)/':''|default:'this part'}
                 </h2>
                 {if !$record[6]}
                 <aside>
