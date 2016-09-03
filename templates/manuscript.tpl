@@ -151,14 +151,22 @@
                     </div>
                     <div id='part{$details[10]}-details-list' class='collapse'>
                     <dl>
+                        {if $details[14]}
                         <dt>
                             Origin
+                        </dt>
+                        <dd class='oneline'>
+                            {$details[14]}
+                        </dd>
+                        {/if}
+                        <dt>
+                            Origin List
                         </dt>
                         <dd>
                             <ul>
                                 {foreach $regions[$details[11]] as $region}
                                 <li>
-                                    <a href='../results?region=[{$region[0]}]'>
+                                    <a href='../results?region=[{$region[0]}]&amp;grouping=p'>
                                         {$region[1]}
                                     </a>
                                 </li>
@@ -180,7 +188,7 @@
                             <ul>
                                 {foreach $languages[$details[11]] as $lang}
                                 <li>
-                                    <a href='../results?language=[{$lang[0]}]'>
+                                    <a href='../results?language=[{$lang[0]}]&amp;grouping=p'>
                                         {$lang[1]}
                                     </a>
                                 </li>
@@ -193,7 +201,7 @@
                         </dt>
                         <dd class='oneline'>
                             {if $details[12] and $details[13]}
-                            <a href='../results?yearstart={$details[12]}&amp;yearend={$details[13]}'>
+                            <a href='../results?yearstart={$details[12]}&amp;yearend={$details[13]}&amp;grouping=p'>
                             {/if}
                             {$details[3]}
                             {if $details[12] and $details[13]}
