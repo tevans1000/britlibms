@@ -170,8 +170,11 @@ $stmt -> setFetchMode(PDO::FETCH_ASSOC);
 $result = $stmt -> fetchAll();
 $rescount = $result[0]['rescount'];
 // calculate pagination-related variables
-$offset = RESULTS_PER_PAGE * ($pageno - 1);
 $maxpage = ceil($rescount/RESULTS_PER_PAGE);
+if ($pageno > $maxpage){
+    $pageno = 1;
+}
+$offset = RESULTS_PER_PAGE * ($pageno - 1);
 
 ////////////
 // Do SQL //
