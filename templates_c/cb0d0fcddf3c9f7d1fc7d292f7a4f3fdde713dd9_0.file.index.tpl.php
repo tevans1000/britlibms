@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-03 14:49:25
+/* Smarty version 3.1.28, created on 2016-09-03 19:38:00
   from "c:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57cad4e5286088_87925607',
+  'unifunc' => 'content_57cb1888464085_61159135',
   'file_dependency' => 
   array (
     'cb0d0fcddf3c9f7d1fc7d292f7a4f3fdde713dd9' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1472910504,
+      1 => 1472927862,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57cad4e5286088_87925607 ($_smarty_tpl) {
+function content_57cb1888464085_61159135 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
@@ -44,9 +44,9 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
 >
         function validateDateForm() {
             var x = document.forms['date-form']
-            var start = x['yearstart'];
-            var end = x['yearend'];
-            if (start != '' && end != '' && start.value>end.value) {
+            var start = x['yearstart'].value;
+            var end = x['yearend'].value;
+            if (start != ''  && end != '' && parseInt(start)>parseInt(end)) {
                 alert('Start date must precede end date.');
                 return false;
             }

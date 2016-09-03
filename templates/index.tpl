@@ -10,9 +10,9 @@
     <script>
         function validateDateForm() {
             var x = document.forms['date-form']
-            var start = x['yearstart'];
-            var end = x['yearend'];
-            if (start != '' && end != '' && start.value>end.value) {
+            var start = x['yearstart'].value;
+            var end = x['yearend'].value;
+            if (start != ''  && end != '' && parseInt(start)>parseInt(end)) {
                 alert('Start date must precede end date.');
                 return false;
             }
