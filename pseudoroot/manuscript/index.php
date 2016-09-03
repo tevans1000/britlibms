@@ -2,9 +2,14 @@
 
 require_once( '../../../async/conf.php' );
 
-if (!empty($_GET['id'])){
+if (isset($_GET['id'])){
     $id = (int)$_GET['id'];
+} else {
+    $_SESSION['not_found']='m';
+    header('Location: ../results');
+    exit();
 }
+
 // Do SQL
 // details for manuscript as a whole
 $qstr  = file_get_contents(MS_SQL_DIR . "whole.sql");
@@ -12,6 +17,12 @@ $recstmt = $db->prepare($qstr);
 $recstmt->bindParam(':id', $id, PDO::PARAM_INT);
 $recstmt->execute();
 $record = $recstmt ->fetchAll(PDO::FETCH_NUM);
+
+if (!$record) {
+    $_SESSION['not_found']='m';
+    header('Location: ../results');
+    exit();
+}
 
 // details for manuscript parts
 $qstr = file_get_contents(MS_SQL_DIR . 'part.sql');

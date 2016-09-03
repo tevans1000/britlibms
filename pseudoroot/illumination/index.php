@@ -1,8 +1,13 @@
 <?php
 
 require_once( '../../../async/conf.php' );
+
 if (isset($_GET['id'])){
     $id = (int)$_GET['id'];
+} else {
+    $_SESSION['not_found']='i';
+    header('Location: ../results');
+    exit();
 }
 
 // function for extracting page numbers from foliation string; returns array
@@ -30,6 +35,12 @@ $recstmt = $db->prepare($qstr);
 $recstmt->bindParam(':id', $id, PDO::PARAM_INT);
 $recstmt->execute();
 $record = $recstmt ->fetchAll(PDO::FETCH_NUM);
+
+if (!$record) {
+    $_SESSION['not_found']='i';
+    header('Location: ../results');
+    exit();
+}
 
 // get page numbers
 $pages = foliation2pagenum($record[0][3]);

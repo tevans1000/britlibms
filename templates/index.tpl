@@ -53,6 +53,23 @@
             </header>
         </div> <!-- end of header-row -->
         
+        {if $not_found}
+        {* Row for error message if visitor redirected here from
+           invalid manuscript or illumination request *}
+        <div class='row'>
+            <div class='col-xs-12'>
+                <div class='alert alert-warning'>
+                    <a href='#' class='close' data-dismiss='alert'>
+                        <span class='glyphicon glyphicon-remove'></span>
+                    </a>
+                    <span class='glyphicon glyphicon-warning-sign'></span>
+                    The {if $not_found == 'm'}manuscript{else}illumination{/if}
+                    requested was not found.
+                </div>
+            </div>
+        </div>
+        {/if}
+        
         <div id='content-row' class='row'>
             <div id='filter-column' class='col-xs-3'>
                 <nav>

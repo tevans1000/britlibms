@@ -2,6 +2,17 @@
 
 require_once( '../../../async/conf.php' );
 
+// Check if visitor landed here from invalid manuscript / illumination request
+$not_found = '';
+if (isset($_SESSION['not_found'])){
+    switch ($_SESSION['not_found']){
+        case 'm': case 'i':  // No other values should be possible
+            $not_found = $_SESSION['not_found'];
+        default:
+            unset($_SESSION['not_found']);
+    }
+}
+
 // Define the list of filters
 define('MS_FILTER_LIST', serialize(['region', 'collection', 'language',
                                     'attribution', 'scribe', 'date',
@@ -368,6 +379,7 @@ foreach ($params as $foo => $bar){ // $name => $value doesn't fucking work
 }
 
 // Assign variables
+$smarty->assign('not_found',$not_found);
 $smarty->assign('firstret',1+$offset);
 $smarty->assign('lastret',count($result)+$offset);
 $smarty->assign('pageno',$pageno);
