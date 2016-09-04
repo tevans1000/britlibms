@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-04 17:57:32
+/* Smarty version 3.1.28, created on 2016-09-04 20:49:06
   from "c:\wamp\www\britlibms\sync\templates\manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57cc527c5381f8_21874483',
+  'unifunc' => 'content_57cc7ab2093b53_29898445',
   'file_dependency' => 
   array (
     '6fcb03d119fd469a2b6825c0daaf1e04a09c44e3' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\manuscript.tpl',
-      1 => 1473007947,
+      1 => 1473018423,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57cc527c5381f8_21874483 ($_smarty_tpl) {
+function content_57cc7ab2093b53_29898445 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/bri
         <?php echo $_smarty_tpl->tpl_vars['record']->value[0];?>
  <?php echo $_smarty_tpl->tpl_vars['record']->value[1];?>
 
-        mdash; British Library cat6alogue of Illuminated Manuscripts
+        &mdash; British Library catalogue of Illuminated Manuscripts
     </title>
 </head>
 <body>
@@ -97,10 +97,19 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/bri
  <?php echo $_smarty_tpl->tpl_vars['record']->value[1];?>
 
                 </h1>
+                <?php if ($_smarty_tpl->tpl_vars['too_many_images']->value) {?>
+                <div class='alert alert-warning'>
+                    <span class='glyphicon glyphicon-picture'></span>
+                    <span class='glyphicon glyphicon-warning-sign'></span>
+                    This manuscript has too many images to view on one page.
+                    You can view 50 images at a time in the <a href='../gallery/?id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+'>gallery of images for this manuscript</a>.
+                </div>
+                <?php }?>
                 <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#manuscript-details-list'>
                     <span class='glyphicon glyphicon-th-list'></span> Show/hide details
                 </button>
-                <div id='manuscript-details-list' class='collapse'>
+                <div id='manuscript-details-list' class='collapse<?php if ($_smarty_tpl->tpl_vars['too_many_images']->value) {?> in<?php }?>'>
                 <dl>
                     <dt>
                         Official foliation

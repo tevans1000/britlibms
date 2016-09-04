@@ -14,7 +14,7 @@
     <link rel='stylesheet' type='text/css' href='../style.css'>
     <title>
         {$record[0]} {$record[1]}
-        mdash; British Library cat6alogue of Illuminated Manuscripts
+        &mdash; British Library catalogue of Illuminated Manuscripts
     </title>
 </head>
 <body>
@@ -59,10 +59,18 @@
                 <h1>
                     {$record[0]} {$record[1]}
                 </h1>
+                {if $too_many_images}
+                <div class='alert alert-warning'>
+                    <span class='glyphicon glyphicon-picture'></span>
+                    <span class='glyphicon glyphicon-warning-sign'></span>
+                    This manuscript has too many images to view on one page.
+                    You can view 50 images at a time in the <a href='../gallery/?id={$id}'>gallery of images for this manuscript</a>.
+                </div>
+                {/if}
                 <button type='button' class='btn btn-primary' data-toggle='collapse' data-target='#manuscript-details-list'>
                     <span class='glyphicon glyphicon-th-list'></span> Show/hide details
                 </button>
-                <div id='manuscript-details-list' class='collapse'>
+                <div id='manuscript-details-list' class='collapse{if $too_many_images} in{/if}'>
                 <dl>
                     <dt>
                         Official foliation
