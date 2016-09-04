@@ -20,6 +20,9 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' type='text/css' href='../style.css'>
+    <title>
+        Browsing &mdash; British Library cat6alogue of Illuminated Manuscripts
+    </title>
 </head>
 <body>
     <div class='container-fluid'>

@@ -12,6 +12,9 @@
     <script src='../masonry.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' type='text/css' href='../style.css'>
+    <title>
+        {$record[4]|regex_replace:'/~([^~]*)~/':'\1'|default:'untitled illumination'} &mdash; British Library cat6alogue of Illuminated Manuscripts
+    </title>
 </head>
 <body>
     <div class='container-fluid'>
