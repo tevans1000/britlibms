@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-04 17:54:29
+/* Smarty version 3.1.28, created on 2016-09-05 13:21:10
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57cc51c5b5c9b4_44492935',
+  'unifunc' => 'content_57cd6336187085_39425971',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1473008059,
+      1 => 1473078060,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57cc51c5b5c9b4_44492935 ($_smarty_tpl) {
+function content_57cd6336187085_39425971 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
@@ -155,15 +155,15 @@ if ($__foreach_image_0_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['image']->value) {
 $__foreach_image_0_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 ?>
-                        <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value[0][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_widths']->value[0][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
+                        <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value['same_page'][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_widths']->value['same_page'][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }
-if ($_smarty_tpl->tpl_vars['image_heights']->value[0][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value[0][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
+if ($_smarty_tpl->tpl_vars['image_heights']->value['same_page'][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value['same_page'][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }?>'>
                             <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
 ' data-toggle='tooltip' title='<?php echo (($tmp = @htmlspecialchars($_smarty_tpl->tpl_vars['image']->value[5], ENT_QUOTES, 'UTF-8', true))===null||$tmp==='' ? 'untitled' : $tmp);
 if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )<?php }?>'>
-                                <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[0][$_smarty_tpl->tpl_vars['image']->value[0]];?>
+                                <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value['same_page'][$_smarty_tpl->tpl_vars['image']->value[0]];?>
 '>
                             </a>
                         </div>
@@ -177,6 +177,7 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_0_saved_item;
 ?>
                     </div>
                 <?php }?>
+                <?php if (!$_smarty_tpl->tpl_vars['too_many_in']->value['same_part']) {?>
                 <?php if ($_smarty_tpl->tpl_vars['same_part']->value) {?>
                 <h2>
                     Other images from <?php echo (($tmp = @smarty_modifier_regex_replace(smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['record']->value[6],'/~([^~]*)~/','<i>\1</i>'),'/\(index [^\)]*\)/',''))===null||$tmp==='' ? 'this part' : $tmp);?>
@@ -201,15 +202,15 @@ if ($__foreach_image_1_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['image']->value) {
 $__foreach_image_1_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 ?>
-                        <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value[1][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_widths']->value[1][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
+                        <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value['same_part'][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_widths']->value['same_part'][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }
-if ($_smarty_tpl->tpl_vars['image_heights']->value[1][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value[1][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
+if ($_smarty_tpl->tpl_vars['image_heights']->value['same_part'][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value['same_part'][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }?>'>
                             <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
 ' data-toggle='tooltip' title='<?php echo (($tmp = @htmlspecialchars($_smarty_tpl->tpl_vars['image']->value[5], ENT_QUOTES, 'UTF-8', true))===null||$tmp==='' ? 'untitled' : $tmp);
 if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )<?php }?>'>
-                                <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[1][$_smarty_tpl->tpl_vars['image']->value[0]];?>
+                                <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value['same_part'][$_smarty_tpl->tpl_vars['image']->value[0]];?>
 '>
                             </a>
                         </div>
@@ -229,8 +230,9 @@ $_smarty_tpl->tpl_vars['image'] = $__foreach_image_1_saved_item;
  <?php echo $_smarty_tpl->tpl_vars['record']->value[2];?>
 
                 </h2>
-                    <div class='grid'>
-                        <?php
+                <?php if (!$_smarty_tpl->tpl_vars['too_many_in']->value['other_part']) {?>
+                <div class='grid'>
+                    <?php
 $_from = $_smarty_tpl->tpl_vars['other_part']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -242,19 +244,19 @@ if ($__foreach_image_2_total) {
 foreach ($_from as $_smarty_tpl->tpl_vars['image']->value) {
 $__foreach_image_2_saved_local_item = $_smarty_tpl->tpl_vars['image'];
 ?>
-                        <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value[2][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_widths']->value[2][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
+                    <div class='grid-item<?php if ($_smarty_tpl->tpl_vars['image_widths']->value['other_part'][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--width<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_widths']->value['other_part'][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }
-if ($_smarty_tpl->tpl_vars['image_heights']->value[2][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value[2][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
+if ($_smarty_tpl->tpl_vars['image_heights']->value['other_part'][$_smarty_tpl->tpl_vars['image']->value[0]] > 37) {?> grid-item--height<?php echo min(4,ceil($_smarty_tpl->tpl_vars['image_heights']->value['other_part'][$_smarty_tpl->tpl_vars['image']->value[0]]/37.5));
 }?>'>
-                            <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
+                        <a href='../illumination?id=<?php echo $_smarty_tpl->tpl_vars['image']->value[0];?>
 ' data-toggle='tooltip' title='<?php echo (($tmp = @htmlspecialchars($_smarty_tpl->tpl_vars['image']->value[5], ENT_QUOTES, 'UTF-8', true))===null||$tmp==='' ? 'untitled' : $tmp);
 if ($_smarty_tpl->tpl_vars['image']->value[4]) {?> (<?php echo $_smarty_tpl->tpl_vars['image']->value[4];?>
 )<?php }?>'>
-                                <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value[2][$_smarty_tpl->tpl_vars['image']->value[0]];?>
+                            <img class='img-responsive' src='<?php echo $_smarty_tpl->tpl_vars['image_urls']->value['other_part'][$_smarty_tpl->tpl_vars['image']->value[0]];?>
 '>
-                            </a>
-                        </div>
-                        <?php
+                        </a>
+                    </div>
+                    <?php
 $_smarty_tpl->tpl_vars['image'] = $__foreach_image_2_saved_local_item;
 }
 }
@@ -262,7 +264,30 @@ if ($__foreach_image_2_saved_item) {
 $_smarty_tpl->tpl_vars['image'] = $__foreach_image_2_saved_item;
 }
 ?>
-                    </div>
+                </div>
+                <?php } else { ?>
+                <div class='alert alert-warning'>
+                    <span class='glyphicon glyphicon-picture'></span>
+                    <span class='glyphicon glyphicon-warning-sign'></span>
+                    This manuscript has too many images to view on one page.
+                    You can view 50 images at a time in the <a href='../gallery/?id=<?php echo $_smarty_tpl->tpl_vars['record']->value[0];?>
+'>gallery of images for this manuscript</a>.
+                </div>
+                <?php }?>
+                <?php }?>
+                <?php } else { ?>
+                <h2>
+                    Other images from <?php echo $_smarty_tpl->tpl_vars['record']->value[1];?>
+ <?php echo $_smarty_tpl->tpl_vars['record']->value[2];?>
+
+                </h2>
+                <div class='alert alert-warning'>
+                    <span class='glyphicon glyphicon-picture'></span>
+                    <span class='glyphicon glyphicon-warning-sign'></span>
+                    This manuscript has too many images to view on one page.
+                    You can view 50 images at a time in the <a href='../gallery/?id=<?php echo $_smarty_tpl->tpl_vars['record']->value[0];?>
+'>gallery of images for this manuscript</a>.
+                </div>
                 <?php }?>
             </div>
         </div> <!-- end of content-row -->

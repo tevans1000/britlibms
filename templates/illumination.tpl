@@ -93,14 +93,15 @@
                 </h2>
                     <div class='grid'>
                         {foreach $same_page as $image}
-                        <div class='grid-item{if $image_widths[0][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[0][$image[0]]/37.5))}{/if}{if $image_heights[0][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[0][$image[0]]/37.5))}{/if}'>
+                        <div class='grid-item{if $image_widths['same_page'][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths['same_page'][$image[0]]/37.5))}{/if}{if $image_heights['same_page'][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights['same_page'][$image[0]]/37.5))}{/if}'>
                             <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|escape|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
-                                <img class='img-responsive' src='{$image_urls[0][$image[0]]}'>
+                                <img class='img-responsive' src='{$image_urls['same_page'][$image[0]]}'>
                             </a>
                         </div>
                         {/foreach}
                     </div>
                 {/if}
+                {if !$too_many_in['same_part']}
                 {if $same_part}
                 <h2>
                     Other images from {$record[6]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|regex_replace:'/\(index [^\)]*\)/':''|default:'this part'}
@@ -113,9 +114,9 @@
                 {/if}
                     <div class='grid'>
                         {foreach $same_part as $image}
-                        <div class='grid-item{if $image_widths[1][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[1][$image[0]]/37.5))}{/if}{if $image_heights[1][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[1][$image[0]]/37.5))}{/if}'>
+                        <div class='grid-item{if $image_widths['same_part'][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths['same_part'][$image[0]]/37.5))}{/if}{if $image_heights['same_part'][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights['same_part'][$image[0]]/37.5))}{/if}'>
                             <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|escape|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
-                                <img class='img-responsive' src='{$image_urls[1][$image[0]]}'>
+                                <img class='img-responsive' src='{$image_urls['same_part'][$image[0]]}'>
                             </a>
                         </div>
                         {/foreach}
@@ -125,15 +126,35 @@
                 <h2>
                     Other images from {$record[1]} {$record[2]}
                 </h2>
-                    <div class='grid'>
-                        {foreach $other_part as $image}
-                        <div class='grid-item{if $image_widths[2][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[2][$image[0]]/37.5))}{/if}{if $image_heights[2][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[2][$image[0]]/37.5))}{/if}'>
-                            <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|escape|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
-                                <img class='img-responsive' src='{$image_urls[2][$image[0]]}'>
-                            </a>
-                        </div>
-                        {/foreach}
+                {if !$too_many_in['other_part']}
+                <div class='grid'>
+                    {foreach $other_part as $image}
+                    <div class='grid-item{if $image_widths['other_part'][$image[0]] > 37} grid-item--width{min(4,ceil($image_widths['other_part'][$image[0]]/37.5))}{/if}{if $image_heights['other_part'][$image[0]] > 37} grid-item--height{min(4,ceil($image_heights['other_part'][$image[0]]/37.5))}{/if}'>
+                        <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|escape|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
+                            <img class='img-responsive' src='{$image_urls['other_part'][$image[0]]}'>
+                        </a>
                     </div>
+                    {/foreach}
+                </div>
+                {else}
+                <div class='alert alert-warning'>
+                    <span class='glyphicon glyphicon-picture'></span>
+                    <span class='glyphicon glyphicon-warning-sign'></span>
+                    This manuscript has too many images to view on one page.
+                    You can view 50 images at a time in the <a href='../gallery/?id={$record[0]}'>gallery of images for this manuscript</a>.
+                </div>
+                {/if}
+                {/if}
+                {else}
+                <h2>
+                    Other images from {$record[1]} {$record[2]}
+                </h2>
+                <div class='alert alert-warning'>
+                    <span class='glyphicon glyphicon-picture'></span>
+                    <span class='glyphicon glyphicon-warning-sign'></span>
+                    This manuscript has too many images to view on one page.
+                    You can view 50 images at a time in the <a href='../gallery/?id={$record[0]}'>gallery of images for this manuscript</a>.
+                </div>
                 {/if}
             </div>
         </div> <!-- end of content-row -->

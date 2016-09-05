@@ -44,7 +44,7 @@ if (!$record) {
 
 // get page numbers
 $pages = foliation2pagenum($record[0][3]);
-//*
+/*
 foreach ($pages as $page){
     //echo("$page<br>");
 }
@@ -62,20 +62,20 @@ $relstmt->execute();
 $related = $relstmt->fetchAll(PDO::FETCH_NUM);
 
 // categorise images as same page, same part or other part
-$same_page = array();
-$same_part = array();
-$other_part = array();
+$image_lists['same_page'] = array();
+$image_lists['same_part'] = array();
+$image_lists['other_part'] = array();
 foreach ($related as $img){
     if ($img[6] == $record[0][12]){
         if (array_intersect($pages, foliation2pagenum($img[4]))){
-            $same_page[] = $img;
+            $image_lists['same_page'][] = $img;
             //echo("page: " . $img[3] . "<br>");
         } else {
-            $same_part[] = $img;
+            $image_lists['same_part'][] = $img;
             //echo("part: " . $img[3] . "<br>");
         }
     } else {
-        $other_part[] = $img;
+        $image_lists['other_part'][] = $img;
         //echo("other: " . $img[3] . "<br>");
     }
 }
@@ -84,35 +84,41 @@ foreach ($related as $img){
 $image_urls = array();
 $image_widths = array();
 $image_heights = array();
-$n=0;
-foreach ([$same_page,$same_part,$other_part] as $image_list){
-    foreach ($image_list as $image){
-        switch ($image[1]){
-            case 1:
-                $image_url = 'http://www.bl.uk/images/bl_logo_100.gif';
-                break;
-            case 5: case 8: case 9:
-                $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
-                             . '/thm/' . substr($image[3], 0, 4) . '/'
-                             . $image[3] . '.jpg';
-                break;
-            default:
-                $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
-                             . '/thm/' . $image[3] . '.jpg';
+$too_many_in = array();
+foreach (['same_page','same_part','other_part'] as $list_name){
+    $count = isset($count) ? ($count + count($image_lists[$list_name])) : 0;
+    if ($count <= 100){
+        foreach ($image_lists[$list_name] as $image){        
+            switch ($image[1]){
+                case 1:
+                    $image_url = 'http://www.bl.uk/images/bl_logo_100.gif';
+                    break;
+                case 5: case 8: case 9:
+                    $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
+                                 . '/thm/' . substr($image[3], 0, 4) . '/'
+                                 . $image[3] . '.jpg';
+                    break;
+                default:
+                    $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
+                                 . '/thm/' . $image[3] . '.jpg';
+            }
+            $image_size = getimagesize($image_url);
+            $image_urls[$list_name][$image[0]] = $image_url;
+            $image_widths[$list_name][$image[0]] = $image_size[0];
+            $image_heights[$list_name][$image[0]] = $image_size[1];
         }
-        $image_size = getimagesize($image_url);
-        $image_urls[$n][$image[0]] = $image_url;
-        $image_widths[$n][$image[0]] = $image_size[0];
-        $image_heights[$n][$image[0]] = $image_size[1];
+        $too_many_in[$list_name] = false;
+    } else {
+        $too_many_in[$list_name] = true;
     }
-    $n+=1;
 }
 
 // Assign variables
 $smarty->assign('record',$record[0]);
-$smarty -> assign('same_page', $same_page);
-$smarty -> assign('same_part', $same_part);
-$smarty -> assign('other_part', $other_part);
+$smarty -> assign('same_page', $image_lists['same_page']);
+$smarty -> assign('same_part', $image_lists['same_part']);
+$smarty -> assign('other_part', $image_lists['other_part']);
+$smarty -> assign('too_many_in', $too_many_in);
 $smarty -> assign('image_urls', $image_urls);
 $smarty -> assign('image_widths', $image_widths);
 $smarty -> assign('image_heights', $image_heights);
