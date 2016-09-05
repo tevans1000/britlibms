@@ -56,14 +56,17 @@
         <div id='content-row' class='row'>
             <div class='col-sm-12'>
                 <h1>
-                    <a href='../manuscript?id={$record[0]}#part{$record[7]}'>
+                    <a href='../manuscript?id={$record[0]}'>
                         {$record[1]} {$record[2]}
                     </a>
                     {if $record[3]}({$record[3]}){/if} &mdash;
                     {$record[4]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|default:'(untitled)'}
                 </h1>
                 <h2>
-                    from {$record[6]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|regex_replace:'/\(index [^\)]*\)/':''|default:'an untitled part'}
+                    from
+                    <a href='../manuscript?id={$record[0]}#part{$record[7]}'>
+                        {$record[6]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|regex_replace:'/\(index [^\)]*\)/':''|default:'this part'}
+                    </a>
                 </h2>
                 {if $record[5]}
                 <h3>
@@ -104,7 +107,10 @@
                 {if !$too_many_in['same_part']}
                 {if $same_part}
                 <h2>
-                    Other images from {$record[6]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|regex_replace:'/\(index [^\)]*\)/':''|default:'this part'}
+                    Other images from
+                    <a href='../manuscript?id={$record[0]}#part{$record[7]}'>
+                        {$record[6]|regex_replace:'/~([^~]*)~/':'<i>\1</i>'|regex_replace:'/\(index [^\)]*\)/':''|default:'this part'}
+                    </a>
                 </h2>
                 {if !$record[6]}
                 <aside>
@@ -124,7 +130,10 @@
                 {/if}
                 {if $other_part}
                 <h2>
-                    Other images from {$record[1]} {$record[2]}
+                    Other images from
+                    <a href='../manuscript?id={$record[0]}'>
+                        {$record[1]} {$record[2]}
+                    </a>
                 </h2>
                 {if !$too_many_in['other_part']}
                 <div class='grid'>
@@ -147,7 +156,10 @@
                 {/if}
                 {else}
                 <h2>
-                    Other images from {$record[1]} {$record[2]}
+                    Other images from
+                    <a href='../manuscript?id={$record[0]}'>
+                        {$record[1]} {$record[2]}
+                    </a>
                 </h2>
                 <div class='alert alert-warning'>
                     <span class='glyphicon glyphicon-picture'></span>
