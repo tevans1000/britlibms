@@ -171,7 +171,7 @@
                             {$details[14]}
                         </dd>
                         {/if}
-                        {if $details[11]}
+                        {if $regions[$details[11]]}
                         <dt>
                             Origin List
                         </dt>
