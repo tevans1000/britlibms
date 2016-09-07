@@ -171,6 +171,7 @@
                             {$details[14]}
                         </dd>
                         {/if}
+                        {if $details[11]}
                         <dt>
                             Origin List
                         </dt>
@@ -185,6 +186,7 @@
                                 {/foreach}
                             </ul>
                         </dd>
+                        {/if}
                         {if $details[4]}
                         <dt>
                             Language
