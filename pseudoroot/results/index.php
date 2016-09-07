@@ -259,7 +259,7 @@ foreach (unserialize(MS_FILTER_LIST) as $filter){
         case 'date':
             // Determine min start and max end dates in current subset
             $qstr  = file_get_contents(FILTER_SQL_DIR . "$filter/bounds.sql");
-            $qstr .= "WHERE v.$id_type IN ( $subqstr ) ";
+            $qstr .= " AND v.$id_type IN ( $subqstr ) ";
             //echo($qstr);
             $stmt = $db->prepare($qstr);
             bind_subq($stmt);
