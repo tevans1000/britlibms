@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-08 15:17:12
+/* Smarty version 3.1.28, created on 2016-09-08 15:51:23
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57d172e8289700_12344407',
+  'unifunc' => 'content_57d17aeb6287c3_29251165',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1473344215,
+      1 => 1473346211,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57d172e8289700_12344407 ($_smarty_tpl) {
+function content_57d17aeb6287c3_29251165 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
@@ -49,7 +49,7 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
     <link rel='stylesheet' type='text/css' href='../style.css'>
     <title>
         <?php echo (($tmp = @smarty_modifier_regex_replace($_smarty_tpl->tpl_vars['record']->value[4],'/~([^~]*)~/','\1'))===null||$tmp==='' ? 'untitled illumination' : $tmp);?>
- &mdash; British Library cat6alogue of Illuminated Manuscripts
+ &mdash; British Library catalogue of Illuminated Manuscripts
     </title>
 </head>
 <body>

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-05 16:06:48
+/* Smarty version 3.1.28, created on 2016-09-08 15:51:20
   from "c:\wamp\www\britlibms\sync\templates\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57cd8a085bedd8_87844608',
+  'unifunc' => 'content_57d17ae8e55af1_35077468',
   'file_dependency' => 
   array (
     'cb0d0fcddf3c9f7d1fc7d292f7a4f3fdde713dd9' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\index.tpl',
-      1 => 1473088003,
+      1 => 1473289988,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57cd8a085bedd8_87844608 ($_smarty_tpl) {
+function content_57d17ae8e55af1_35077468 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_capitalize')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.capitalize.php';
 if (!is_callable('smarty_modifier_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
@@ -1731,5 +1731,6 @@ $_smarty_tpl->tpl_vars['k'] = $__foreach_v_41_saved_key;
     <!-- End CMC -->
     <!--EndBLNedstat-->
 </body>
-</html><?php }
+</html>
+<?php }
 }
