@@ -36,6 +36,8 @@ $recstmt->bindParam(':id', $id, PDO::PARAM_INT);
 $recstmt->execute();
 $record = $recstmt ->fetchAll(PDO::FETCH_NUM);
 
+$description = array_filter(explode("\n", trim(preg_replace('/~([^~]*)~/', '<i>\1</i>', $record[0][11]))));
+
 if (!$record) {
     $_SESSION['not_found']='i';
     header('Location: ../results');
@@ -115,6 +117,7 @@ foreach (['same_page','same_part','other_part'] as $list_name){
 
 // Assign variables
 $smarty->assign('record',$record[0]);
+$smarty->assign('description',$description);
 $smarty -> assign('same_page', $image_lists['same_page']);
 $smarty -> assign('same_part', $image_lists['same_part']);
 $smarty -> assign('other_part', $image_lists['other_part']);

@@ -84,13 +84,15 @@
                 {else}
                 <img class='img-responsive' src="http://www.bl.uk/IllImages/{$record[9]}/big/{$record[10]}.jpg">
                 {/if}
-                {if $record[11]}
+                {if $description}
                 <h2>
                     Description
                 </h2>
+                {foreach $description as $para}
                 <p>
-                    {$record[11]}
+                    {$para}
                 </p>
+                {/foreach}
                 {/if}
                 {if $same_page}
                 <h2>
