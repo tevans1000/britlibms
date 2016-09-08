@@ -57,7 +57,7 @@
         <div id='content-row' class='row'>
             <div class='col-sm-12'>
                 <h1>
-                    Images from {$ms[0]} {$ms[1]}
+                    Images from <a href='../manuscript?id={$id}'>{$ms[0]} {$ms[1]}</a>
                 </h1>
                     <p>
                         {if $maxpage > 1}

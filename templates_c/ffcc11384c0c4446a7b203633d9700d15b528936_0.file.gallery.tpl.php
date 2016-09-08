@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-04 20:29:30
+/* Smarty version 3.1.28, created on 2016-09-08 16:57:25
   from "c:\wamp\www\britlibms\sync\templates\gallery.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57cc761a47ea45_64053981',
+  'unifunc' => 'content_57d18a65943e54_73644232',
   'file_dependency' => 
   array (
     'ffcc11384c0c4446a7b203633d9700d15b528936' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\gallery.tpl',
-      1 => 1473017350,
+      1 => 1473350238,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57cc761a47ea45_64053981 ($_smarty_tpl) {
+function content_57d18a65943e54_73644232 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -92,9 +92,10 @@ function content_57cc761a47ea45_64053981 ($_smarty_tpl) {
         <div id='content-row' class='row'>
             <div class='col-sm-12'>
                 <h1>
-                    Images from <?php echo $_smarty_tpl->tpl_vars['ms']->value[0];?>
+                    Images from <a href='../manuscript?id=<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+'><?php echo $_smarty_tpl->tpl_vars['ms']->value[0];?>
  <?php echo $_smarty_tpl->tpl_vars['ms']->value[1];?>
-
+</a>
                 </h1>
                     <p>
                         <?php if ($_smarty_tpl->tpl_vars['maxpage']->value > 1) {?>
