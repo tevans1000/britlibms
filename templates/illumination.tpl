@@ -84,12 +84,14 @@
                 {else}
                 <img class='img-responsive' src="http://www.bl.uk/IllImages/{$record[9]}/big/{$record[10]}.jpg">
                 {/if}
+                {if $record[11]}
                 <h2>
                     Description
                 </h2>
                 <p>
                     {$record[11]}
                 </p>
+                {/if}
                 {if $same_page}
                 <h2>
                     Other images from the same page{if $is_multipage_image}s{/if}

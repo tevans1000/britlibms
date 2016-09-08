@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-05 14:33:46
+/* Smarty version 3.1.28, created on 2016-09-08 15:02:18
   from "c:\wamp\www\britlibms\sync\templates\illumination.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57cd743a39ecd6_71831329',
+  'unifunc' => 'content_57d16f6aba8fc4_25158889',
   'file_dependency' => 
   array (
     '3f1cb71db9bffcf635094f17772932e50099cb4e' => 
     array (
       0 => 'c:\\wamp\\www\\britlibms\\sync\\templates\\illumination.tpl',
-      1 => 1473082422,
+      1 => 1473343320,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57cd743a39ecd6_71831329 ($_smarty_tpl) {
+function content_57d16f6aba8fc4_25158889 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.regex_replace.php';
 if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibms/sync/includes/Smarty-3.1.28/libs/plugins\\modifier.truncate.php';
 ?>
@@ -135,6 +135,7 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
 /big/<?php echo $_smarty_tpl->tpl_vars['record']->value[10];?>
 .jpg">
                 <?php }?>
+                <?php if ($_smarty_tpl->tpl_vars['record']->value[11]) {?>
                 <h2>
                     Description
                 </h2>
@@ -142,6 +143,7 @@ if (!is_callable('smarty_modifier_truncate')) require_once 'c:/wamp/www/britlibm
                     <?php echo $_smarty_tpl->tpl_vars['record']->value[11];?>
 
                 </p>
+                <?php }?>
                 <?php if ($_smarty_tpl->tpl_vars['same_page']->value) {?>
                 <h2>
                     Other images from the same page<?php if ($_smarty_tpl->tpl_vars['is_multipage_image']->value) {?>s<?php }?>
