@@ -2,6 +2,7 @@
 
 require_once( '../../../async/conf.php' );
 
+// id must be set; drop visitor on front page if not
 if (isset($_GET['id'])){
     $id = (int)$_GET['id'];
 } else {
@@ -18,27 +19,28 @@ $recstmt->bindParam(':id', $id, PDO::PARAM_INT);
 $recstmt->execute();
 $record = $recstmt ->fetchAll(PDO::FETCH_NUM);
 
+// Drop visitor on front page if record is not found
 if (!$record) {
     $_SESSION['not_found']='m';
     header('Location: ../results');
     exit();
 }
 
-// do SQL
+// do SQL for images
 $image_qstr = file_get_contents(MS_SQL_DIR . 'image.sql');
 $image_stmt = $db -> prepare($image_qstr);
 $image_stmt -> bindParam(':id', $id, PDO::PARAM_INT);
 $image_stmt -> execute();
 $image_list = $image_stmt -> fetchAll(PDO::FETCH_NUM);
 // initialise arrays for preview thumbnails
-// Must do this even if too many images to preview to prevent smarty errors
+// Must do this even if too many images to preview
+// to prevent smarty errors
 $images = array();
 $image_urls = array();
 $image_widths = array();
 $image_heights = array();
 $too_many_images = false;
-if (count($image_list) <= 100){
-    // preview images here
+if (count($image_list) <= 100){  // then preview images here.
     // get image urls & sizes for masonry
     foreach ($image_list as $image){
         switch ($image[1]){
@@ -61,10 +63,9 @@ if (count($image_list) <= 100){
         $image_heights[$image[6]][$image[0]] = $image_size[1];
     }
 } else {
-    // no preview here, link to paginated gallery
+    // don't preview here, link to paginated gallery
     $too_many_images = true;
 }
-// Images
 
 // details for manuscript parts
 $qstr = file_get_contents(MS_SQL_DIR . 'part.sql');
@@ -112,14 +113,15 @@ foreach ($parts as $part){
     }
 }
 
-// regex-ing
+// regex-ing to seperate paragraphs
+// and deal with formatting indicated by special character delimeters
 $notes = array_filter(explode("\n", trim(preg_replace('/~([^~]*)~/', '<cite>\1</cite>', $record[0][7]))));
 $provenance = array_filter(explode("\n", trim(preg_replace('/~([^~]*)~/', '<cite>\1</cite>', $record[0][6]))));
 $bib = array_filter(explode("\n", trim(preg_replace('/~([^~]*)~/', '<cite>\1</cite>', $record[0][8]))));
 $record[0][5] = preg_replace('/\^([^\^]*)\^/', '<sup>\1</sup>', $record[0][5]);
 $record[0][1] = preg_replace('/\(index[^\)]*\)/', '', $record[0][1]);
 
-// Assign variables
+// Assign variables to smarty
 $smarty->assign('id',$id);
 $smarty->assign('record',$record[0]);
 $smarty->assign('provenance', $provenance);

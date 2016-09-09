@@ -20,107 +20,96 @@
 <body>
     <div class='container-fluid'>
         
-        <div id='header-row' class='row'>
-            <header>
-                <div class='col-xs-2'>
-                    <nav>
-                        <a href='http://www.bl.uk' title='British Library home page' style='float: left;'>
-                            <img src='http://www.bl.uk/catalogues/illuminatedmanuscripts/images/logo.gif' alt='Home'>
+        <div id='header-row' class='row'><header>
+            <div class='col-xs-2'><nav>
+                <a href='http://www.bl.uk'
+                   title='British Library home page'
+                   style='float: left;'
+                >
+                    <img src='http://www.bl.uk/catalogues/illuminatedmanuscripts/images/logo.gif' alt='Home'>
+                </a>
+                <ul style='position: relative; left: 1em; list-style-type: none;'>
+                    <li><a href='../results'>Browse</a></li>
+                    <li>
+                        <a href='http://www.bl.uk/catalogues/illuminatedmanuscripts/welcome.htm'>
+                            Search
                         </a>
-                        <ul style='position: relative; left: 1em; list-style-type: none;'>
-                            <li>
-                                <a href='../results'>
-                                    Browse
-                                </a>
-                            </li>
-                            <li>
-                                <a href='http://www.bl.uk/catalogues/illuminatedmanuscripts/welcome.htm'>
-                                    Search
-                                </a>
-                            </li>
-                            <li>
-                                <a href='../about.html'>
-                                    About
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class='col-xs-10'>
-                    <h3>
-                        Browsing the Catalogue of Illuminated Manuscripts
-                    </h3>
-                </div>
-            </header>
-        </div> <!-- end of header-row -->
+                    </li>
+                    <li><a href='../about.html'>About</a></li>
+                </ul>
+            </nav></div>
+            <div class='col-xs-10'><h3>
+                Browsing the Catalogue of Illuminated Manuscripts
+            </h3></div>
+        </header></div> <!-- end of header-row -->
         
-        <div id='content-row' class='row'>
-            <div class='col-sm-12'>
-                <h1>
-                    Images from <a href='../manuscript?id={$id}'>{$ms[0]} {$ms[1]}</a>
-                </h1>
-                    <p>
-                        {if $maxpage > 1}
-                        Images {1+$offset}&ndash;{count($images)+$offset} of {$image_count} (page {$pageno} / {$maxpage})
-                        {elseif count($images)>1}
-                        Viewing all {count($images)} images found
-                        {elseif count($images)==1}
-                        Only 1 image found
-                        {else}
-                        None found
-                        {/if}
-                    </p>
-                    {if $maxpage > 1} {* pagination not required if only 1 page *}
-                    <nav>
-                        <ul class='pagination' {if $pageno > 8 or $pageno+7 < $maxpage}style='float: left;'{/if}>
-                            {for $linkno=$pageno-7 to $pageno+7}
-                            {if ($linkno<=0)}
-                            {continue}
-                            {/if}
-                            {if $linkno==$pageno}
-                            <li class='active'>
-                            {else}
-                            <li>
-                            {/if}
-                                <a href='?id={$id}&amp;page={$linkno}'>
-                                    {$linkno}
-                                </a>
-                            </li>
-                            {if ($linkno==$maxpage)}
-                            {break}
-                            {/if}
-                            {/for}
-                        </ul>
-                        {if $pageno > 8 or $pageno+7 < $maxpage}
-                        <form id='page-form' class='form-inline' role='form' method='get'>
-                            <div class='form-group'>
-                                <label for='page'>
-                                    Take me to page
-                                </label>
-                                <input type='number' min='1' max='{$maxpage}' name='page' value='{$pageno}'>
-                                <input type='hidden' name='id' value='{$id}'>
-                                <div class='form-group'>
-                                    <button type='submit' class='btn btn-primary'>
-                                        GO
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        {/if}
-                    </nav>
+        <div id='content-row' class='row'><div class='col-sm-12'>
+            <h1>
+                Images from
+                <a href='../manuscript?id={$id}'>{$ms[0]} {$ms[1]}</a>
+            </h1>
+            <p>
+                {if $maxpage > 1}
+                Images {1+$offset}&ndash;{count($images)+$offset}
+                of {$image_count} (page {$pageno} / {$maxpage})
+                {elseif count($images)>1}
+                Viewing all {count($images)} images found
+                {elseif count($images)==1}
+                Only 1 image found
+                {else}
+                None found
+                {/if}
+            </p>
+            {if $maxpage > 1} {* pagination not needed for 1 page *}
+            <nav>
+                <ul class='pagination' {if $pageno > 8 or $pageno+7 < $maxpage}style='float: left;'{/if}>
+                    {for $linkno=$pageno-7 to $pageno+7}
+                    {if ($linkno<=0)}{continue}{/if}
+                    {if $linkno==$pageno}
+                    <li class='active'>
+                    {else}
+                    <li>
                     {/if}
-                    
-                <div class='grid'>
-                    {foreach $images as $image}
-                    <div class='grid-item{if $image_widths[$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[$image[0]]/37.5))}{/if}{if $image_heights[$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[$image[0]]/37.5))}{/if}'>
-                        <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|escape|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
-                            <img class='img-responsive' src='{$image_urls[$image[0]]}'>
+                        <a href='?id={$id}&amp;page={$linkno}'>
+                            {$linkno}
                         </a>
+                    </li>
+                    {if ($linkno==$maxpage)}{break}{/if}
+                    {/for}
+                </ul>
+                {if $pageno > 8 or $pageno+7 < $maxpage}
+                <form id='page-form' class='form-inline' role='form'
+                      method='get'
+                >
+                    <div class='form-group'>
+                        <label for='page'>Take me to page</label>
+                        <input type='number' min='1' max='{$maxpage}'
+                               name='page' value='{$pageno}'
+                        >
+                        <input type='hidden' name='id' value='{$id}'>
+                        <div class='form-group'>
+                            <button type='submit'
+                                    class='btn btn-primary'
+                            >
+                                GO
+                            </button>
+                        </div>
                     </div>
-                    {/foreach}
+                </form>
+                {/if}
+            </nav>
+            {/if}
+                
+            <div class='grid'>{foreach $images as $image}
+                <div class='grid-item{if $image_widths[$image[0]] > 37} grid-item--width{min(4,ceil($image_widths[$image[0]]/37.5))}{/if}{if $image_heights[$image[0]] > 37} grid-item--height{min(4,ceil($image_heights[$image[0]]/37.5))}{/if}'>
+                    <a href='../illumination?id={$image[0]}' data-toggle='tooltip' title='{$image[5]|escape|default:'untitled'}{if $image[4]} ({$image[4]}){/if}'>
+                        <img class='img-responsive'
+                             src='{$image_urls[$image[0]]}'
+                        >
+                    </a>
                 </div>
-            </div>
-        </div> <!-- end of content-row -->
+            {/foreach}</div>
+        </div></div> <!-- end of content-row -->
 
     <!--BeginBLNedstat-->
     <script src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"></script>

@@ -2,6 +2,7 @@
 
 require_once( '../../../async/conf.php' );
 
+// id is required; drop visitor on front page if absent
 if (isset($_GET['id'])){
     $id = (int)$_GET['id'];
 } else {
@@ -10,7 +11,8 @@ if (isset($_GET['id'])){
     exit();
 }
 
-// function for extracting page numbers from foliation string; returns array
+// function for extracting page numbers from foliation string;
+// returns array
 function foliation2pagenum($foliation_str){
     $foliation_str = strtolower($foliation_str);
     $matches = array();
@@ -19,14 +21,19 @@ function foliation2pagenum($foliation_str){
     // digits may be followed by *s, a letter range, e.g. a-f or a letter and r or v (recto, verso)
     // "recto" and "verso" alone are valid page numbers for single sheet manuscripts
     // and a page number may also be preceded by "verso "
-    // This regex also gets volume numbers (beginning "vol. ") which the next line filters out
-    preg_match_all('/recto|verso|(verso |vol\. )?\d+\**([a-z](-[a-z])?)? ?(r(ecto)?|v(erso)?)?|(?<!\d|[a-z]|(\d|\*) )m{0,4}(c(m|d)|d?c{0,3})(x(c|l)|l?x{0,3})(i(x|v)|v?i{0,3})(?![a-z])( verso)?/', $foliation_str, $matches);
-    return array_filter(array_filter($matches[0]), 'isNotVolStr');
+    // This regex also gets volume numbers (beginning "vol. ")
+    // and part numbers (beginning "part ")
+    // which the next line filters out
+    preg_match_all('/recto|verso|(verso |vol\. )?\d+\**([a-z](-[a-z])?)? ?(r(ecto)?|v(erso)?)?|(?<!\d|[a-z]|(\d|\*) )(part )?m{0,4}(c(m|d)|d?c{0,3})(x(c|l)|l?x{0,3})(i(x|v)|v?i{0,3})(?![a-z])( verso)?/', $foliation_str, $matches);
+    return array_filter(array_filter($matches[0]), 'isNotPartStr');
 }
 
-// function to test if a string containing a number is in fact a volume number
-function isNotVolStr($possVolStr){
-    return (substr ($possVolStr,0,3) != 'vol');
+// function to test if a string containing a number
+// is in fact a part or volume number
+function isNotPartStr($possPartStr){
+    return (substr($possPartStr,0,3) != 'vol'
+            and substr($possPartStr,0,3) != 'par'
+            );
 }
 
 // Do SQL for this image's details
@@ -36,13 +43,14 @@ $recstmt->bindParam(':id', $id, PDO::PARAM_INT);
 $recstmt->execute();
 $record = $recstmt ->fetchAll(PDO::FETCH_NUM);
 
-$description = array_filter(explode("\n", trim(preg_replace('/~([^~]*)~/', '<i>\1</i>', $record[0][11]))));
-
-if (!$record) {
+if (!$record) { // then image was not found; drop visitor on front page
     $_SESSION['not_found']='i';
     header('Location: ../results');
     exit();
 }
+
+// get paragraphs and regex-replace special character formatting marks
+$description = array_filter(explode("\n", trim(preg_replace('/~([^~]*)~/', '<i>\1</i>', $record[0][11]))));
 
 // get page numbers
 $pages = foliation2pagenum($record[0][3]);
@@ -68,15 +76,16 @@ $image_lists['same_page'] = array();
 $image_lists['same_part'] = array();
 $image_lists['other_part'] = array();
 foreach ($related as $img){
-    if ($img[6] == $record[0][12]){
+    if ($img[6] == $record[0][12]){  // then same part,
+        // so check if any pages in common
         if (array_intersect($pages, foliation2pagenum($img[4]))){
             $image_lists['same_page'][] = $img;
             //echo("page: " . $img[3] . "<br>");
-        } else {
+        } else {  // no pages in common, but same part
             $image_lists['same_part'][] = $img;
             //echo("part: " . $img[3] . "<br>");
         }
-    } else {
+    } else {  // same manuscript but different part
         $image_lists['other_part'][] = $img;
         //echo("other: " . $img[3] . "<br>");
     }

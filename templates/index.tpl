@@ -518,9 +518,7 @@
             <nav>
                 <ul class='pagination' {if $pageno > 8 or $pageno+7 < $maxpage}style='float: left;'{/if}>
                     {for $linkno=$pageno-7 to $pageno+7}
-                    {if ($linkno<=0)}
-                    {continue}
-                    {/if}
+                    {if ($linkno<=0)}{continue}{/if}
                     {if $linkno==$pageno}
                     <li class='active'>
                     {else}
@@ -530,33 +528,31 @@
                             {$linkno}
                         </a>
                     </li>
-                    {if ($linkno==$maxpage)}
-                    {break}
-                    {/if}
+                    {if ($linkno==$maxpage)}{break}{/if}
                     {/for}
                 </ul>
                 {if $pageno > 8 or $pageno+7 < $maxpage}
-                <form id='page-form' class='form-inline' role='form' method='get'>
+                <form id='page-form' class='form-inline' role='form'
+                      method='get'
+                >
                     <div class='form-group'>
-                        <label for='page'>
-                            Take me to page
-                        </label>
-                        <input type='number' min='1' max='{$maxpage}' name='page' value='{$pageno}'>
-                        {foreach $get as $k => $v}
-                        {if $k != 'page'}
-                        <input type='hidden' name='{$k}' value='{$v}'>
-                        {/if}
-                        {/foreach}
-                        {foreach $get_arrays as $k => $v}
-                        {if $k != 'yearstart' and $k != 'yearend' and $k != 'page'}
-                        <input type='hidden' name='{$k}' value='{$v}'>
-                        {/if}
-                        {/foreach}
-                        <div class='form-group'>
-                            <button type='submit' class='btn btn-primary'>
-                                GO
-                            </button>
-                        </div>
+                        <label for='page'>Take me to page</label>
+                        <input type='number' min='1' max='{$maxpage}'
+                               name='page' value='{$pageno}'
+                        >
+                    </div>
+                    {foreach $get as $k => $v}{if $k != 'page'}
+                    <input type='hidden' name='{$k}' value='{$v}'>
+                    {/if}{/foreach}
+                    {foreach $get_arrays as $k => $v}
+                    {if $k != 'yearstart' and $k != 'yearend' and $k != 'page'}
+                    <input type='hidden' name='{$k}' value='{$v}'>
+                    {/if}
+                    {/foreach}
+                    <div class='form-group'>
+                        <button type='submit' class='btn btn-primary'>
+                            GO
+                        </button>
                     </div>
                 </form>
                 {/if}

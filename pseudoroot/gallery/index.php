@@ -5,11 +5,9 @@ require_once( '../../../async/conf.php' );
 if (isset($_GET['id'])){
     $id = (int)$_GET['id'];
 } else {
-    /*
     $_SESSION['not_found']='m';
     header('Location: ../results');
     exit();
-    */
 }
 
 //
