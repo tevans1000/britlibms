@@ -39,7 +39,7 @@ if (!is_callable('smarty_modifier_regex_replace')) require_once 'c:/wamp/www/bri
 >
     <!-- masonry -->
     <?php echo '<script'; ?>
- src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"><?php echo '</script'; ?>
+ src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  src='../masonry.js'><?php echo '</script'; ?>

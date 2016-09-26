@@ -26,47 +26,6 @@ if (!$record) {
     exit();
 }
 
-// do SQL for images
-$image_qstr = file_get_contents(MS_SQL_DIR . 'image.sql');
-$image_stmt = $db -> prepare($image_qstr);
-$image_stmt -> bindParam(':id', $id, PDO::PARAM_INT);
-$image_stmt -> execute();
-$image_list = $image_stmt -> fetchAll(PDO::FETCH_NUM);
-// initialise arrays for preview thumbnails
-// Must do this even if too many images to preview
-// to prevent smarty errors
-$images = array();
-$image_urls = array();
-$image_widths = array();
-$image_heights = array();
-$too_many_images = false;
-if (count($image_list) <= 100){  // then preview images here.
-    // get image urls & sizes for masonry
-    foreach ($image_list as $image){
-        switch ($image[1]){
-            case 1:
-                $image_url = PLACEHOLDER_IMAGE_URL;
-                break;
-            case 5: case 8: case 9:
-                $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
-                             . '/thm/' . substr($image[3], 0, 4) . '/'
-                             . $image[3] . '.jpg';
-                break;
-            default:
-                $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
-                             . '/thm/' . $image[3] . '.jpg';
-        }
-        $image_size = getimagesize($image_url);
-        $images[$image[6]][] = $image;
-        $image_urls[$image[6]][$image[0]] = $image_url;
-        $image_widths[$image[6]][$image[0]] = $image_size[0];
-        $image_heights[$image[6]][$image[0]] = $image_size[1];
-    }
-} else {
-    // don't preview here, link to paginated gallery
-    $too_many_images = true;
-}
-
 // details for manuscript parts
 $qstr = file_get_contents(MS_SQL_DIR . 'part.sql');
 $partstmt = $db->prepare($qstr);
@@ -111,6 +70,47 @@ foreach ($parts as $part){
     if (!isset($images[$part[11]])){
         $images[$part[11]] = array();
     }
+}
+
+// do SQL for images
+$image_qstr = file_get_contents(MS_SQL_DIR . 'image.sql');
+$image_stmt = $db -> prepare($image_qstr);
+$image_stmt -> bindParam(':id', $id, PDO::PARAM_INT);
+$image_stmt -> execute();
+$image_list = $image_stmt -> fetchAll(PDO::FETCH_NUM);
+// initialise arrays for preview thumbnails
+// Must do this even if too many images to preview
+// to prevent smarty errors
+$images = array();
+$image_urls = array();
+$image_widths = array();
+$image_heights = array();
+$too_many_images = false;
+if (count($image_list) <= 100){  // then preview images here.
+    // get image urls & sizes for masonry
+    foreach ($image_list as $image){
+        switch ($image[1]){
+            case 1:
+                $image_url = PLACEHOLDER_IMAGE_URL;
+                break;
+            case 5: case 8: case 9:
+                $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
+                             . '/thm/' . substr($image[3], 0, 4) . '/'
+                             . $image[3] . '.jpg';
+                break;
+            default:
+                $image_url = 'http://www.bl.uk/IllImages/' . $image[2]
+                             . '/thm/' . $image[3] . '.jpg';
+        }
+        $image_size = getimagesize($image_url);
+        $images[$image[6]][] = $image;
+        $image_urls[$image[6]][$image[0]] = $image_url;
+        $image_widths[$image[6]][$image[0]] = $image_size[0];
+        $image_heights[$image[6]][$image[0]] = $image_size[1];
+    }
+} else {
+    // don't preview here, link to paginated gallery
+    $too_many_images = true;
 }
 
 // regex-ing to seperate paragraphs

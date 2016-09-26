@@ -30,11 +30,9 @@ $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
 $ms = $stmt ->fetchAll(PDO::FETCH_NUM);
 if (!$ms) {
-    /*
     $_SESSION['not_found']='m';
     header('Location: ../results');
     exit();
-    */
 }
 
 // get image count
@@ -98,8 +96,5 @@ $smarty -> assign('image_heights', $image_heights);
 
 // Display
 $smarty->display('gallery.tpl');
-
-
-
 
 ?>

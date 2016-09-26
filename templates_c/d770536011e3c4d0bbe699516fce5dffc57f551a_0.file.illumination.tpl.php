@@ -40,7 +40,7 @@ if (!is_callable('smarty_modifier_truncate')) require_once '/var/www/html/britli
 >
     <!-- masonry -->
     <?php echo '<script'; ?>
- src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"><?php echo '</script'; ?>
+ src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  src='../masonry.js'><?php echo '</script'; ?>
