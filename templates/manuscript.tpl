@@ -165,7 +165,7 @@
                         </dd>
                         {/if}
                         {if $details[5]}
-                        <dt>Dimensions</dt>
+                        <dt>Dimensions in mm</dt>
                         <dd class='oneline'>{$details[5]}</dd>
                         {/if}
                         {if $details[6]}
