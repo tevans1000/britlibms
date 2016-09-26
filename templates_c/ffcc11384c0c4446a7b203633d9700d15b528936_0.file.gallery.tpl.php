@@ -38,7 +38,7 @@ function content_57d33912d6bd97_68083106 ($_smarty_tpl) {
 >
     <!-- masonry -->
     <?php echo '<script'; ?>
- src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"><?php echo '</script'; ?>
+ src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  src='../masonry.js'><?php echo '</script'; ?>
