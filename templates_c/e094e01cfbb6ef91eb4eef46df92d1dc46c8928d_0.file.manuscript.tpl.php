@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-09-10 20:43:10
+/* Smarty version 3.1.28, created on 2016-09-26 14:16:41
   from "/var/www/html/britlibms/sync/templates/manuscript.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57d4624ec87d96_38715471',
+  'unifunc' => 'content_57e91fb9d51876_10095449',
   'file_dependency' => 
   array (
     'e094e01cfbb6ef91eb4eef46df92d1dc46c8928d' => 
     array (
       0 => '/var/www/html/britlibms/sync/templates/manuscript.tpl',
-      1 => 1473518253,
+      1 => 1474895793,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57d4624ec87d96_38715471 ($_smarty_tpl) {
+function content_57e91fb9d51876_10095449 ($_smarty_tpl) {
 if (!is_callable('smarty_modifier_regex_replace')) require_once '/var/www/html/britlibms/sync/includes/Smarty-3.1.28/libs/plugins/modifier.regex_replace.php';
 ?>
 <!DOCTYPE html>
@@ -334,7 +334,7 @@ $_smarty_tpl->tpl_vars['lang'] = $__foreach_lang_5_saved_item;
                         </dd>
                         <?php }?>
                         <?php if ($_smarty_tpl->tpl_vars['details']->value[5]) {?>
-                        <dt>Dimensions</dt>
+                        <dt>Dimensions in mm</dt>
                         <dd class='oneline'><?php echo $_smarty_tpl->tpl_vars['details']->value[5];?>
 </dd>
                         <?php }?>
@@ -477,6 +477,8 @@ $_smarty_tpl->tpl_vars['no'] = $__foreach_details_3_saved_key;
 }
 ?>
         </div></div> <!-- end of content-row -->
+
+</div> <!-- end of container div -->
 
     <!--BeginBLNedstat-->
     <?php echo '<script'; ?>

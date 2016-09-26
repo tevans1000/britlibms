@@ -228,6 +228,8 @@
             {/foreach}
         </div></div> <!-- end of content-row -->
 
+</div> <!-- end of container div -->
+
     <!--BeginBLNedstat-->
     <script src="//forms.bl.uk/wa/scripts/global-2.js" type="text/javascript"></script>
     <script type="text/javascript">
